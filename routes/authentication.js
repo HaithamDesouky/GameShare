@@ -1,15 +1,15 @@
 'use strict';
 
 const { Router } = require('express');
+const router = new Router();
 
 const passport = require('passport');
 
-const router = new Router();
+const User = require('./../models/user');
 
 router.get('/sign-up', (req, res, next) => {
   res.render('sign-up');
 });
-
 router.post(
   '/sign-up',
   passport.authenticate('local-sign-up', {
@@ -25,6 +25,18 @@ router.post(
     failureRedirect: '/sign-up'
   })
 );
+
+router.get('/email-confirmation', (req, res, next) => {
+  const mailToken = req.query.token;
+
+  User.findOneAndUpdate({ confirmationToken: mailToken }, { status: 'active' }, { new: true })
+    .then(user => {
+      res.render('email-confirmation', { user });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 
 router.get('/sign-in', (req, res, next) => {
   res.render('sign-in');
