@@ -8,12 +8,12 @@ const passport = require('passport');
 const User = require('./../models/user');
 
 router.get('/sign-up', (req, res, next) => {
-    res.render('sign-up');
+  res.render('sign-up');
 });
 router.post(
   '/sign-up',
   passport.authenticate('local-sign-up', {
-    successRedirect: '/private',
+    successRedirect: '/profile',
     failureRedirect: '/sign-up'
   })
 );
@@ -21,7 +21,7 @@ router.post(
 router.post(
   '/sign-up',
   passport.authenticate('github', {
-    successRedirect: '/private',
+    successRedirect: '/profile',
     failureRedirect: '/sign-up'
   })
 );
@@ -57,7 +57,7 @@ router.post(
 router.get(
   '/github',
   passport.authenticate('github', {
-    successRedirect: '/private',
+    successRedirect: '/profile',
     failureRedirect: '/authentication/sign-in'
   })
 );
@@ -65,7 +65,7 @@ router.get(
 router.get(
   '/github-callback',
   passport.authenticate('github', {
-    successRedirect: '/private',
+    successRedirect: '/profile',
     failureRedirect: '/authentication/sign-in'
   })
 );
