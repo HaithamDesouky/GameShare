@@ -37,7 +37,7 @@ gameRouter.post(
         res.redirect('/profile');
       })
       .then(game => {
-        return User.findByIdAndUpdate(userId, { $push: { games: game._id } });
+        return User.findByIdAndUpdate(req.session.userId, { $push: { games: game._id } });
       })
       .catch(error => {
         next(error);
