@@ -33,7 +33,7 @@ router.get('/sign-in', (req, res, next) => {
 router.post(
   '/sign-in',
   passport.authenticate('local-sign-in', {
-    successRedirect: '/private',
+    successRedirect: '/profile',
     failureRedirect: '/sign-in'
   })
 );

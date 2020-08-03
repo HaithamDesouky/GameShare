@@ -41,4 +41,4 @@ const gameSchema = new mongoose.Schema(
   }*/
 );
 const Game = mongoose.model('Game', gameSchema);
-module.exports = mongoose.model('Game', schema);
+module.exports = Game;
