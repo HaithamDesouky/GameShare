@@ -1,10 +1,60 @@
 <form action="/authentication/sign-up" method="POST">
   <label for="input-name">Name</label>
-  <input type="text" id="input-name" name="name" placeholder="Your Name" />
+  <input type="text" id="input-name" name="name" placeholder="Your Name" required/>
   <label for="input-email">Email</label>
-  <input type="email" id="input-email" name="email" placeholder="Your Email" />
+  <input type="email" id="input-email" name="email" placeholder="Your Email" required/>
   <label for="input-password">Password</label>
-  <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
+  <input type="password" name="password" id="input-password" placeholder="A Strong Password" required />
+  <label for="input-latitude"> Click on the map below to choose your preferred game swapping location!</label>
+   <label for="latitude-input">Latitude</label>
+  <input id="latitude-input" type="text" placeholder="Latitude" name="latitude">
+  
+  <label for="longitude-input">Longitude</label>
+  <input id="longitude-input" type="text" placeholder="Longitude" name="longitude">
   <button>Sign Up</button>
 </form>
 <a href="/authentication/github">Sign Up with GitHub</a>
+
+
+<div id="map-container"></div>
+
+
+<script>
+  function init () {
+    const mapContainerElement = document.getElementById('map-container');
+    const map = new window.google.maps.Map(mapContainerElement, {
+      center: {
+       lat: 38.77,
+        lng: -9.13
+      },
+      zoom: 11
+    });
+    let marker;
+    const latitudeInputElement = document.getElementById('latitude-input');
+    const longitudeInputElement = document.getElementById('longitude-input');
+    map.addListener('click', event => {
+      const latitude = event.latLng.lat();
+      const longitude = event.latLng.lng();
+      if (marker) {
+        marker.setMap(null);
+      }
+      marker = new window.google.maps.Marker({
+        map,
+        position: {
+          lat: latitude,
+          lng: longitude
+        }
+      });
+      latitudeInputElement.value = latitude;
+      longitudeInputElement.value = longitude;
+    });
+  }
+</script>
+
+
+
+
+
+<script defer src="https://maps.googleapis.com/maps/api/js?key={{environmentVariables.GOOGLE_MAPS_API_KEY}}&callback=init"></script>
+
+

@@ -16,7 +16,8 @@ const passportConfigure = require('./passport-configuration.js');
 const indexRouter = require('./routes/index');
 const profileRouter = require('./routes/profleRouter');
 const gameRouter = require('./routes/gameRouter');
-
+const hbs = require('hbs');
+const hbsJsonHelper = require('hbs-json');
 
 const authenticationRouter = require('./routes/authentication');
 
@@ -24,6 +25,8 @@ const app = express();
 
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerPartials(join(__dirname, 'views/partials'));
+hbs.registerHelper('json', hbsJsonHelper);
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(
@@ -36,6 +39,12 @@ app.use(
     sourceMap: true
   })
 );
+
+app.use((req, res, next) => {
+  res.locals.environmentVariables = process.env;
+  next();
+});
+
 app.use(express.static(join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -65,7 +74,6 @@ app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/profile', profileRouter);
 app.use('/', gameRouter);
-
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
