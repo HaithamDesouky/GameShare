@@ -17,7 +17,7 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 const upload = multer({ storage });
 
 router.get('/sign-up', (req, res, next) => {
-  res.render('sign-up');
+    res.render('sign-up');
 });
 
 router.post(
@@ -41,7 +41,11 @@ router.post(
 router.get('/email-confirmation', (req, res, next) => {
   const mailToken = req.query.token;
 
-  User.findOneAndUpdate({ confirmationToken: mailToken }, { status: 'active' }, { new: true })
+  User.findOneAndUpdate(
+    { confirmationToken: mailToken },
+    { status: 'active' },
+    { new: true }
+  )
     .then(user => {
       res.render('email-confirmation', { user });
     })

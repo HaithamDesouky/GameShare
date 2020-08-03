@@ -32,7 +32,8 @@ const transport = nodemailer.createTransport({
 });
 
 const generateRandomToken = length => {
-  const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const characters =
+    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let token = '';
   for (let i = 0; i < length; i++) {
     token += characters[Math.floor(Math.random() * characters.length)];
@@ -62,10 +63,11 @@ passport.use(
       passReqToCallback: true
     },
     (req, email, password, callback) => {
-      const { name, status } = req.body;
+      const { name, status, latitude, longitude } = req.body;
       const token = generateRandomToken(40);
       const userPhoto = req.path.file;
       console.log(userPhoto);
+      console.log(latitude, longitude);
       bcryptjs
         .hash(password, 10)
         .then(hash => {
@@ -75,6 +77,9 @@ passport.use(
             passwordHash: hash,
             status,
             photo: userPhoto,
+            location: {
+              coordinates: [latitude, longitude]
+            },
             confirmationToken: token
           });
         })
@@ -132,43 +137,41 @@ passport.use(
   })
 );
 
-/*
-passport.use(
-  'github',
-  new GitHubStrategy(
-    {
-      clientID: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: 'http://localhost:3000/authentication/github-callback',
-      scope: 'user:email'
-    },
-    (accessToken, refreshToken, profile, callback) => {
-      const {
-        displayName: name,
-        emails,
-        photos: [{ value: photo } = {}] = []
-      } = profile;
-      const primaryEmail = emails.find(email => email.primary).value;
-      User.findOne({ email: primaryEmail })
-        .then(user => {
-          if (user) {
-            return Promise.resolve(user);
-          } else {
-            return User.create({
-              email: primaryEmail,
-              photo,
-              name,
-              githubToken: accessToken
-            });
-          }
-        })
-        .then(user => {
-          callback(null, user);
-        })
-        .catch(error => {
-          callback(error);
-        });
-    }
-  )
-);
-*/
+// passport.use(
+//   'github',
+//   new GitHubStrategy(
+//     {
+//       clientID: process.env.GITHUB_CLIENT_ID,
+//       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+//       callbackURL: 'http://localhost:3000/authentication/github-callback',
+//       scope: 'user:email'
+//     },
+//     (accessToken, refreshToken, profile, callback) => {
+//       const {
+//         displayName: name,
+//         emails,
+//         photos: [{ value: photo } = {}] = []
+//       } = profile;
+//       const primaryEmail = emails.find(email => email.primary).value;
+//       User.findOne({ email: primaryEmail })
+//         .then(user => {
+//           if (user) {
+//             return Promise.resolve(user);
+//           } else {
+//             return User.create({
+//               email: primaryEmail,
+//               photo,
+//               name,
+//               githubToken: accessToken
+//             });
+//           }
+//         })
+//         .then(user => {
+//           callback(null, user);
+//         })
+//         .catch(error => {
+//           callback(error);
+//         });
+//     }
+//   )
+// );
