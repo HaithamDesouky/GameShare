@@ -2,11 +2,21 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const nodemailer = require('nodemailer');
+const bcryptjs = require('bcryptjs');
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const multerStorageCloudinary = require('multer-storage-cloudinary');
+
+const storage = new multerStorageCloudinary.CloudinaryStorage({
+  cloudinary: cloudinary.v2
+});
+
+const upload = multer({ storage });
+
 // const GitHubStrategy = require('passport-github').Strategy;
 
 const User = require('./models/user');
-const nodemailer = require('nodemailer');
-const bcryptjs = require('bcryptjs');
 
 //const routeGuard = require('./../middleware/route-guard');
 
@@ -55,6 +65,8 @@ passport.use(
     (req, email, password, callback) => {
       const { name, status, latitude, longitude } = req.body;
       const token = generateRandomToken(40);
+      const userPhoto = req.path.file;
+      console.log(userPhoto);
       console.log(latitude, longitude);
       bcryptjs
         .hash(password, 10)
@@ -64,6 +76,7 @@ passport.use(
             email,
             passwordHash: hash,
             status,
+            photo: userPhoto,
             location: {
               coordinates: [latitude, longitude]
             },

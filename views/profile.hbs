@@ -4,4 +4,9 @@
 <br />
 <span><strong>Email</strong>: {{user.email}}</span>
 
+{{#if user.photo}}
+  <br>
+  <img src="{{ user.photo }}" alt="user photo">
+{{/if}}
+<br>
 <a href="/profile/edit"> Edit your profile!</a>
