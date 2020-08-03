@@ -2,7 +2,7 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const GitHubStrategy = require('passport-github').Strategy;
+// const GitHubStrategy = require('passport-github').Strategy;
 
 const User = require('./models/user');
 const nodemailer = require('nodemailer');
@@ -120,6 +120,7 @@ passport.use(
   })
 );
 
+<<<<<<< HEAD
 /*
 passport.use(
   'github',
@@ -160,3 +161,43 @@ passport.use(
   )
 );
 */
+=======
+// passport.use(
+//   'github',
+//   new GitHubStrategy(
+//     {
+//       clientID: process.env.GITHUB_CLIENT_ID,
+//       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+//       callbackURL: 'http://localhost:3000/authentication/github-callback',
+//       scope: 'user:email'
+//     },
+//     (accessToken, refreshToken, profile, callback) => {
+//       const {
+//         displayName: name,
+//         emails,
+//         photos: [{ value: photo } = {}] = []
+//       } = profile;
+//       const primaryEmail = emails.find(email => email.primary).value;
+//       User.findOne({ email: primaryEmail })
+//         .then(user => {
+//           if (user) {
+//             return Promise.resolve(user);
+//           } else {
+//             return User.create({
+//               email: primaryEmail,
+//               photo,
+//               name,
+//               githubToken: accessToken
+//             });
+//           }
+//         })
+//         .then(user => {
+//           callback(null, user);
+//         })
+//         .catch(error => {
+//           callback(error);
+//         });
+//     }
+//   )
+// );
+>>>>>>> f824e6d52638220512f10744e455330d3ebca2b1
