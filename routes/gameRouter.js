@@ -13,8 +13,8 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 });
 const upload = multer({ storage });
 
-gameRouter.get('/create', routeGuard, (req, res, next) => {
-  res.render('game/create');
+gameRouter.get('create', routeGuard, (req, res, next) => {
+  res.render('/create');
 });
 
 gameRouter.post(
@@ -45,7 +45,5 @@ gameRouter.post(
     res.render('game/create');
   }
 );
-
-
 
 module.exports = gameRouter;
