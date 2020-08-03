@@ -12,11 +12,11 @@ profileRouter.get('/edit', routeGuard, (req, res, next) => {
 });
 
 profileRouter.post('/edit', routeGuard, (req, res, next) => {
-  const id = res.locals._id;
+  const id = res.locals.user._id;
   const { name } = req.body;
-  console.log(name);
+  console.log(id, name);
 
-  User.findByIdAndUpdate(id, { name: name })
+  User.findByIdAndUpdate(id, { name })
     .then(res.redirect('/profile'))
     .catch(error => next(error));
 });
