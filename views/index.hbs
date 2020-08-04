@@ -1,7 +1,10 @@
 <h1>Home</h1>
 
 <h1>Map of user meeting points</h1>
+
+
 <div id="map-container"></div>
+
 
 
 <script>
@@ -9,34 +12,27 @@
     const mapContainerElement = document.getElementById('map-container');
     const map = new window.google.maps.Map(mapContainerElement, {
       center: {
-       lat: 38.77,
+         lat: 38.77,
         lng: -9.13
       },
       zoom: 11
     });
-    let marker;
-    const latitudeInputElement = document.getElementById('latitude-input');
-    const longitudeInputElement = document.getElementById('longitude-input');
-    map.addListener('click', event => {
-      const latitude = event.latLng.lat();
-      const longitude = event.latLng.lng();
-      if (marker) {
-        marker.setMap(null);
-      }
-      marker = new window.google.maps.Marker({
+    const users = {{{ json users }}};
+    for (let user of users) {
+      const marker = new window.google.maps.Marker({
         map,
         position: {
-          lat: latitude,
-          lng: longitude
+          lat: user.location.coordinates[0],
+          lng: user.location.coordinates[1]
         }
       });
-      latitudeInputElement.value = latitude;
-      longitudeInputElement.value = longitude;
-    });
+      marker.addListener('click', () => {
+        const endpoint = `/profile/${ user._id }`;
+        window.location = endpoint;
+      });
+    }
   }
 </script>
-
-
 
 <script>
   const triggerLocationButton = document.getElementById('trigger-location');
@@ -55,7 +51,6 @@
 </script>
 
 <script defer src="https://maps.googleapis.com/maps/api/js?key={{environmentVariables.GOOGLE_MAPS_API_KEY}}&callback=init"></script>
-
 
 
 
