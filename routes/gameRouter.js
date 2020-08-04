@@ -118,7 +118,7 @@ gameRouter.post(
   (req, res, next) => {
     const id = req.params.id;
     const userId = req.session.passport.user;
-    const { name, date, content } = req.body;
+    const { name, date, content, platform } = req.body;
     let newGamePhoto;
 
     let data;
@@ -126,11 +126,12 @@ gameRouter.post(
       data = {
         name,
         date,
-        content
+        content,
+        platform
       };
     } else {
       newGamePhoto = req.file.path;
-      data = { name, date, content, photo: newGamePhoto };
+      data = { name, date, content, platform, photo: newGamePhoto };
     }
 
     Game.findOneAndUpdate({ _id: id, creator: userId }, data)
