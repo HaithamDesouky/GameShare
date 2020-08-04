@@ -11,13 +11,13 @@
     <nav>
       <a href="/">Home</a>
       {{#if user}}
-      <form action="/game/platform" method="POST" style="display: inline; margin-right: 0.7rem">
+      <form action="/game/platform" method="GET" style="display: inline; margin-right: 0.7rem">
        <button>Choose platform</button>
         {{!-- <label for="select-platform">Platform</label> --}}
         <select id="select-platform" name="platform">
-        <option value="xbox">Xbox</option>
-        <option value="playstation">Playstation</option>
-        <option value="nintendo">Nintendo</option></select>
+        <option value="Xbox">Xbox</option>
+        <option value="Playstation">Playstation</option>
+        <option value="Nintendo Switch">Nintendo Switch</option></select>
        </form>
   
         <a href="/profile">Your account</a>

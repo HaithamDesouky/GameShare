@@ -3,9 +3,11 @@
 <span>Game owned by <a href="/profile/{{ game.creator._id }}">{{ game.creator.name }}</a></span>
 
 <div class="game">
+
   <p>{{ game.content }}</p>
+  <p>{{game.platform}}</p>
   <p>{{ game.date }}</p>
-  <p>{{ game.photos }}</p>
+    <img src="{{ game.photo }}" alt="photo of game"><p></p>
 </div>
 
 <a href="/game/{{ game.id }}/edit">Edit Post</a>
