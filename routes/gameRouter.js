@@ -13,42 +13,50 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 });
 const upload = multer({ storage });
 
+gameRouter.get('/platform', routeGuard, (req, res, next) => {
+  const platform = req.body.platform;
+  console.log(platform);
+  res.render('platform', { platform });
+});
+
 gameRouter.get('/create', routeGuard, (req, res, next) => {
   res.render('create-game');
 });
 
-gameRouter.post('/create', upload.single('photo'), routeGuard, (req, res, next) => {
-  const { name, date, content } = req.body;
-  const id = res.locals.user._id;
-  let photoUpload;
-  !req.file.path ? (photoUpload = 'https://res.cloudinary.com/asxisto/image/upload/v1596535816/gamechanger/default_game.png') : (photoUpload = req.file.path);
-  console.log(photoUpload);
-  Game.create({
-    creator: id,
-    name,
-    date,
-    content,
-    photo: photoUpload
-  })
-    .then(game => {
-      return User.findByIdAndUpdate(id, {
-        $push: { games: game._id }
+gameRouter.post(
+  '/create',
+  upload.single('photo'),
+  routeGuard,
+  (req, res, next) => {
+    const { name, date, content } = req.body;
+    const id = res.locals.user._id;
+    let photoUpload;
+    !req.file.path
+      ? (photoUpload =
+          'https://res.cloudinary.com/asxisto/image/upload/v1596535816/gamechanger/default_game.png')
+      : (photoUpload = req.file.path);
+    console.log(photoUpload);
+    Game.create({
+      creator: id,
+      name,
+      date,
+      content,
+      photo: photoUpload
+    })
+      .then(game => {
+        return User.findByIdAndUpdate(id, {
+          $push: { games: game._id }
+        });
+      })
+      .then(() => {
+        res.redirect('/profile');
+      })
+      .catch(error => {
+        next(error);
       });
-<<<<<<< HEAD
-    })
-    .then(() => {
-      res.redirect('/profile');
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-gameRouter.get('/:id', (req, res, next) => {
-=======
   }
 );
 gameRouter.get('/:id', routeGuard, (req, res, next) => {
->>>>>>> 5308c4d17f649eab7eb71795226dab264c04fd1c
   const id = req.params.id;
   Game.findById(id)
     .populate('creator')
@@ -95,19 +103,27 @@ gameRouter.get('/:id/edit', routeGuard, (req, res, next) => {
     });
 });
 
-gameRouter.post('/:id/edit', upload.single('photo'), routeGuard, (req, res, next) => {
-  const id = req.params.id;
-  const userId = req.session.passport.user;
-  const { name, date, content } = req.body;
-  const newGamePhoto = req.file.path;
+gameRouter.post(
+  '/:id/edit',
+  upload.single('photo'),
+  routeGuard,
+  (req, res, next) => {
+    const id = req.params.id;
+    const userId = req.session.passport.user;
+    const { name, date, content } = req.body;
+    const newGamePhoto = req.file.path;
 
-  Game.findOneAndUpdate({ _id: id, creator: userId }, { name, date, content, photo: newGamePhoto })
-    .then(() => {
-      res.redirect('/profile');
-    })
-    .catch(error => {
-      next(error);
-    });
-});
+    Game.findOneAndUpdate(
+      { _id: id, creator: userId },
+      { name, date, content, photo: newGamePhoto }
+    )
+      .then(() => {
+        res.redirect('/profile');
+      })
+      .catch(error => {
+        next(error);
+      });
+  }
+);
 
 module.exports = gameRouter;
