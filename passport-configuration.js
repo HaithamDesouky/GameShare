@@ -32,8 +32,7 @@ const transport = nodemailer.createTransport({
 });
 
 const generateRandomToken = length => {
-  const characters =
-    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let token = '';
   for (let i = 0; i < length; i++) {
     token += characters[Math.floor(Math.random() * characters.length)];
@@ -65,9 +64,9 @@ passport.use(
     (req, email, password, callback) => {
       const { name, status, latitude, longitude } = req.body;
       const token = generateRandomToken(40);
-      const userPhoto = req.path.file;
-      console.log(userPhoto);
-      console.log(latitude, longitude);
+      const userPhoto = req.file.path;
+      // console.log(userPhoto);
+      // console.log(latitude, longitude);
       bcryptjs
         .hash(password, 10)
         .then(hash => {
