@@ -18,17 +18,10 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "hbs": "^4.1.1",
-<<<<<<< HEAD
-    "http-errors": "^1.7.3",
-    "json": "^9.0.6",
-    "mongoose": "^5.6.13",
-    "morgan": "^1.9.1",
-=======
     "hbs-json": "^0.1.1",
     "http-errors": "^1.7.3",
     "mongoose": "^5.9.27",
     "morgan": "^1.10.0",
->>>>>>> 53f0d02db3ef9279ed74a13a34802c4a9769a26f
     "multer": "^1.4.2",
     "multer-storage-cloudinary": "^4.0.0",
     "node-sass-middleware": "^0.11.0",
