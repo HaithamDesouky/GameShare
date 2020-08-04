@@ -11,7 +11,8 @@
     <nav>
       <a href="/">Home</a>
       {{#if user}}
-        <!-- <a href="/">{{user.name}}'s Profile</a> -->
+        <a href="/profile">Your account</a>
+        <a href="/game/create">Post your game!</a>
         <form action="/authentication/sign-out" method="POST">
           <button>Sign Out</button>
         </form>
