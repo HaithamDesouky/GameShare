@@ -1,1 +1,8 @@
-<h1>here will be the platforms</h1>
+<h2>{{platformInput}} Games</h2>
+
+<div class="game-list">
+  {{#each games}}
+  <img src="{{photo}}" alt="{{name}}">
+  <h2><a href="/game/{{id}}">{{name}}</a></h2>
+  {{/each}}
+</div>

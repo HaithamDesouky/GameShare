@@ -14,9 +14,16 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 const upload = multer({ storage });
 
 gameRouter.get('/platform', routeGuard, (req, res, next) => {
-  const platform = req.body.platform;
-  console.log(platform);
-  res.render('platform', { platform });
+  const platformInput = req.query.platform;
+  console.log(platformInput);
+
+  Game.find({ platform: platformInput })
+    .then(games => {
+      res.render('platform', { games, platformInput });
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 gameRouter.get('/create', routeGuard, (req, res, next) => {
@@ -28,7 +35,7 @@ gameRouter.post(
   upload.single('photo'),
   routeGuard,
   (req, res, next) => {
-    const { name, date, content } = req.body;
+    const { name, date, content, platform } = req.body;
     const id = res.locals.user._id;
     let photoUpload;
     !req.file
@@ -41,7 +48,8 @@ gameRouter.post(
       name,
       date,
       content,
-      photo: photoUpload
+      photo: photoUpload,
+      platform
     })
       .then(game => {
         return User.findByIdAndUpdate(id, {
