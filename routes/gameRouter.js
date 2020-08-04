@@ -23,31 +23,39 @@ gameRouter.get('/create', routeGuard, (req, res, next) => {
   res.render('create-game');
 });
 
-gameRouter.post('/create', upload.single('photo'), routeGuard, (req, res, next) => {
-  const { name, date, content } = req.body;
-  const id = res.locals.user._id;
-  let photoUpload;
-  !req.file ? (photoUpload = 'https://res.cloudinary.com/asxisto/image/upload/v1596535816/gamechanger/default_game.png') : (photoUpload = req.file.path);
-  console.log(photoUpload);
-  Game.create({
-    creator: id,
-    name,
-    date,
-    content,
-    photo: photoUpload
-  })
-    .then(game => {
-      return User.findByIdAndUpdate(id, {
-        $push: { games: game._id }
+gameRouter.post(
+  '/create',
+  upload.single('photo'),
+  routeGuard,
+  (req, res, next) => {
+    const { name, date, content } = req.body;
+    const id = res.locals.user._id;
+    let photoUpload;
+    !req.file
+      ? (photoUpload =
+          'https://res.cloudinary.com/asxisto/image/upload/v1596535816/gamechanger/default_game.png')
+      : (photoUpload = req.file.path);
+    console.log(photoUpload);
+    Game.create({
+      creator: id,
+      name,
+      date,
+      content,
+      photo: photoUpload
+    })
+      .then(game => {
+        return User.findByIdAndUpdate(id, {
+          $push: { games: game._id }
+        });
+      })
+      .then(() => {
+        res.redirect('/profile');
+      })
+      .catch(error => {
+        next(error);
       });
-    })
-    .then(() => {
-      res.redirect('/profile');
-    })
-    .catch(error => {
-      next(error);
-    });
-});
+  }
+);
 gameRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Game.findById(id)
@@ -95,41 +103,36 @@ gameRouter.get('/:id/edit', routeGuard, (req, res, next) => {
     });
 });
 
-gameRouter.post('/:id/edit', upload.single('photo'), routeGuard, (req, res, next) => {
-  const id = req.params.id;
-  const userId = req.session.passport.user;
-  const { name, date, content } = req.body;
-  let newGamePhoto;
-  let oldPhoto;
+gameRouter.post(
+  '/:id/edit',
+  upload.single('photo'),
+  routeGuard,
+  (req, res, next) => {
+    const id = req.params.id;
+    const userId = req.session.passport.user;
+    const { name, date, content } = req.body;
+    let newGamePhoto;
 
-  // if (req.file) {
-  //   newGamePhoto = req.file.path;
-  // } else {
-  Game.findById(id).then(data => {
-    oldPhoto = data.photo;
-    //console.log(data.photo);
-    console.log(oldPhoto);
-  });
-  // }
+    let data;
+    if (!req.file) {
+      data = {
+        name,
+        date,
+        content
+      };
+    } else {
+      newGamePhoto = req.file.path;
+      data = { name, date, content, photo: newGamePhoto };
+    }
 
-  if (!req.file) {
-    newGamePhoto = oldPhoto;
-  } else {
-    newGamePhoto = req.file.path;
+    Game.findOneAndUpdate({ _id: id, creator: userId }, data)
+      .then(() => {
+        res.redirect('/profile');
+      })
+      .catch(error => {
+        next(error);
+      });
   }
-
-  console.log('final url ' + newGamePhoto);
-  /*
-  let newGamePhoto;
-  !req.file ? newGamePhoto =  : (newGamePhoto = req.file.path);
-  */
-  Game.findOneAndUpdate({ _id: id, creator: userId }, { name, date, content, photo: newGamePhoto })
-    .then(() => {
-      res.redirect('/profile');
-    })
-    .catch(error => {
-      next(error);
-    });
-});
+);
 
 module.exports = gameRouter;
