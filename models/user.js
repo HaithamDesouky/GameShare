@@ -48,6 +48,9 @@ const userSchema = new mongoose.Schema(
     confirmationToken: {
       type: String,
       unique: true
+    },
+    wishlist: {
+      type: String
     }
   },
   {

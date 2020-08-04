@@ -14,13 +14,6 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 
 const upload = multer({ storage });
 
-//view for other users to see
-profileRouter.get('/:id', (req, res, next) => {
-  const id = req.params.id;
-  User.findById(id).then(user => res.render('other-user', { user }));
-});
-//---------------------------
-
 profileRouter.get('/', (req, res, next) => {
   const id = res.locals.user._id;
   Game.find({ creator: id }).then(game => res.render('profile', { game }));
@@ -36,15 +29,21 @@ profileRouter.post(
   routeGuard,
   (req, res, next) => {
     const id = res.locals.user._id;
-    const { name } = req.body;
+    const { name, wishlist } = req.body;
     const newPhoto = req.file.path;
 
     // console.log(id, name);
 
-    User.findByIdAndUpdate(id, { name, photo: newPhoto })
+    User.findByIdAndUpdate(id, { name, wishlist, photo: newPhoto })
       .then(res.redirect('/profile'))
       .catch(error => next(error));
   }
 );
+//view for other users to see
+profileRouter.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id).then(user => res.render('other-user', { user }));
+});
+//---------------------------
 
 module.exports = profileRouter;

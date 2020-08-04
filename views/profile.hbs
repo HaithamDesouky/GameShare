@@ -8,21 +8,15 @@
   <br>
   <img src="{{ user.photo }}" alt="user photo">
 {{/if}}
-<br>
-<a href="/profile/edit"> Edit your profile!</a>
-
+<br />
 
 <h2>Your games</h2>
-
 {{#each game}}
-
 <h3>{{name}}</h3>
-
 <img src="{{photo}}" alt="Game Photo">
-
 <a href="">View this game</a>
-
-
-
-
 {{/each}}
+
+<h2>Your wishlist</h2>
+<p>{{user.wishlist}}</p>
+<h2><a href="/profile/edit">Edit your profile!</a></h2>
