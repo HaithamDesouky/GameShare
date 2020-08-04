@@ -22,12 +22,14 @@ gameRouter.post(
   upload.single('photo'),
   routeGuard,
   (req, res, next) => {
-    const photoUpload = req.file.path;
+    let photoUpload;
     const { name, date, content } = req.body;
     const id = res.locals.user._id;
     if (!photoUpload) {
       photoUpload =
         'https://res.cloudinary.com/asxisto/image/upload/v1596535816/gamechanger/default_game.png';
+    } else {
+      photoUpload = req.file.path;
     }
     Game.create({
       creator: id,
