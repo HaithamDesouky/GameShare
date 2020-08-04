@@ -14,6 +14,27 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 
 const upload = multer({ storage });
 
+profileRouter.get('/', (req, res, next) => {
+  const id = res.locals.user._id;
+  Game.find({ creator: id }).then(game => res.render('profile', { game }));
+});
+
+profileRouter.get('/edit', routeGuard, (req, res, next) => {
+  res.render('edit');
+});
+
+profileRouter.post('/edit', upload.single('photo'), routeGuard, (req, res, next) => {
+  const id = res.locals.user._id;
+  const { name } = req.body;
+  const newPhoto = req.file.path;
+
+  // console.log(id, name);
+
+  User.findByIdAndUpdate(id, { name, photo: newPhoto })
+    .then(res.redirect('/profile'))
+    .catch(error => next(error));
+});
+
 //view for other users to see
 profileRouter.get('/:id', (req, res, next) => {
   const id = req.params.id;
@@ -24,31 +45,5 @@ profileRouter.get('/:id', (req, res, next) => {
     });
 });
 //---------------------------
-
-profileRouter.get('/', (req, res, next) => {
-  const id = res.locals.user._id;
-  Game.find({ creator: id }).then(game => res.render('profile', { game }));
-});
-
-profileRouter.get('/edit', routeGuard, (req, res, next) => {
-  res.render('edit');
-});
-
-profileRouter.post(
-  '/edit',
-  upload.single('photo'),
-  routeGuard,
-  (req, res, next) => {
-    const id = res.locals.user._id;
-    const { name } = req.body;
-    const newPhoto = req.file.path;
-
-    // console.log(id, name);
-
-    User.findByIdAndUpdate(id, { name, photo: newPhoto })
-      .then(res.redirect('/profile'))
-      .catch(error => next(error));
-  }
-);
 
 module.exports = profileRouter;
