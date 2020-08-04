@@ -99,12 +99,30 @@ gameRouter.post('/:id/edit', upload.single('photo'), routeGuard, (req, res, next
   const id = req.params.id;
   const userId = req.session.passport.user;
   const { name, date, content } = req.body;
-  const newGamePhoto = req.file.path;
+  let newGamePhoto;
+  let oldPhoto;
+
+  // if (req.file) {
+  //   newGamePhoto = req.file.path;
+  // } else {
+  Game.findById(id).then(data => {
+    oldPhoto = data.photo;
+    //console.log(data.photo);
+    console.log(oldPhoto);
+  });
+  // }
+
+  if (!req.file) {
+    newGamePhoto = oldPhoto;
+  } else {
+    newGamePhoto = req.file.path;
+  }
+
+  console.log('final url ' + newGamePhoto);
   /*
   let newGamePhoto;
   !req.file ? newGamePhoto =  : (newGamePhoto = req.file.path);
   */
-
   Game.findOneAndUpdate({ _id: id, creator: userId }, { name, date, content, photo: newGamePhoto })
     .then(() => {
       res.redirect('/profile');
