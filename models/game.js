@@ -24,7 +24,8 @@ const gameSchema = new mongoose.Schema(
       required: true
     },
     photo: {
-      type: String
+      type: String,
+      default: ''
     }
   },
   {
