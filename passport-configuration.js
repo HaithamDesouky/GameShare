@@ -64,7 +64,9 @@ passport.use(
     (req, email, password, callback) => {
       const { name, status, latitude, longitude } = req.body;
       const token = generateRandomToken(40);
-      const userPhoto = req.file.path;
+      let userPhoto;
+      !req.file ? (userPhoto = 'https://res.cloudinary.com/asxisto/image/upload/c_scale,w_200/v1596535475/gamechanger/default_user.png') : (userPhoto = req.file.path);
+      // userPhoto = req.file.path;
       // console.log(userPhoto);
       // console.log(latitude, longitude);
       bcryptjs
