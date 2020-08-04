@@ -16,7 +16,7 @@ const upload = multer({ storage });
 
 profileRouter.get('/', (req, res, next) => {
   const id = res.locals.user._id;
-  Game.find({ creatorId: id }).then(game => res.render('profile', { game }));
+  Game.find({ creator: id }).then(game => res.render('profile', { game }));
 });
 
 profileRouter.get('/edit', routeGuard, (req, res, next) => {
