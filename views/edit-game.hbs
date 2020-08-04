@@ -1,0 +1,17 @@
+<h1>Create your game</h1>
+
+<form action="" method="POST">
+  <label for="input-name">{{game.name}}</label>
+  <input id="input-name" type="text" placeholder="Game name" name="name">
+
+  <label for="input-date">{{game.date}}</label>
+  <input id="input-date" type="date" placeholder="Date" name="date">
+  
+  <label for="input-content">Description</label>
+  <textarea id="input-content" type="content" placeholder="Briefly description of the game" name="content">{{game.content}}</textarea>
+
+  <label for="input-photo">{{game.photos}}</label>
+  <input id="input-photos" type="file" placeholder="Upload photos of your game" name="attachment">
+
+  <button><a href="/profile">Edit Game</a></button>
+</form>

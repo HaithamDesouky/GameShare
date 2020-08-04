@@ -37,7 +37,9 @@ gameRouter.post(
         res.redirect('/profile');
       })
       .then(game => {
-        return User.findByIdAndUpdate(req.session.userId, { $push: { games: game._id } });
+        return User.findByIdAndUpdate(req.session.userId, {
+          $push: { games: game._id }
+        });
       })
       .catch(error => {
         next(error);
@@ -45,5 +47,68 @@ gameRouter.post(
     res.render('game/create');
   }
 );
+//Daqui pra baixo
+gameRouter.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Game.findById(id)
+    .populate('creator')
+    .then(game => {
+      if (game) {
+        res.render('game/single', { game: game });
+      } else {
+        next();
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+gameRouter.post('/:id/delete', routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  const userId = req.session.userId;
+
+  Game.findOneAndDelete({ _id: id, creator: userId })
+    .then(() => {
+      res.redirect('/profile');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+gameRouter.get('/:id/edit', routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  const userId = req.session.userId;
+
+  Game.findOne({ _id: id, creator: userId })
+    .then(game => {
+      if (game) {
+        res.render('game/edit', { game });
+      } else {
+        next();
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+gameRouter.post('/:id/edit', routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  const { name, date, content, picPath, picName } = req.body;
+  const userId = req.session.userId;
+
+  Game.findOneAndUpdate(
+    { _id: id, creator: userId },
+    { name, date, content, picPath, picName }
+  )
+    .then(() => {
+      res.redirect('/profile');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 
 module.exports = gameRouter;

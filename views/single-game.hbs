@@ -1,0 +1,15 @@
+<h1>{{game.name}}</h1>
+
+<span>Game owned by <a href="/profile/{{ game.creator._id }}">{{ game.creator.name }}</a></span>
+
+<div class="game">
+  <p>{{ game.content }}</p>
+  <p>{{ game.date }}</p>
+  <p>{{ game.photos }}</p>
+</div>
+
+<a href="/game/{{ game.id }}/edit">Edit Post</a>
+
+<form method="POST" action="/game/{{ game.id }}/delete">
+  <button>Delete Game</button>
+</form>
