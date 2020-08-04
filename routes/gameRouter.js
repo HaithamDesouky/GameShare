@@ -13,8 +13,8 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 });
 const upload = multer({ storage });
 
-gameRouter.get('create', routeGuard, (req, res, next) => {
-  res.render('/create');
+gameRouter.get('/create', routeGuard, (req, res, next) => {
+  res.render('create-game');
 });
 
 gameRouter.post(
@@ -32,22 +32,20 @@ gameRouter.post(
       picPath,
       picName
     })
-      .then(() => {
-        console.log(name, content, url);
-        res.redirect('/profile');
-      })
       .then(game => {
         return User.findByIdAndUpdate(req.session.userId, {
           $push: { games: game._id }
         });
       })
+      .then(() => {
+        console.log(name, content, url);
+        res.redirect('/profile');
+      })
       .catch(error => {
         next(error);
       });
-    res.render('game/create');
   }
 );
-//Daqui pra baixo
 gameRouter.get('/:id', (req, res, next) => {
   const id = req.params.id;
   Game.findById(id)
