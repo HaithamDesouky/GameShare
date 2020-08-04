@@ -1,8 +1,69 @@
 <h1>Home</h1>
 
+<h1>Map of user meeting points</h1>
+<div id="map-container"></div>
+
+
+<script>
+  function init () {
+    const mapContainerElement = document.getElementById('map-container');
+    const map = new window.google.maps.Map(mapContainerElement, {
+      center: {
+       lat: 38.77,
+        lng: -9.13
+      },
+      zoom: 11
+    });
+    let marker;
+    const latitudeInputElement = document.getElementById('latitude-input');
+    const longitudeInputElement = document.getElementById('longitude-input');
+    map.addListener('click', event => {
+      const latitude = event.latLng.lat();
+      const longitude = event.latLng.lng();
+      if (marker) {
+        marker.setMap(null);
+      }
+      marker = new window.google.maps.Marker({
+        map,
+        position: {
+          lat: latitude,
+          lng: longitude
+        }
+      });
+      latitudeInputElement.value = latitude;
+      longitudeInputElement.value = longitude;
+    });
+  }
+</script>
+
+
+
+<script>
+  const triggerLocationButton = document.getElementById('trigger-location');
+  const latitudeInputElement = document.getElementById('latitude-input');
+  const longitudeInputElement = document.getElementById('longitude-input');
+  triggerLocationButton.addEventListener('click', () => {
+    window.navigator.geolocation.getCurrentPosition(position => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      latitudeInputElement.value = latitude;
+      longitudeInputElement.value = longitude;
+    }, error => {
+      console.log(error);
+    })
+  });
+</script>
+
+<script defer src="https://maps.googleapis.com/maps/api/js?key={{environmentVariables.GOOGLE_MAPS_API_KEY}}&callback=init"></script>
+
+
+
+
+
 <div class="game-list">
   {{#each games}}
   <img src="{{photo}}" alt="{{name}}">
   <h2>{{name}}</h2>
   {{/each}}
 </div>
+

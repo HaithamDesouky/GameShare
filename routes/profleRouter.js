@@ -17,7 +17,11 @@ const upload = multer({ storage });
 //view for other users to see
 profileRouter.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  User.findById(id).then(user => res.render('other-user', { user }));
+  User.findById(id)
+    .populate('games')
+    .then(user => {
+      console.log(user), res.render('other-user', { user });
+    });
 });
 //---------------------------
 
