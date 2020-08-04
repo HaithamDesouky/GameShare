@@ -34,6 +34,7 @@ gameRouter.post('/create', upload.single('photo'), routeGuard, (req, res, next) 
       return User.findByIdAndUpdate(id, {
         $push: { games: game._id }
       });
+<<<<<<< HEAD
     })
     .then(() => {
       res.redirect('/profile');
@@ -43,12 +44,17 @@ gameRouter.post('/create', upload.single('photo'), routeGuard, (req, res, next) 
     });
 });
 gameRouter.get('/:id', (req, res, next) => {
+=======
+  }
+);
+gameRouter.get('/:id', routeGuard, (req, res, next) => {
+>>>>>>> 5308c4d17f649eab7eb71795226dab264c04fd1c
   const id = req.params.id;
   Game.findById(id)
     .populate('creator')
     .then(game => {
       if (game) {
-        res.render('game/single', { game: game });
+        res.render('single-game', { game: game });
       } else {
         next();
       }
