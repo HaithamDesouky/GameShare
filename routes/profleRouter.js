@@ -14,6 +14,13 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 
 const upload = multer({ storage });
 
+//view for other users to see
+profileRouter.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id).then(user => res.render('other-user', { user }));
+});
+//---------------------------
+
 profileRouter.get('/', (req, res, next) => {
   const id = res.locals.user._id;
   Game.find({ creator: id }).then(game => res.render('profile', { game }));

@@ -1,0 +1,22 @@
+<h1>{{user.name}}'s profile</h1>
+<span><strong>Name</strong>: {{user.name}}</span>
+
+{{#if user.photo}}
+  <br>
+  <img src="{{ user.photo }}" alt="user photo">
+{{/if}}
+
+<h2>{{user.name}}'s games</h2>
+
+{{!-- {{#each game}}
+
+<h3>{{name}}</h3>
+
+<img src="{{photo}}" alt="Game Photo">
+
+<a href="">View this game</a>
+
+
+
+
+{{/each}} --}}
