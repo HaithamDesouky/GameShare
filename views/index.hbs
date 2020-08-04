@@ -1,2 +1,8 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Home</h1>
+
+<div class="game-list">
+  {{#each games}}
+  <img src="{{photo}}" alt="{{name}}">
+  <h2>{{name}}</h2>
+  {{/each}}
+</div>
