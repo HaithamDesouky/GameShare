@@ -13,6 +13,10 @@ const gameSchema = new mongoose.Schema(
       trim: true,
       required: true
     },
+    platform: {
+      type: String,
+      enum: ['Playstation', 'Xbox', 'Nintendo Switch']
+    },
     date: {
       type: Date,
       required: true
