@@ -23,18 +23,22 @@ profileRouter.get('/edit', routeGuard, (req, res, next) => {
   res.render('edit');
 });
 
-<<<<<<< HEAD
-profileRouter.post('/edit', upload.single('photo'), routeGuard, (req, res, next) => {
-  const id = res.locals.user._id;
-  const { name } = req.body;
-  const newPhoto = req.file.path;
+profileRouter.post(
+  '/edit',
+  upload.single('photo'),
+  routeGuard,
+  (req, res, next) => {
+    const id = res.locals.user._id;
+    const { name } = req.body;
+    const newPhoto = req.file.path;
 
-  // console.log(id, name);
+    // console.log(id, name);
 
-  User.findByIdAndUpdate(id, { name, photo: newPhoto })
-    .then(res.redirect('/profile'))
-    .catch(error => next(error));
-});
+    User.findByIdAndUpdate(id, { name, photo: newPhoto })
+      .then(res.redirect('/profile'))
+      .catch(error => next(error));
+  }
+);
 
 //view for other users to see
 profileRouter.get('/:id', (req, res, next) => {
@@ -44,28 +48,6 @@ profileRouter.get('/:id', (req, res, next) => {
     .then(user => {
       console.log(user), res.render('other-user', { user });
     });
-=======
-profileRouter.post(
-  '/edit',
-  upload.single('photo'),
-  routeGuard,
-  (req, res, next) => {
-    const id = res.locals.user._id;
-    const { name, wishlist } = req.body;
-    const newPhoto = req.file.path;
-
-    // console.log(id, name);
-
-    User.findByIdAndUpdate(id, { name, wishlist, photo: newPhoto })
-      .then(res.redirect('/profile'))
-      .catch(error => next(error));
-  }
-);
-//view for other users to see
-profileRouter.get('/:id', (req, res, next) => {
-  const id = req.params.id;
-  User.findById(id).then(user => res.render('other-user', { user }));
->>>>>>> 40b1cfae679318a643ebe116b35def78a718d7b2
 });
 //---------------------------
 
