@@ -19,26 +19,25 @@ gameRouter.get('/create', routeGuard, (req, res, next) => {
 
 gameRouter.post(
   '/create',
-  upload.single('attachment'),
+  upload.single('photo'),
   routeGuard,
   (req, res, next) => {
-    const url = req.file.path;
-    const { name, date, content, picPath, picName } = req.body;
+    const photoUpload = req.file.path;
+    const { name, date, content } = req.body;
+    const id = res.locals.user._id;
     Game.create({
-      creator: req.session.userId,
+      creator: id,
       name,
       date,
       content,
-      picPath,
-      picName
+      photo: photoUpload
     })
       .then(game => {
-        return User.findByIdAndUpdate(req.session.userId, {
+        return User.findByIdAndUpdate(id, {
           $push: { games: game._id }
         });
       })
       .then(() => {
-        console.log(name, content, url);
         res.redirect('/profile');
       })
       .catch(error => {

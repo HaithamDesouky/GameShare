@@ -1,6 +1,6 @@
 <h1>Create your game</h1>
 
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
   <label for="input-name">Game name</label>
   <input id="input-name" type="text" placeholder="Game name" name="name">
 
@@ -11,7 +11,7 @@
   <textarea id="input-content" type="content" placeholder="Briefly description of the game" name="content"></textarea>
 
   <label for="input-photo">Game photos</label>
-  <input id="input-photos" type="file" placeholder="Upload photos of your game" name="attachment">
+  <input id="input-photos" type="file" placeholder="Upload photos of your game" name="photo">
 
   <button><a href="/profile">Add Game</a></button>
 </form>

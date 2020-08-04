@@ -23,10 +23,7 @@ const gameSchema = new mongoose.Schema(
       maxlength: 280,
       required: true
     },
-    picPath: {
-      type: String
-    },
-    picName: {
+    photo: {
       type: String
     }
   },
