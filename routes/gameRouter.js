@@ -51,13 +51,13 @@ gameRouter.post(
       });
   }
 );
-gameRouter.get('/:id', (req, res, next) => {
+gameRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Game.findById(id)
     .populate('creator')
     .then(game => {
       if (game) {
-        res.render('game/single', { game: game });
+        res.render('single-game', { game: game });
       } else {
         next();
       }
