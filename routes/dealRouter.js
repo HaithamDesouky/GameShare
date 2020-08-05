@@ -95,6 +95,28 @@ dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
     });
 });
 
+dealRouter.post(`/:id/reject`, routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  Deal.findByIdAndUpdate(id, { status: 'rejected' })
+    .then(() => {
+      res.redirect('/profile');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+dealRouter.post(`/:id/accept`, routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  Deal.findByIdAndUpdate(id, { status: 'accepted' })
+    .then(() => {
+      res.redirect('/profile');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 dealRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Deal.findById(id)

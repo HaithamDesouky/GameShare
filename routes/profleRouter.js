@@ -18,9 +18,11 @@ const upload = multer({ storage });
 profileRouter.get('/', (req, res, next) => {
   const id = res.locals.user._id;
   let deals;
-  Deal.find().then(data => (deals = data));
+  Deal.find({ $and: [{ seller: id }, { status: { $ne: 'rejected' } }] }).then(
+    data => ((deals = data), console.log(data))
+  );
   Game.find({ creator: id }).then(game =>
-    res.render('profile', { game, deals })
+    res.render('profile', { game, deals, pendingActions: deals.length })
   );
 });
 
