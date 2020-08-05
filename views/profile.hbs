@@ -1,4 +1,4 @@
-<h1>Welcome</h1>
+<h1>Welcome! You have {{pendingActions}} offers right now.</h1>
 <p>This is your profile</p>
 <span><strong>Name</strong>: {{user.name}}</span>
 <br />
@@ -16,8 +16,8 @@
 
 <div class="deal-div">
 
-<h2>Your Current Deals</h2>
-
+<h2>Offers</h2>
+{{#if deals}}
 {{#each deals}}
 
 <div class="deal-in-profile">
@@ -27,18 +27,19 @@
 Deal Status: {{status}}
 <br>
 <a href="deal/{{id}}">View Deal</a>
+<form action="/deal/{{id}}/accept" method="post"><Button>Accept</Button></form>
+<form action="/deal/{{id}}/reject" method="post"><button>Reject</button></form>
 </div>
-
-
 {{/each}}
 </div>
+{{else}}
+<p>You have no incoming pending offers</p>
 
-
-
+{{/if}}
 
 
 <h2>Your games</h2>
-
+{{#if game}}
 {{#each game}}
 
 <h3>{{name}}</h3>
@@ -55,3 +56,9 @@ Deal Status: {{status}}
 
 
 {{/each}}
+
+{{else}}
+
+<p>You haven't posted a game! Click above on Post Your Game to begin sharing! </p>
+
+{{/if}}
