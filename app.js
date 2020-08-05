@@ -34,8 +34,7 @@ app.use(
   sassMiddleware({
     src: join(__dirname, 'public'),
     dest: join(__dirname, 'public'),
-    outputStyle:
-      process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
+    outputStyle: process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
     force: process.env.NODE_ENV === 'development',
     sourceMap: true
   })
@@ -76,6 +75,8 @@ app.use('/authentication', authenticationRouter);
 app.use('/profile', profileRouter);
 app.use('/game', gameRouter);
 app.use('/deal', dealRouter);
+
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
