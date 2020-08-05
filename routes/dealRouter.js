@@ -95,12 +95,11 @@ dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
     });
 });
 
-dealRouter.get('/deal-view/:id', routeGuard, (req, res, next) => {
+dealRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Deal.findById(id)
-    .populate('seller sellerGame buyerGame')
-    .then(() => {
-      res.render('deal-view');
+    .then(deal => {
+      res.render('deal-view', { deal });
     })
     .catch(error => {
       next(error);

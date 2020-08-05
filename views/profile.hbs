@@ -20,10 +20,15 @@
 
 {{#each deals}}
 
-{{!-- {{buyer}}
-{{seller}} --}}
-{{buyerGameName}} for {{sellerGameName}}
+<div class="deal-in-profile">
+{{buyerGameName}} for {{sellerGameName}} <br>
 {{buyerName}}   with {{sellerName}}
+<br>
+Deal Status: {{status}}
+<br>
+<a href="deal/{{id}}">View Deal</a>
+</div>
+
 
 {{/each}}
 </div>
