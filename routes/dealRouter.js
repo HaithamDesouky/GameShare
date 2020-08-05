@@ -7,7 +7,7 @@ const Game = require('./../models/game');
 const User = require('./../models/user');
 
 dealRouter.get('/new-deal', routeGuard, (req, res, next) => {
-  res.render('create-deal');
+  res.render('new-deal');
 });
 
 dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
