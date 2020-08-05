@@ -10,10 +10,10 @@
     <img src="{{ game.photo }}" alt="photo of game"><p></p>
 </div>
 
-<form action="/deal/new-deal" method="POST">
+<form action="/deal/new-deal/{{game._id}}">
   <button>Exchange Game</button>
 </form>
 
-<form method="POST" action="/game/{{ game.id }}/delete">
+<form method="POST" action="/game/{{ game._id }}/delete">
   <button>Delete Game</button>
 </form>

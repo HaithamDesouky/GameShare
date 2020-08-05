@@ -2,28 +2,26 @@
 
 <img src="{{game.photo}}" alt="Game photo">
 
-<p>From: {{game.creator.name}}</p>
+<p>From: {{gameCreatorName}}</p>
 
-<form action="" method="POST">
+<form action="/deal/new-deal" method="POST">
   <label>Exchange For:</label>
-  <select id="exchange-list" name="exchange">
+  <select id="buyerGame-list" name="buyerGame">
       <option value="" selected="selected" hidden>Please Select One</option>
     {{#each user.games}}
-      <option value="{{this.id}}">{{this.name}}</option>
+      <option value="{{this._id}}">{{this.name}}</option>
     {{/each}}
   </select>
 
-  <label for="start-date">Starting Date</label>
-  <input id="start-date" type="date" placeholder="Date" name="start-date">
+  <label for="sellerId" style="color: red;"><strong>Seller ID to HIDE later!</strong></label>
+  <input id="sellerId" value={{game.creator._id}} name="sellerId" >
+  <label for="sellerGame" style="color: red;"><strong>Seller Game ID to HIDE later!</strong></label>
+  <input id="sellerGame" value={{game._id}} name="sellerGame" >
+
+  <label for="startDate">Starting Date</label>
+  <input id="startDate" type="date" placeholder="Date" name="startDate">
   
-  <label for="end-date">Ending Date</label>
-  <input id="end-date" type="date" placeholder="Date" name="end-date">
+  <label for="endDate">Ending Date</label>
+  <input id="endDate" type="date" placeholder="Date" name="endDate">
+  <button>Propose Deal</button>
 </form>
-
-  <button><a href="/profile">Propose Deal</a></button>
-</form>
-
-
-
-
-

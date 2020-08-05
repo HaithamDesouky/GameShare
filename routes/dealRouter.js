@@ -6,28 +6,47 @@ const Comment = require('./../models/comment');
 const Game = require('./../models/game');
 const User = require('./../models/user');
 
-dealRouter.get('/new-deal', routeGuard, (req, res, next) => {
-  res.render('new-deal');
+dealRouter.get('/new-deal/:gameId', routeGuard, (req, res, next) => {
+  const sellersGameId = req.params.gameId;
+  const userId = req.user;
+  let gameCreatorName;
+  let user;
+
+  Game.findById(sellersGameId)
+    .populate('creator')
+    .then(data => {
+      console.log(data);
+      gameCreatorName = data.creator.name;
+    });
+
+  User.findById(userId)
+    .populate('games')
+    .then(userInDB => {
+      //user is the buyer
+      console.log(userInDB);
+      user = userInDB;
+      return Game.findById(sellersGameId);
+    })
+    .then(game => {
+      res.render('new-deal', { user, game, gameCreatorName });
+      // res.render('new-deal');
+    })
+    .catch(error => next(error));
 });
 
 dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
-  const { startDate, endDate, comment } = req.body;
-  const id = res.locals.user._id;
+  const { sellerId, sellerGame, buyerGame, startDate, endDate, comment } = req.body;
+  const buyerId = res.locals.user._id;
 
   Deal.create({
-    seller: id,
-    sellerGame: id,
-    buyer: id,
-    buyerGame: id,
+    seller: sellerId,
+    sellerGame,
+    buyer: buyerId,
+    buyerGame,
     startDate,
     endDate,
     comment
   })
-    .then(deal => {
-      return User.findByIdAndUpdate(id, {
-        $push: { deals: deal._id }
-      });
-    })
     .then(() => {
       res.redirect('/profile');
     })
