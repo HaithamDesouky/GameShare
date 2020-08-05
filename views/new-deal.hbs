@@ -8,7 +8,7 @@
 <select id="exchange-list" name="exchange">
     <option value="" selected="selected" hidden>Please Select One</option>
   {{#each user.games}}
-    <option value="{{this.name}}">{{this.name}}</option>
+    <option value="{{this.id}}">{{this.name}}</option>
   {{/each}}
 </select>
 
