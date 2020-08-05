@@ -10,10 +10,13 @@
     <img src="{{ game.photo }}" alt="photo of game"><p></p>
 </div>
 
-<form action="/deal/new-deal/{{game._id}}">
-  <button>Exchange Game</button>
-</form>
-
+{{#if sameUser}}
 <form method="POST" action="/game/{{ game._id }}/delete">
   <button>Delete Game</button>
 </form>
+
+{{else}}
+<form action="/deal/new-deal/{{game._id}}">
+  <button>Exchange Game</button>
+</form>
+{{/if}}

@@ -17,12 +17,16 @@ const upload = multer({ storage });
 
 profileRouter.get('/', (req, res, next) => {
   const id = res.locals.user._id;
-  let deals;
+  let pendingDeals;
   Deal.find({ $and: [{ seller: id }, { status: { $ne: 'rejected' } }] }).then(
-    data => ((deals = data), console.log(data))
+    data => ((pendingDeals = data), console.log(data))
   );
   Game.find({ creator: id }).then(game =>
-    res.render('profile', { game, deals, pendingActions: deals.length })
+    res.render('profile', {
+      game,
+      pendingDeals,
+      pendingActions: pendingDeals.length
+    })
   );
 });
 
