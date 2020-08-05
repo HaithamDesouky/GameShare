@@ -1,0 +1,29 @@
+<h1>{{ game.name }} - {{ game.platform }}</h1>
+
+<img src="{{game.photo}}" alt="Game photo">
+
+<p>From: {{game.creator.name}}</p>
+
+<label>Exchange For:</label>
+<select id="exchange-list" name="exchange">
+    <option value="" selected="selected" hidden>Please Select One</option>
+  {{#each user.games}}
+    <option value="{{this.name}}">{{this.name}}</option>
+  {{/each}}
+</select>
+
+<form action="" method="POST">
+  <label for="start-date">Starting Date</label>
+  <input id="start-date" type="date" placeholder="Date" name="start-date">
+  
+  <label for="end-date">Ending Date</label>
+  <input id="end-date" type="date" placeholder="Date" name="end-date">
+</form>
+
+  <button><a href="/profile">Propose Deal</a></button>
+</form>
+
+
+
+
+
