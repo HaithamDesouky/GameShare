@@ -2,7 +2,7 @@
 
 <img src="{{game.photo}}" alt="Game photo">
 
-<p>From: {{gameCreatorName}}</p>
+<p>From: {{gameCreator.name}}</p>
 
 <form action="/deal/new-deal" method="POST">
   <label>Exchange For:</label>
@@ -13,15 +13,33 @@
     {{/each}}
   </select>
 
-  <label for="sellerId" style="color: red;"><strong>Seller ID to HIDE later!</strong></label>
-  <input id="sellerId" value={{game.creator._id}} name="sellerId" >
-  <label for="sellerGame" style="color: red;"><strong>Seller Game ID to HIDE later!</strong></label>
-  <input id="sellerGame" value={{game._id}} name="sellerGame" >
-
   <label for="startDate">Starting Date</label>
   <input id="startDate" type="date" placeholder="Date" name="startDate">
   
   <label for="endDate">Ending Date</label>
   <input id="endDate" type="date" placeholder="Date" name="endDate">
+
+
+  
+  <h1>HIDE THIS</h1>
+  <label for="sellerId" style="color: red;"><strong>Seller ID to HIDE later!</strong></label>
+  <input id="sellerId" value={{game.creator._id}} name="sellerId" >
+  
+  <label for="sellerGame" style="color: red;"><strong>Seller Game ID to HIDE later!</strong></label>
+  <input id="sellerGame" value={{game._id}} name="sellerGame" >
+  
+  <label for="sellerGamePhoto" style="color: red;"><strong>Seller Game Photo to HIDE later!</strong></label>
+  <input id="sellerGamePhoto" value={{game.photo}} name="sellerGamePhoto" >
+  
+  <label for="sellerName" style="color: red;"><strong>Seller Name to HIDE later!</strong></label>
+  <input id="sellerName" value={{gameCreator.name}} name="sellerName" >
+  
+  <label for="sellerPhoto" style="color: red;"><strong>Seller Photo to HIDE later!</strong></label>
+  <input id="sellerPhoto" value={{gameCreator.photo}} name="sellerPhoto" >
+  
+  <label for="sellerGameName" style="color: red;"><strong>Seller Game Name to HIDE later!</strong></label>
+  <input id="sellerGameName" value={{game.name}} name="sellerGameName" >
+
+
   <button>Propose Deal</button>
 </form>

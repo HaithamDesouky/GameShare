@@ -9,9 +9,51 @@ const dealSchema = new mongoose.Schema(
       ref: 'User',
       required: true
     },
+    buyerName: {
+      type: String,
+      required: true
+    },
+    buyerPhoto: {
+      type: String,
+      required: true
+    },
+    buyerGame: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Game',
+      required: true
+    },
+    buyerGameName: {
+      type: String,
+      required: true
+    },
+    buyerGamePhoto: {
+      type: String,
+      required: true
+    },
     seller: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+      required: true
+    },
+    sellerName: {
+      type: String,
+      required: true
+    },
+    sellerPhoto: {
+      type: String,
+      required: true
+    },
+    sellerGame: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Game',
+      required: true
+    },
+    sellerGameName: {
+      type: String,
+      required: true
+    },
+    sellerGamePhoto: {
+      type: String,
       required: true
     },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
@@ -26,16 +68,6 @@ const dealSchema = new mongoose.Schema(
     },
     endDate: {
       type: Date,
-      required: true
-    },
-    sellerGame: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Game',
-      required: true
-    },
-    buyerGame: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Game',
       required: true
     }
   },

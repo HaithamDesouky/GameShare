@@ -9,14 +9,14 @@ const User = require('./../models/user');
 dealRouter.get('/new-deal/:gameId', routeGuard, (req, res, next) => {
   const sellersGameId = req.params.gameId;
   const userId = req.user;
-  let gameCreatorName;
+  let gameCreator;
   let user;
 
   Game.findById(sellersGameId)
     .populate('creator')
     .then(data => {
       console.log(data);
-      gameCreatorName = data.creator.name;
+      gameCreator = data.creator;
     });
 
   User.findById(userId)
@@ -28,27 +28,69 @@ dealRouter.get('/new-deal/:gameId', routeGuard, (req, res, next) => {
       return Game.findById(sellersGameId);
     })
     .then(game => {
-      res.render('new-deal', { user, game, gameCreatorName });
-      // res.render('new-deal');
+      res.render('new-deal', { user, game, gameCreator });
+      res.render('new-deal');
     })
     .catch(error => next(error));
 });
 
 dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
-  const { sellerId, sellerGame, buyerGame, startDate, endDate, comment } = req.body;
+  const { sellerId, sellerName, sellerPhoto, sellerGame, sellerGameName, sellerGamePhoto, buyerGame, startDate, endDate, comments } = req.body;
+  // console.log(req.body);
   const buyerId = res.locals.user._id;
+  let buyerGamePhoto;
+  let buyerGameName;
+  let buyerName;
+  let buyerPhoto;
+
+  // Populate Deal Model with users data
+  Game.findById(buyerGame)
+    .populate('creator')
+    .then(data => {
+      console.log('this is data.cretor.name' + data.creator.name);
+      buyerGamePhoto = data.photo;
+      buyerGameName = data.name;
+      buyerName = data.creator.name;
+      buyerPhoto = data.creator.photo;
+    });
+
+  console.log(buyerGamePhoto);
+  console.log(buyerGameName);
+  console.log(buyerName);
+  console.log(buyerPhoto);
 
   Deal.create({
-    seller: sellerId,
-    sellerGame,
     buyer: buyerId,
+    buyerName,
+    buyerPhoto,
     buyerGame,
+    buyerGameName,
+    buyerGamePhoto,
+    seller: sellerId,
+    sellerName, // miss
+    sellerPhoto, // miss
+    sellerGame, // add
+    sellerGameName, // change name
+    sellerGamePhoto,
+    comments,
     startDate,
-    endDate,
-    comment
+    endDate
   })
+    .then(data => {
+      res.redirect(`/`);
+      //res.redirect(`/deal/deal-view/${data._id}`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+dealRouter.get('/deal-view/:id', routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  Deal.findById(id)
+    .populate('seller sellerGame buyerGame')
     .then(() => {
-      res.redirect('/profile');
+      res.render('deal-view');
     })
     .catch(error => {
       next(error);

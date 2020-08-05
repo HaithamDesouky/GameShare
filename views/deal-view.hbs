@@ -1,0 +1,19 @@
+<h1>{{ game.name }} - {{ game.platform }}</h1>
+
+<img src="{{game.photo}}" alt="Game photo">
+
+<p>From: {{gameCreatorName}}</p>
+
+  <label>Exchange For: {{ deal.buyerGame.name}}</label>
+
+  <label for="sellerId" style="color: red;"><strong>Seller ID to HIDE later!</strong></label>
+  <input id="sellerId" value={{game.creator._id}} name="sellerId" >
+  <label for="sellerGame" style="color: red;"><strong>Seller Game ID to HIDE later!</strong></label>
+  <input id="sellerGame" value={{game._id}} name="sellerGame" >
+  
+
+  <label for="startDate">Starting Date: {{deal.startDate}} </label>
+  <label for="endDate">Ending Date: {{deal.EndDate}} </label>
+  
+  <button>Propose Deal</button>
+
