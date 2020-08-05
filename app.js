@@ -16,6 +16,7 @@ const passportConfigure = require('./passport-configuration.js');
 const indexRouter = require('./routes/index');
 const profileRouter = require('./routes/profleRouter');
 const gameRouter = require('./routes/gameRouter');
+const dealRouter = require('./routes/dealRouter');
 const hbs = require('hbs');
 const hbsJsonHelper = require('hbs-json');
 
@@ -74,6 +75,7 @@ app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/profile', profileRouter);
 app.use('/game', gameRouter);
+app.use('/deal', dealRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
