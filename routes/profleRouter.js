@@ -1,3 +1,4 @@
+'use strict';
 const { Router } = require('express');
 const multer = require('multer');
 const cloudinary = require('cloudinary');
@@ -17,17 +18,39 @@ const upload = multer({ storage });
 
 profileRouter.get('/', (req, res, next) => {
   const id = res.locals.user._id;
-  let pendingDeals;
-  Deal.find({ $and: [{ seller: id }, { status: { $ne: 'rejected' } }] }).then(
-    data => ((pendingDeals = data), console.log(data))
-  );
-  Game.find({ creator: id }).then(game =>
-    res.render('profile', {
-      game,
-      pendingDeals,
-      pendingActions: pendingDeals.length
+  let pendingOffers;
+  let pendingRequests;
+
+  //getting outgoing offers that haven't been accepted
+
+  Deal.find({ $and: [{ buyer: id }, { status: { $ne: 'rejected' } }] })
+    .then(data => {
+      // console.log('data is ', data);
+
+      pendingRequests = data;
     })
-  );
+    .then(() => {
+      //getting pending incoming offers
+
+      Deal.find({
+        $and: [{ seller: id }, { status: { $ne: 'rejected' } }]
+      })
+        .then(data => (pendingOffers = data))
+        .then(() => {
+          console.log('offers', pendingOffers);
+          console.log('requests', pendingRequests);
+          Game.find({ creator: id })
+            .then(game =>
+              res.render('profile', {
+                game,
+                pendingOffers,
+                pendingRequests,
+                pendingActions: pendingOffers.length
+              })
+            )
+            .catch(error => next(error));
+        });
+    });
 });
 
 profileRouter.get('/edit', routeGuard, (req, res, next) => {
