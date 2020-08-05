@@ -49,6 +49,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: true
     },
+    deals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Deal' }],
     wishlist: {
       type: String
     }
