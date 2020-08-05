@@ -35,8 +35,19 @@ dealRouter.get('/new-deal/:gameId', routeGuard, (req, res, next) => {
 });
 
 dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
-  const { sellerId, sellerName, sellerPhoto, sellerGame, sellerGameName, sellerGamePhoto, buyerGame, startDate, endDate, comments } = req.body;
-  // console.log(req.body);
+  const {
+    sellerId,
+    sellerName,
+    sellerPhoto,
+    sellerGame,
+    sellerGameName,
+    sellerGamePhoto,
+    buyerGame,
+    startDate,
+    endDate,
+    comments
+  } = req.body;
+
   const buyerId = res.locals.user._id;
   let buyerGamePhoto;
   let buyerGameName;
@@ -47,36 +58,35 @@ dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
   Game.findById(buyerGame)
     .populate('creator')
     .then(data => {
-      console.log('this is data.cretor.name' + data.creator.name);
+      // console.log('this is data.cretor.name' + data.creator.name);
+      // console.log('this is data.cretor.name' + data.creator.photo);
+      // console.log('this is data.cretor.name' + data.name);
+      // console.log('this is data.cretor.name' + data.name);
       buyerGamePhoto = data.photo;
       buyerGameName = data.name;
       buyerName = data.creator.name;
       buyerPhoto = data.creator.photo;
-    });
-
-  console.log(buyerGamePhoto);
-  console.log(buyerGameName);
-  console.log(buyerName);
-  console.log(buyerPhoto);
-
-  Deal.create({
-    buyer: buyerId,
-    buyerName,
-    buyerPhoto,
-    buyerGame,
-    buyerGameName,
-    buyerGamePhoto,
-    seller: sellerId,
-    sellerName, // miss
-    sellerPhoto, // miss
-    sellerGame, // add
-    sellerGameName, // change name
-    sellerGamePhoto,
-    comments,
-    startDate,
-    endDate
-  })
-    .then(data => {
+    })
+    .then(() => {
+      Deal.create({
+        buyer: buyerId,
+        buyerName,
+        buyerPhoto,
+        buyerGame,
+        buyerGameName,
+        buyerGamePhoto,
+        seller: sellerId,
+        sellerName, // miss
+        sellerPhoto, // miss
+        sellerGame, // add
+        sellerGameName, // change name
+        sellerGamePhoto,
+        comments,
+        startDate,
+        endDate
+      });
+    })
+    .then(() => {
       res.redirect(`/`);
       //res.redirect(`/deal/deal-view/${data._id}`);
     })
