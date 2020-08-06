@@ -1,6 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0; }
+
+body {
+  background-color: #cbf3f0;
+  font-family: "Roboto", Arial, sans-serif; }
 
 h1,
 h2,
@@ -48,6 +53,7 @@ textarea {
   height: 50vh; }
 
 nav {
+  font-weight: 700;
   height: 4.5rem; }
   nav .nav-link {
     text-align: center; }
@@ -69,6 +75,7 @@ nav {
   .body-margin {
     padding-top: 7rem; }
   nav {
+    font-weight: 700;
     height: 5rem; }
     nav .nav-item {
       height: 40px; }

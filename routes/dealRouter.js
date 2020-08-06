@@ -1,10 +1,22 @@
 const { Router } = require('express');
 const dealRouter = new Router();
+const nodemailer = require('nodemailer');
 const routeGuard = require('../middleware/route-guard');
 const Deal = require('./../models/deal');
 const Comment = require('./../models/comment');
 const Game = require('./../models/game');
 const User = require('./../models/user');
+
+const transport = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.NODEMAILER_EMAIL,
+    pass: process.env.NODEMAILER_PASSWORD
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+});
 
 dealRouter.get('/history', (req, res, next) => {
   const id = res.locals.user._id;
@@ -67,18 +79,7 @@ dealRouter.get('/new-deal/:gameId', routeGuard, (req, res, next) => {
 });
 
 dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
-  const {
-    sellerId,
-    sellerName,
-    sellerPhoto,
-    sellerGame,
-    sellerGameName,
-    sellerGamePhoto,
-    buyerGame,
-    startDate,
-    endDate,
-    comments
-  } = req.body;
+  const { sellerId, sellerName, sellerPhoto, sellerGame, sellerGameName, sellerGamePhoto, buyerGame, startDate, endDate, comments } = req.body;
 
   const buyerId = res.locals.user._id;
   let buyerGamePhoto;
@@ -112,6 +113,34 @@ dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
         comments,
         startDate,
         endDate
+      });
+    })
+    .then(user => {
+      transport.sendMail({
+        from: process.env.NODEMAILER_EMAIL,
+        to: process.env.NODEMAILER_EMAIL, // CHANGE THIS // email,
+        subject: 'Gamechanger: Check out your new exchange proposal',
+        html: `
+            <html>
+              <body>
+                <a href="http://localhost:3000/profile">Check your most recent exchange request</a>
+              </body>
+            </html>
+          `
+      });
+    })
+    .then(user => {
+      transport.sendMail({
+        from: process.env.NODEMAILER_EMAIL,
+        to: process.env.NODEMAILER_EMAIL, // CHANGE THIS // email,
+        subject: 'Gamechanger: Your exchange proposal has been sent.',
+        html: `
+            <html>
+              <body>
+                <a href="http://localhost:3000/profile">Check your most recent exchange request</a>
+              </body>
+            </html>
+          `
       });
     })
     .then(() => {
