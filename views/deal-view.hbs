@@ -12,6 +12,10 @@
   <br>
 
 
+  <form action="/deal/{{deal.id}}/accept" method="post"><Button>Accept</Button></form>
+<form action="/deal/{{deal.id}}/reject" method="post"><button>Reject</button></form>
+
+
 
 <div class="comments-section">
   <h1>Have any questions for the other user? Leave a comment bellow</h1>
@@ -29,6 +33,8 @@
 
 
 {{/each}}
+
+
 
 <form method="POST" action='/deal/{{deal.id}}/comment'>
   <textarea name="content" placeholder="Post something please"></textarea>
