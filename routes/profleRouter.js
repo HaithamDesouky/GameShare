@@ -23,7 +23,7 @@ profileRouter.get('/', (req, res, next) => {
 
   //getting outgoing offers that haven't been accepted
 
-  Deal.find({ $and: [{ buyer: id }, { status: { $ne: 'rejected' } }] })
+  Deal.find({ $and: [{ buyer: id }, { status: 'pending_confirmation' }] })
     .then(data => {
       // console.log('data is ', data);
 
@@ -33,7 +33,7 @@ profileRouter.get('/', (req, res, next) => {
       //getting pending incoming offers
 
       Deal.find({
-        $and: [{ seller: id }, { status: { $ne: 'rejected' } }]
+        $and: [{ seller: id }, { status: 'pending_confirmation' }]
       })
         .then(data => (pendingOffers = data))
         .then(() => {
@@ -46,6 +46,46 @@ profileRouter.get('/', (req, res, next) => {
                 pendingOffers,
                 pendingRequests,
                 pendingActions: pendingOffers.length
+              })
+            )
+            .catch(error => next(error));
+        });
+    });
+});
+
+//Your history of deals
+
+profileRouter.get('/history', (req, res, next) => {
+  const id = res.locals.user._id;
+  let rejectedDeals;
+  let acceptedDeals;
+  console.log('its the history page');
+  //getting accepted deals
+
+  Deal.find({
+    $and: [{ status: 'accepted' }, { $or: [{ seller: id }, { buyer: id }] }]
+  })
+    .then(data => {
+      console.log('accepted deals', data);
+
+      acceptedDeals = data;
+    })
+    .then(() => {
+      //getting pending incoming offers
+
+      Deal.find({
+        $and: [{ status: 'rejected' }, { $or: [{ seller: id }, { buyer: id }] }]
+      })
+        .then(data => (rejectedDeals = data))
+        .then(() => {
+          // console.log('offers', rejectedDeals);
+          // console.log('requests', acceptedDeals);
+          Game.find({ creator: id })
+            .then(game =>
+              res.render('deal-history', {
+                game,
+                rejectedDeals,
+                acceptedDeals
               })
             )
             .catch(error => next(error));
