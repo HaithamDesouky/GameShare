@@ -88,7 +88,7 @@ profileRouter.post(
 );
 
 //view for other users to see
-profileRouter.get('/:id', (req, res, next) => {
+profileRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   User.findById(id)
     .populate('games')
