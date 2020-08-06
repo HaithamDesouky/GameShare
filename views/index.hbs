@@ -16,6 +16,36 @@
   </button> --}}
 </form>
 
+
+<div id="carouselExampleInterval" class="carousel slide game-list" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-interval="2000">
+      <img src="{{photo}}" class="d-block w-75" alt="{{name}}">
+    </div>
+    {{#each games}}
+    <div class="carousel-item" data-interval="2000">
+      <img src="{{photo}}" class="d-block w-75" alt="{{name}}">
+    </div>
+    {{/each}}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+{{!-- <div class="game-list">
+  {{#each games}}
+  <img src="{{photo}}" alt="{{name}}">
+  <h2><a href="/game/{{id}}">{{name}}</a></h2>
+  {{/each}}
+</div> --}}
+
+<h3 class="text-white">Meet our traders</h3>
 <div id="map-container"></div>
 
 
@@ -23,13 +53,256 @@
 <script>
   function init () {
     const mapContainerElement = document.getElementById('map-container');
+    const styledMapType = new google.maps.StyledMapType(
+      [
+        {
+            "featureType": "administrative",
+            "elementType": "labels.text.fill",
+            "stylers": [
+                {
+                    "color": "#6195a0"
+                }
+            ]
+        },
+        {
+            "featureType": "administrative.province",
+            "elementType": "geometry.stroke",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "lightness": "0"
+                },
+                {
+                    "saturation": "0"
+                },
+                {
+                    "color": "#f5f5f2"
+                },
+                {
+                    "gamma": "1"
+                }
+            ]
+        },
+        {
+            "featureType": "landscape.man_made",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "lightness": "-3"
+                },
+                {
+                    "gamma": "1.00"
+                }
+            ]
+        },
+        {
+            "featureType": "landscape.natural.terrain",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.park",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "color": "#bae5ce"
+                },
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "road",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "saturation": -100
+                },
+                {
+                    "lightness": 45
+                },
+                {
+                    "visibility": "simplified"
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "simplified"
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "color": "#fac9a9"
+                },
+                {
+                    "visibility": "simplified"
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "labels.text",
+            "stylers": [
+                {
+                    "color": "#4e4e4e"
+                }
+            ]
+        },
+        {
+            "featureType": "road.arterial",
+            "elementType": "labels.text.fill",
+            "stylers": [
+                {
+                    "color": "#787878"
+                }
+            ]
+        },
+        {
+            "featureType": "road.arterial",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "transit",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "simplified"
+                }
+            ]
+        },
+        {
+            "featureType": "transit.station.airport",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "hue": "#0a00ff"
+                },
+                {
+                    "saturation": "-77"
+                },
+                {
+                    "gamma": "0.57"
+                },
+                {
+                    "lightness": "0"
+                }
+            ]
+        },
+        {
+            "featureType": "transit.station.rail",
+            "elementType": "labels.text.fill",
+            "stylers": [
+                {
+                    "color": "#43321e"
+                }
+            ]
+        },
+        {
+            "featureType": "transit.station.rail",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "hue": "#ff6c00"
+                },
+                {
+                    "lightness": "4"
+                },
+                {
+                    "gamma": "0.75"
+                },
+                {
+                    "saturation": "-68"
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "color": "#eaf6f8"
+                },
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "color": "#c7eced"
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "elementType": "labels.text.fill",
+            "stylers": [
+                {
+                    "lightness": "-49"
+                },
+                {
+                    "saturation": "-53"
+                },
+                {
+                    "gamma": "0.79"
+                }
+            ]
+        }
+      ],
+      {name: 'Styled Map'}
+    );
     const map = new window.google.maps.Map(mapContainerElement, {
       center: {
          lat: 38.77,
         lng: -9.13
       },
-      zoom: 11
+      zoom: 11,
+      mapTypeControlOptions: {
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                    'styled_map']
+          }
     });
+    map.mapTypes.set('styled_map', styledMapType);
+    map.setMapTypeId('styled_map');
+
     const users = {{{ json users }}};
     for (let user of users) {
       const marker = new window.google.maps.Marker({
@@ -64,14 +337,3 @@
 </script>
 
 <script defer src="https://maps.googleapis.com/maps/api/js?key={{environmentVariables.GOOGLE_MAPS_API_KEY}}&callback=init"></script>
-
-
-
-
-<div class="game-list">
-  {{#each games}}
-  <img src="{{photo}}" alt="{{name}}">
-  <h2><a href="/game/{{id}}">{{name}}</a></h2>
-  {{/each}}
-</div>
-

@@ -92,7 +92,7 @@ passport.use(
           transport
             .sendMail({
               from: process.env.NODEMAILER_EMAIL,
-              to: process.env.NODEMAILER_EMAIL, // CHANGE THIS // email,
+              to: email,
               subject: 'Gamechanger: Sign-up Confirmation',
               html: `
                 <html>

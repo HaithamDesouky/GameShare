@@ -4,7 +4,7 @@ $font-sans: 'Roboto', Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
 
 $white: #fff;
-$light-green: #cbf3f0;
+$light-green: #94cfc6;
 $dark-green: #2ec4b6;
 $light-yellow: #ffbf69;
 $dark-yellow: #ff9f1c;
@@ -149,7 +149,7 @@ textarea {
 
 // Google maps
 #map-container {
-  width: 50vw;
+  width: 100%;
   height: 50vh;
 }
 
@@ -213,6 +213,12 @@ $tablet-width: 768px;
       position: absolute;
       //  right: 50px;
     }
+  }
+
+  // Google maps
+  #map-container {
+    width: 50vw;
+    height: 50vh;
   }
 
   // Dropdown menu on hover
