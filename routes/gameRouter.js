@@ -13,19 +13,6 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 });
 const upload = multer({ storage });
 
-gameRouter.get('/platform', routeGuard, (req, res, next) => {
-  const platformInput = req.query.platform;
-  console.log(platformInput);
-
-  Game.find({ platform: platformInput })
-    .then(games => {
-      res.render('platform', { games, platformInput });
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-
 gameRouter.get('/search', (req, res, next) => {
   const { platform, name } = req.query;
   let query = {};
@@ -151,6 +138,19 @@ gameRouter.post('/:id/edit', upload.single('photo'), routeGuard, (req, res, next
   Game.findOneAndUpdate({ _id: id, creator: userId }, data)
     .then(() => {
       res.redirect('/profile');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+gameRouter.get('/platform', routeGuard, (req, res, next) => {
+  const platformInput = req.query.platform;
+  console.log(platformInput);
+
+  Game.find({ platform: platformInput })
+    .then(games => {
+      res.render('platform', { games, platformInput });
     })
     .catch(error => {
       next(error);

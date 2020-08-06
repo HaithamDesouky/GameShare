@@ -53,7 +53,7 @@ textarea {
 }
 
 .body-margin {
-  padding-top: 7rem;
+  padding-bottom: 6rem;
 }
 
 // Google maps
@@ -64,37 +64,72 @@ textarea {
 
 // NAVBAR
 nav {
-  height: 5rem;
-
-  .nav-item {
-    height: 40px;
+  height: 4.5rem;
+  .nav-link {
+    text-align: center;
   }
-
-  .cta-btn {
-    margin-bottom: 8px;
-    margin-top: 12px;
+  .btn-sign-in {
+    margin-top: 3px;
   }
-
-  .user-image {
-    // margin-top: 10px;
-    width: 60px;
-    height: 60px;
+  .nav-text {
+    padding: 0;
+    margin-left: 0;
+    margin-bottom: 0;
   }
-
-  .btn-search {
-    position: absolute;
-    //  right: 50px;
+  .btn-sign-up {
+    margin-top: 5px;
+    width: 96px;
+  }
+  .first-icon {
+    padding-top: 12px;
+  }
+  .second-icon {
+    padding-top: 12px;
   }
 }
 
-// Dropdown menu on hover
-.dropdown:hover .dropdown-menu {
-  display: block;
-  margin-top: 0; // remove the gap so it doesn't close
-}
+// Desktop and Tablet VIEW
+$tablet-width: 768px;
 
-.dropdown button {
-  padding: 0;
-  margin: 0;
-  border: none;
+@media (min-width: #{$tablet-width}) {
+  .body-margin {
+    padding-top: 7rem;
+  }
+
+  // NAVBAR
+  nav {
+    height: 5rem;
+
+    .nav-item {
+      height: 40px;
+    }
+
+    .cta-btn {
+      margin-bottom: 8px;
+      margin-top: 12px;
+    }
+
+    .user-image {
+      // margin-top: 10px;
+      width: 60px;
+      height: 60px;
+    }
+
+    .btn-search {
+      position: absolute;
+      //  right: 50px;
+    }
+  }
+
+  // Dropdown menu on hover
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+  }
+
+  .dropdown button {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
 }
