@@ -17,7 +17,7 @@ const indexRouter = require('./routes/index');
 const profileRouter = require('./routes/profleRouter');
 const gameRouter = require('./routes/gameRouter');
 const dealRouter = require('./routes/dealRouter');
-const commentRouter = require('./routes/commentsRouter');
+// const commentRouter = require('./routes/commentsRouter');
 
 const hbs = require('hbs');
 const hbsJsonHelper = require('hbs-json');
@@ -75,7 +75,7 @@ app.use(passport.session());
 app.use(bindUserToViewLocals);
 
 app.use('/', indexRouter);
-app.use('/', commentRouter);
+// app.use('/', commentRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/profile', profileRouter);
 app.use('/game', gameRouter);

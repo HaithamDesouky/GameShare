@@ -67,7 +67,6 @@ dealRouter.get('/new-deal/:gameId', routeGuard, (req, res, next) => {
     .populate('games')
     .then(userInDB => {
       //user is the buyer
-      console.log(userInDB);
       user = userInDB;
       return Game.findById(sellersGameId);
     })
@@ -79,7 +78,18 @@ dealRouter.get('/new-deal/:gameId', routeGuard, (req, res, next) => {
 });
 
 dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
-  const { sellerId, sellerName, sellerPhoto, sellerGame, sellerGameName, sellerGamePhoto, buyerGame, startDate, endDate, comments } = req.body;
+  const {
+    sellerId,
+    sellerName,
+    sellerPhoto,
+    sellerGame,
+    sellerGameName,
+    sellerGamePhoto,
+    buyerGame,
+    startDate,
+    endDate,
+    comments
+  } = req.body;
 
   const buyerId = res.locals.user._id;
   let buyerGamePhoto;
@@ -115,34 +125,34 @@ dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
         endDate
       });
     })
-    .then(user => {
-      transport.sendMail({
-        from: process.env.NODEMAILER_EMAIL,
-        to: process.env.NODEMAILER_EMAIL, // CHANGE THIS // email,
-        subject: 'Gamechanger: Check out your new exchange proposal',
-        html: `
-            <html>
-              <body>
-                <a href="http://localhost:3000/profile">Check your most recent exchange request</a>
-              </body>
-            </html>
-          `
-      });
-    })
-    .then(user => {
-      transport.sendMail({
-        from: process.env.NODEMAILER_EMAIL,
-        to: process.env.NODEMAILER_EMAIL, // CHANGE THIS // email,
-        subject: 'Gamechanger: Your exchange proposal has been sent.',
-        html: `
-            <html>
-              <body>
-                <a href="http://localhost:3000/profile">Check your most recent exchange request</a>
-              </body>
-            </html>
-          `
-      });
-    })
+    // .then(user => {
+    //   transport.sendMail({
+    //     from: process.env.NODEMAILER_EMAIL,
+    //     to: process.env.NODEMAILER_EMAIL, // CHANGE THIS // email,
+    //     subject: 'Gamechanger: Check out your new exchange proposal',
+    //     html: `
+    //         <html>
+    //           <body>
+    //             <a href="http://localhost:3000/profile">Check your most recent exchange request</a>
+    //           </body>
+    //         </html>
+    //       `
+    //   });
+    // })
+    // .then(user => {
+    //   transport.sendMail({
+    //     from: process.env.NODEMAILER_EMAIL,
+    //     to: process.env.NODEMAILER_EMAIL, // CHANGE THIS // email,
+    //     subject: 'Gamechanger: Your exchange proposal has been sent.',
+    //     html: `
+    //         <html>
+    //           <body>
+    //             <a href="http://localhost:3000/profile">Check your most recent exchange request</a>
+    //           </body>
+    //         </html>
+    //       `
+    //   });
+    // })
     .then(() => {
       res.redirect(`/profile`);
     })
@@ -176,9 +186,11 @@ dealRouter.post(`/:id/accept`, routeGuard, (req, res, next) => {
 dealRouter.post('/:id/comment', routeGuard, (req, res, next) => {
   const dealId = req.params.id;
   const user = req.session.passport.user;
+  console.log('its the user', user);
+
   Comment.create({
     content: req.body.content,
-    creator: user,
+    creator: req.session.passport.user,
     dealId: dealId
   })
     .then(comment => {
@@ -196,6 +208,8 @@ dealRouter.post('/:id/comment', routeGuard, (req, res, next) => {
 
 dealRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
+  const user = req.session.passport.user;
+  console.log('HERE IS THE USER THE FUCKIGN COMPUTR IS FUCKING STUPID', user);
 
   Deal.findById(id)
     .populate({
