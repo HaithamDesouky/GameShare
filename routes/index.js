@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
     const id = req.session.passport.user;
     Game.find({ creator: { $ne: id } })
       .then(data => {
-        console.log(games);
+        // console.log(games);
         games = data;
       })
       .catch(error => {
@@ -42,7 +42,7 @@ router.get('/', (req, res, next) => {
   } else {
     Game.find()
       .then(data => {
-        console.log(games);
+        console.log('this is games var:' + games);
         games = data;
       })
       .catch(error => {
