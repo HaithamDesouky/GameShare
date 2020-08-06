@@ -276,7 +276,16 @@ $tablet-width: 768px;
     color: gray;
     box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
   }
+  input:focus {
+    color: black;
+  }
   textarea {
+    box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
+  }
+  select {
+    padding: 1em;
+    border: 0px;
+    color: gray;
     box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
   }
   button {
