@@ -1,10 +1,10 @@
-// const { Router } = require('express');
-// const commentRouter = new Router();
-// const routeGuard = require('../middleware/route-guard');
-// const Deal = require('./../models/deal');
-// const Comment = require('./../models/comment');
-// const Game = require('./../models/game');
-// const User = require('./../models/user');
+const { Router } = require('express');
+const commentRouter = new Router();
+const routeGuard = require('../middleware/route-guard');
+const Deal = require('./../models/deal');
+const Comment = require('./../models/comment');
+const Game = require('./../models/game');
+const User = require('./../models/user');
 
 // // commentRouter.get('/deal/:id/comment', routeGuard, (req, res, next) => {
 // //   const dealId = req.params.id;
