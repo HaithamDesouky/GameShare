@@ -9,6 +9,14 @@ $dark-green: #008c6b;
 $light-yellow: #ffbf69;
 $dark-yellow: #ff9f1c;
 
+aside {
+  background-color: white;
+  height: 100%;
+  width: 30%;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
+}
 .profile-image {
   height: 100%;
   width: 100%;
@@ -31,67 +39,85 @@ $dark-yellow: #ff9f1c;
 }
 
 .profile-view {
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    height: 4.5rem;
-    width: 4rem;
-    outline: black;
-    background-size: 100%, 100%;
-    border-radius: 50%;
-    border: 1px solid black;
-    background-image: none;
-    padding-bottom: 1rem;
-  }
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  .carousel-control-next-icon:after {
-    content: '>';
-    font-size: 3rem;
-    color: red;
-  }
+.the-rest-of-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
 
-  .carousel-control-prev-icon:after {
-    content: '<';
-    font-size: 3rem;
-    color: red;
-  }
-  h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin: 1.5rem;
-  }
+.incoming {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
 
-  p {
-    font-size: 1.3rem;
-    text-align: center;
-  }
-  .offers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 4.5rem;
+  width: 4rem;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-image: none;
+  padding-bottom: 1rem;
+}
 
-  .each-offer-text {
-    display: flex;
-    width: 70%;
-    height: 100%;
-    margin: 0.5rem;
+.carousel-control-next-icon:after {
+  content: '>';
+  font-size: 3rem;
+  color: red;
+}
 
-    button {
-      height: 2rem;
-      width: 3rem;
-    }
-  }
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 3rem;
+  color: red;
+}
+h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 1.5rem;
+}
 
-  .offer-image {
-    img {
-      width: 100%;
-      height: 100%;
-      margin: 0 auto;
-    }
-    width: 50%;
-    height: 100%;
+p {
+  font-size: 1.3rem;
+  text-align: center;
+}
+.offers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.each-offer-text {
+  display: flex;
+  width: 70%;
+  height: 100%;
+  margin: 0.5rem;
+
+  button {
+    height: 2rem;
+    width: 3rem;
   }
 }
+
+.offer-image {
+  img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  width: 50%;
+  height: 100%;
+}
+
 * {
   &,
   &:before,
