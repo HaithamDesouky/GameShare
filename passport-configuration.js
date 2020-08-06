@@ -32,7 +32,8 @@ const transport = nodemailer.createTransport({
 });
 
 const generateRandomToken = length => {
-  const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const characters =
+    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let token = '';
   for (let i = 0; i < length; i++) {
     token += characters[Math.floor(Math.random() * characters.length)];
@@ -65,10 +66,11 @@ passport.use(
       const { name, status, wishlist, latitude, longitude } = req.body;
       const token = generateRandomToken(40);
       let userPhoto;
-      !req.file ? (userPhoto = 'https://res.cloudinary.com/asxisto/image/upload/c_scale,w_200/v1596535475/gamechanger/default_user.png') : (userPhoto = req.file.path);
-      // userPhoto = req.file.path;
-      // console.log(userPhoto);
-      // console.log(latitude, longitude);
+      !req.file
+        ? (userPhoto =
+            'https://res.cloudinary.com/asxisto/image/upload/c_scale,w_200/v1596535475/gamechanger/default_user.png')
+        : (userPhoto = req.file.path);
+
       bcryptjs
         .hash(password, 10)
         .then(hash => {

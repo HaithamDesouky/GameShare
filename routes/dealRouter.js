@@ -144,8 +144,7 @@ dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
       });
     })
     .then(() => {
-      res.redirect(`/`);
-      //res.redirect(`/deal/deal-view/${data._id}`);
+      res.redirect(`/profile`);
     })
     .catch(error => {
       next(error);
@@ -211,20 +210,5 @@ dealRouter.get('/:id', routeGuard, (req, res, next) => {
       next(error);
     });
 });
-
-// / dealRouter.get('/post/:id', routeGuard, (req, res, next) => {
-//   const id = req.params.id;
-//   Post.findById(id)
-//     .populate('creatorId')
-//     .populate({
-//       path: 'comments',
-//       populate: { path: 'creatorId' }
-//     })
-//     .then(post => {
-//       console.log('HERE IS TE POST', post);
-//       res.render('single', { post });
-//     })
-//     .catch(error => next(error));
-// });
 
 module.exports = dealRouter;

@@ -1,4 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+.profile-image {
+  height: 60%;
+  width: 60%;
+  float: right; }
+
+.intro-to-profile {
+  display: flex;
+  flex-wrap: wrap;
+  height: 10%; }
+  .intro-to-profile div {
+    width: 50%;
+    height: 30%; }
+
+.profile-view h2 {
+  font-size: 3rem; }
+
+.profile-view p {
+  font-size: 1.3rem; }
+
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0; }
