@@ -5,9 +5,10 @@ $grey: hsla(0, 0, 75%, 0.5);
 
 $white: #fff;
 $light-green: #94cfc6;
-$dark-green: #2ec4b6;
+$dark-green: #008c6b;
 $light-yellow: #ffbf69;
 $dark-yellow: #ff9f1c;
+
 .profile-image {
   height: 60%;
   width: 60%;
@@ -126,6 +127,18 @@ nav {
   }
 }
 
+// CAROUSEL
+#carouselExampleInterval {
+  margin: 2rem 0;
+  height: 40vh;
+  max-height: 40vh;
+  img {
+    object-position: top;
+    height: 36vh;
+    width: 100%;
+  }
+}
+
 // Desktop and Tablet VIEW
 $tablet-width: 768px;
 
@@ -158,6 +171,23 @@ $tablet-width: 768px;
     .btn-search {
       position: absolute;
       //  right: 50px;
+    }
+  }
+
+  // INDEX GAMES GRID
+  #games-grid {
+    .btn {
+      background-color: $dark-green;
+      border-color: $light-green;
+    }
+    .games-grid-image {
+      width: 100%;
+      height: 14rem;
+      display: flex;
+      align-items: center;
+      //margin-bottom: 2em;
+    }
+    .img-fluid {
     }
   }
 

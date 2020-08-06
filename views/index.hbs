@@ -1,5 +1,6 @@
 
-<form class="form-inline my-2 my-lg-0 d-flex justify-content-center" method="GET" action="/game/search">
+{{!---------- SEARCH BAR ----------}}
+<form class="form-inline my-2 my-lg-0 d-flex justify-content-center py-5" method="GET" action="/game/search">
   <select class="custom-select" name="platform">
     <option id="select-platform" value="" selected hidden>Search platform</option>
     <option value="Xbox">Xbox</option>
@@ -8,23 +9,18 @@
   </select>
   <input class="form-control mr-sm-2 w-50" type="search" placeholder="Search your favourite game" name="name" aria-label="Search">
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  {{!-- <button class="btn btn-search" type="submit">
-    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-      <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-    </svg>
-  </button> --}}
 </form>
 
 
-<div id="carouselExampleInterval" class="carousel slide game-list" data-ride="carousel">
+{{!---------- CAROUSEL - MOBILE ----------}}
+<div id="carouselExampleInterval" class="carousel slide d-flex d-md-none" data-ride="carousel" data-touch="true" data-keyboard="true">
   <div class="carousel-inner">
     <div class="carousel-item active" data-interval="2000">
-      <img src="{{photo}}" class="d-block w-75" alt="{{name}}">
+      <img src="{{games.1.photo}}" class="d-block mx-auto w-75" alt="{{games.1.name}}">
     </div>
     {{#each games}}
-    <div class="carousel-item" data-interval="2000">
-      <img src="{{photo}}" class="d-block w-75" alt="{{name}}">
+    <div class="carousel-item" data-interval="4000">
+      <img src="{{photo}}" class="d-block mx-auto w-75" alt="{{name}}">
     </div>
     {{/each}}
   </div>
@@ -38,15 +34,36 @@
   </a>
 </div>
 
-{{!-- <div class="game-list">
-  {{#each games}}
-  <img src="{{photo}}" alt="{{name}}">
-  <h2><a href="/game/{{id}}">{{name}}</a></h2>
-  {{/each}}
-</div> --}}
 
-<h3 class="text-white">Meet our traders</h3>
-<div id="map-container"></div>
+{{!---------- GAMES GRID - DESKTOP ----------}}
+
+<h2 class="text-white text-center">Check our lastest games</h2>
+
+<section id="games-grid" class="pt-3 pb-5">
+  <div class="container">
+    <div class="row">
+      {{#each games}}
+        <div class="col-lg-3 col-md-6 mb-5">
+          <div class="card mb-5 mb-lg-0">
+            <div class="card-body">
+              <div class="img-thumbnail games-grid-image mb-4">
+                <img class="img-fluid" src="{{photo}}" alt="{{name}}">
+              </div>
+              <h4 class="text-center">{{name}}</h4>
+              <a href="game/{{id}}" class="btn btn-block btn-primary text-uppercase">Details</a>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+
+
+{{!---------- MAP ----------}}
+<h2 class="text-white text-center">Meet our traders</h2>
+<div id="map-container" class="mx-auto"></div>
 
 
 
