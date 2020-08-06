@@ -16,11 +16,15 @@
 <div id="carouselExampleInterval" class="carousel slide d-flex d-md-none" data-ride="carousel" data-touch="true" data-keyboard="true">
   <div class="carousel-inner">
     <div class="carousel-item active" data-interval="2000">
-      <img src="{{games.1.photo}}" class="d-block mx-auto w-75" alt="{{games.1.name}}">
+      <a href="game/{{games.1.id}}">
+        <img src="{{games.1.photo}}" class="d-block mx-auto w-75" alt="{{games.1.name}}">
+      </a>
     </div>
     {{#each games}}
     <div class="carousel-item" data-interval="4000">
-      <img src="{{photo}}" class="d-block mx-auto w-75" alt="{{name}}">
+      <a href="game/{{id}}">
+        <img src="{{photo}}" class="d-block mx-auto w-75" alt="{{name}}">
+     </a>
     </div>
     {{/each}}
   </div>
@@ -37,9 +41,11 @@
 
 {{!---------- GAMES GRID - DESKTOP ----------}}
 
-<h2 class="text-white text-center">Check our lastest games</h2>
 
-<section id="games-grid" class="pt-3 pb-5">
+<section id="games-grid" class="d-none d-md-flex pt-3 pb-5">
+  
+  <h2 class="text-white text-center">Check our lastest games</h2>
+
   <div class="container">
     <div class="row">
       {{#each games}}

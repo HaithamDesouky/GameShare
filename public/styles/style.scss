@@ -153,16 +153,16 @@ textarea {
   border-color: $light-green;
 }
 
+.btn-primary:hover {
+  background-color: $light-green;
+  border-color: $light-green;
+}
+
 // Google maps
 #map-container {
-<<<<<<< HEAD
-  width: 100%;
-  height: 50vh;
-=======
   align-self: center;
   width: 100%;
   height: 70vh;
->>>>>>> 61aa2892e00515dc86383881d2a221e41c8a312f
 }
 
 // NAVBAR
