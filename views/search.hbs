@@ -1,6 +1,36 @@
-<div class="game-list">
-  {{#each games}}
-  <img src="{{photo}}" alt="{{name}}">
-  <h2><a href="/game/{{id}}">{{name}}</a></h2>
-  {{/each}}
+
+
+{{!---------- SEARCH BAR ----------}}
+<form class="form-inline my-2 my-lg-0 d-flex justify-content-center py-5" method="GET" action="/game/search">
+  <select class="custom-select" name="platform">
+    <option id="select-platform" value="" selected hidden>Search platform</option>
+    <option value="Xbox">Xbox</option>
+    <option value="Playstation">Playstation</option>
+    <option value="Nintendo Switch">Nintendo Switch</option>
+  </select>
+  <input class="form-control mr-sm-2 w-50" type="search" placeholder="Search your favourite game" name="name" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+
+
+{{!---------- SEARCH RESULTS ----------}}
+<h4 class="text-white text-center pb-3">This are the games matching {{name}}</h4>
+
+<div class="container">
+  <div class="row">
+    {{#each games}}
+      <div class="col-lg-3 col-md-6 mb-5">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <div class="img-thumbnail games-grid-image mb-4">
+              <img class="img-fluid" src="{{photo}}" alt="{{name}}">
+            </div>
+            <h4 class="text-center">{{name}}</h4>
+            <a href="game/{{id}}" class="btn btn-block btn-primary text-uppercase">Details</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 </div>
