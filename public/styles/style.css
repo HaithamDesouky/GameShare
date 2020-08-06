@@ -68,8 +68,14 @@ textarea {
   padding-bottom: 6rem; }
 
 #map-container {
+<<<<<<< HEAD
+  align-self: center;
+  width: 100%;
+  height: 70vh; }
+=======
   width: 100%;
   height: 50vh; }
+>>>>>>> 4a7b189670d7325fccfce5643403e401047f5ac6
 
 nav {
   font-weight: 700;
