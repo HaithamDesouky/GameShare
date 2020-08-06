@@ -6,6 +6,44 @@ const Comment = require('./../models/comment');
 const Game = require('./../models/game');
 const User = require('./../models/user');
 
+dealRouter.get('/history', (req, res, next) => {
+  const id = res.locals.user._id;
+  let rejectedDeals;
+  let acceptedDeals;
+  console.log('its the history page');
+  //getting accepted deals
+
+  Deal.find({
+    $and: [{ status: 'accepted' }, { $or: [{ seller: id }, { buyer: id }] }]
+  })
+    .then(data => {
+      console.log('accepted deals', data);
+
+      acceptedDeals = data;
+    })
+    .then(() => {
+      //getting pending incoming offers
+
+      Deal.find({
+        $and: [{ status: 'rejected' }, { $or: [{ seller: id }, { buyer: id }] }]
+      })
+        .then(data => (rejectedDeals = data))
+        .then(() => {
+          // console.log('offers', rejectedDeals);
+          // console.log('requests', acceptedDeals);
+          Game.find({ creator: id })
+            .then(game =>
+              res.render('deal-history', {
+                game,
+                rejectedDeals,
+                acceptedDeals
+              })
+            )
+            .catch(error => next(error));
+        });
+    });
+});
+
 dealRouter.get('/new-deal/:gameId', routeGuard, (req, res, next) => {
   const sellersGameId = req.params.gameId;
   const userId = req.user;
