@@ -55,44 +55,6 @@ profileRouter.get('/', (req, res, next) => {
 
 //Your history of deals
 
-profileRouter.get('/history', (req, res, next) => {
-  const id = res.locals.user._id;
-  let rejectedDeals;
-  let acceptedDeals;
-  console.log('its the history page');
-  //getting accepted deals
-
-  Deal.find({
-    $and: [{ status: 'accepted' }, { $or: [{ seller: id }, { buyer: id }] }]
-  })
-    .then(data => {
-      console.log('accepted deals', data);
-
-      acceptedDeals = data;
-    })
-    .then(() => {
-      //getting pending incoming offers
-
-      Deal.find({
-        $and: [{ status: 'rejected' }, { $or: [{ seller: id }, { buyer: id }] }]
-      })
-        .then(data => (rejectedDeals = data))
-        .then(() => {
-          // console.log('offers', rejectedDeals);
-          // console.log('requests', acceptedDeals);
-          Game.find({ creator: id })
-            .then(game =>
-              res.render('deal-history', {
-                game,
-                rejectedDeals,
-                acceptedDeals
-              })
-            )
-            .catch(error => next(error));
-        });
-    });
-});
-
 profileRouter.get('/edit', routeGuard, (req, res, next) => {
   res.render('edit');
 });
