@@ -8,9 +8,57 @@
     <link rel="stylesheet" href="/styles/style.css" />
   </head>
   <body>
-    <nav>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+
+        <a class="navbar-brand" href="/">Home</a>
+               
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            {{#if user}}
+              <li class="nav-item">
+                <a class="btn btn-primary mr-4" href="/game/create">Post your game!</a>
+              </li>
+              <li class="nav-item dropdown" >
+                <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="{{user.photo}}" class="user-image rounded-circle" alt="user profile">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/profile">Your account</a>
+                  <a class="dropdown-item" href="#">My game requests</a>
+                  <a class="dropdown-item" href="#">My sent requests</a>
+                  <div class="dropdown-divider"></div>
+                  <form class="dropdown-item" action="/authentication/sign-out" method="POST">
+                    <button>Sign Out</button>
+                  </form>
+                </div>
+              </li>
+            {{else}}
+              <li class="nav-item active">
+                <a class="nav-link" href="/authentication/sign-in">Sign In</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-primary ml-3" href="/authentication/sign-up">Sign Up</a>
+              </li>
+            {{/if}}
+          </ul>
+        {{!-- 
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        --}}
+        </div>
+      </div>
+    </nav>
+
+
+{{!--       
       <a href="/">Home</a>
-      {{#if user}}
       <form action="/game/platform" method="GET" style="display: inline; margin-right: 0.7rem">
        <button>Choose platform</button>
         <select id="select-platform" name="platform">
@@ -19,17 +67,44 @@
         <option value="Nintendo Switch">Nintendo Switch</option></select>
        </form>
   
-        <a href="/profile">Your account</a>
+      {{#if user}}
+
+      <a class="btn btn-primary btn-sm" href="/game/create">Post your game!</a>
+
+      <div class="dropdown" style="height: 60px;">
+        <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="{{user.photo}}" class="user-image rounded-circle" alt="user profile">
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="/profile">Your account</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <form class="dropdown-item" action="/authentication/sign-out" method="POST">
+            <button>Sign Out</button>
+          </form>
+          <a class="dropdown-item" href="/authentication/sign-out">Sign Out</a>
+        </div>
+      </div> 
+
+      <a href="/profile">Your account</a>
         <a href="/game/create">Post your game!</a>
         <form action="/authentication/sign-out" method="POST">
           <button>Sign Out</button>
         </form>
+   
         {{else}}
         <a href="/authentication/sign-in">Sign In</a>
         <a href="/authentication/sign-up">Sign Up</a>
       {{/if}}
     </nav>
-    {{{body}}}
+       --}}
+    <div class="container body-margin">
+      {{{body}}}
+    </div>
     <script src="/scripts/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
   </body>
 </html>

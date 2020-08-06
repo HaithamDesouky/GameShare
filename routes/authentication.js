@@ -41,11 +41,7 @@ router.post(
 router.get('/email-confirmation', (req, res, next) => {
   const mailToken = req.query.token;
 
-  User.findOneAndUpdate(
-    { confirmationToken: mailToken },
-    { status: 'active' },
-    { new: true }
-  )
+  User.findOneAndUpdate({ confirmationToken: mailToken }, { status: 'active' }, { new: true })
     .then(user => {
       res.render('email-confirmation', { user });
     })
@@ -84,7 +80,7 @@ router.get(
 
 router.post('/sign-out', (req, res, next) => {
   req.logout();
-  res.redirect('/');
+  res.render('sign-out');
 });
 
 module.exports = router;
