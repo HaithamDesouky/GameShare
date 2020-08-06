@@ -11,9 +11,9 @@ function shuffle(arr) {
 router.get('/', (req, res, next) => {
   let games;
   let users;
-  const id = req.session.passport.user;
 
-  if (id) {
+  if (req.session.passport) {
+    const id = req.session.passport.user;
     Game.find({ creator: { $ne: id } })
       .then(data => {
         console.log(games);
