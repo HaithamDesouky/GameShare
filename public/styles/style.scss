@@ -8,7 +8,31 @@ $light-green: #cbf3f0;
 $dark-green: #2ec4b6;
 $light-yellow: #ffbf69;
 $dark-yellow: #ff9f1c;
+.profile-image {
+  height: 60%;
+  width: 60%;
+  float: right;
+}
+.intro-to-profile {
+  display: flex;
+  flex-wrap: wrap;
+  height: 10%;
 
+  div {
+    width: 50%;
+    height: 30%;
+  }
+}
+
+.profile-view {
+  h2 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 1.3rem;
+  }
+}
 * {
   &,
   &:before,

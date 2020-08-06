@@ -1,15 +1,29 @@
-<h1>Welcome! You have {{pendingActions}} offers right now.</h1>
-<p>This is your profile</p>
+<div class="profile-view">
+
+
+<div class="intro-to-profile">
+
+
+
+<div>
+  <h1>Welcome {{user.name}} ! You have {{pendingActions}} offers right now.</h1>
 <span><strong>Name</strong>: {{user.name}}</span>
 <br />
 <span><strong>Email</strong>: {{user.email}}</span>
-
-{{#if user.photo}}
-  <br>
-  <img src="{{ user.photo }}" alt="user photo">
-{{/if}}
 <br>
 <a href="/profile/edit"> Edit your profile!</a>
+
+</div>
+<div>
+{{#if user.photo}}
+  <br>
+  <img src="{{ user.photo }}" alt="user photo" class="profile-image">
+{{/if}}
+
+</div>
+</div>
+<br>
+
 
 <h2>My Wish List</h2>
 <p>{{user.wishlist}}</p>
@@ -22,10 +36,10 @@
 {{#each pendingOffers}}
 
 <div class="deal-in-profile">
-{{buyerGameName}} for {{sellerGameName}} <br>
-{{buyerName}}   with {{sellerName}}
+<p>{{buyerGameName}} for {{sellerGameName}} </p><br>
+<p>{{buyerName}}   with {{sellerName}}</p> 
 <br>
-Deal Status: {{status}}
+<p>Deal Status: {{status}}</p> 
 <br>
 <a href="deal/{{id}}">View Deal</a>
 
@@ -67,8 +81,15 @@ Deal Status: {{status}}
 <a href="/deal/history" style="color: red;">Click here to view your deal history</a>
 
 
+<div class="games heading">
+  <h2>Your games</h2>
+</div>
+<div class="games-in-profile">
 
+{{#if game}}
+{{#each game}}
 
+<h3>{{name}}</h3>
 
 <h2>Your games</h2>
 {{#if game}}
@@ -94,3 +115,7 @@ Deal Status: {{status}}
 <p>You haven't posted a game! Click above on Post Your Game to begin sharing! </p>
 
 {{/if}}
+
+</div>
+
+</div>
