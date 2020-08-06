@@ -2,10 +2,12 @@
 
 <h1>{{ game.name }} - {{ game.platform }}</h1>
 
+<div class="game-img-single-deal">
 <img src="{{game.photo}}" alt="Game photo">
-
+</div>
 <p>From: {{gameCreator.name}}</p>
 
+<div class="sign">
 <form action="/deal/new-deal" method="POST">
   <label>Exchange For:</label>
   <select id="buyerGame-list" name="buyerGame">
@@ -20,10 +22,11 @@
   
   <label for="endDate">Ending Date</label>
   <input id="endDate" type="date" placeholder="Date" name="endDate">
-
+  <button class="btn btn-secondary mt-5">Propose Deal</button>
+</div>
 
   
-  <h1>HIDE THIS</h1>
+  <div style="display: none">
   <label for="sellerId" style="color: red;"><strong>Seller ID to HIDE later!</strong></label>
   <input id="sellerId" value={{game.creator._id}} name="sellerId" >
   
@@ -41,16 +44,16 @@
   
   <label for="sellerGameName" style="color: red;"><strong>Seller Game Name to HIDE later!</strong></label>
   <input id="sellerGameName" value={{game.name}} name="sellerGameName" >
+  </div>
 
-
-  <button>Propose Deal</button>
 </form>
 
 
 {{else}}
+<div class="sign">
 <p>Uh-oh! Seems like you don't have any games! You have to post one of yours in order to participate in our community!</p>
-<br>
-<a href="/game/create">Upload Game</a>
+</div>
+<button class="btn btn-secondary mt-5"><a href="/game/create">Upload Game</a></button>
 
 
 {{/if}}

@@ -1,12 +1,14 @@
+<div class="sign">
 <form method="POST" enctype="multipart/form-data">
-  <label for="input-name" >Name</label>
+  <label for="input-name" >NAME</label>
   <input type="text" id="input-name" name="name" value="{{user.name}}" />
   
-   <label for="input-wishlist">Wishlist</label>
+   <label for="input-wishlist">WISHLIST</label>
   <textarea type="text" id="input-wishlist" name="wishlist" name="wishlist" placeholder="Tell us the games you're looking to trade">{{user.wishlist}}</textarea>
 
-  <label for="photo">Update Your Profile Picture</label>
+  <label for="photo">UPDATE PROFILE PICTURE</label>
   <input type="file" name="photo">
   
-  <button>Update</button>
+  <button class="btn btn-secondary mt-5">Update</button>
 </form>
+</div>

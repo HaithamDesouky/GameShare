@@ -11,16 +11,11 @@
   <label for="endDate">Ending Date: {{ dateFormat deal.endDate "dddd, DD/MM/YYYY "}} </label>
   <br>
 
-
-  <form action="/deal/{{deal.id}}/accept" method="post"><Button>Accept</Button></form>
+<div class="sign">
+<form action="/deal/{{deal.id}}/accept" method="post"><Button>Accept</Button></form>
 <form action="/deal/{{deal.id}}/reject" method="post"><button>Reject</button></form>
-
-
-
-<div class="comments-section">
-  <h1>Have any questions for the other user? Leave a comment bellow</h1>
-
-
+</div>
+<div class="sign"> 
 
 {{#each deal.comments}}
 <div class="individual-comment">
@@ -29,16 +24,12 @@
   <br>
   {{content}}
 </div>
-
-
-
 {{/each}}
-
-
-
+<div class="sign">
 <form method="POST" action='/deal/{{deal.id}}/comment'>
-  <textarea name="content" placeholder="Post something please"></textarea>
-     
-  <button> Leave the user a comment!</button>
+<label for="input-content"></label>
+  <textarea name="content" placeholder="Post something please"></textarea> 
+  <button class="btn btn-secondary mt-5">Leave the user a comment!</button>
 </form>
+</div>
 </div>
