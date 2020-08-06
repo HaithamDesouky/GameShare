@@ -1,3 +1,5 @@
+{{#if user.games}}
+
 <h1>{{ game.name }} - {{ game.platform }}</h1>
 
 <img src="{{game.photo}}" alt="Game photo">
@@ -43,3 +45,12 @@
 
   <button>Propose Deal</button>
 </form>
+
+
+{{else}}
+<p>Uh-oh! Seems like you don't have any games! You have to post one of yours in order to participate in our community!</p>
+<br>
+<a href="/game/create">Upload Game</a>
+
+
+{{/if}}

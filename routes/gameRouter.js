@@ -13,8 +13,6 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 });
 const upload = multer({ storage });
 
-<<<<<<< HEAD
-=======
 gameRouter.post(
   '/create',
   upload.single('photo'),
@@ -63,7 +61,6 @@ gameRouter.get('/platform', routeGuard, (req, res, next) => {
     });
 });
 
->>>>>>> a81abff12634678fb9f4dbd4ccb79ebcb6ea4a87
 gameRouter.get('/search', (req, res, next) => {
   const { platform, name } = req.query;
   let query = {};
@@ -90,15 +87,13 @@ gameRouter.get('/create', routeGuard, (req, res, next) => {
 
 gameRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
-  const loggedInUser = res.locals.user;
-
-  console.log('my games', loggedInUser.games);
+  const loggedInUser = req.session.passport.user;
 
   Game.findById(id)
     .populate('creator')
     .then(game => {
       let sameUser = false;
-      if (game.creator._id == loggedInUser._id) {
+      if (game.creator._id == loggedInUser) {
         sameUser = true;
       }
       if (game) {

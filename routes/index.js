@@ -2,7 +2,6 @@
 
 const { Router } = require('express');
 const router = new Router();
-const routeGuard = require('./../middleware/route-guard');
 const Game = require('../models/game');
 const User = require('../models/user');
 function shuffle(arr) {
@@ -10,35 +9,63 @@ function shuffle(arr) {
 }
 
 router.get('/', (req, res, next) => {
-  const id = res.locals.user._id;
   let games;
   let users;
-  Game.find({ creator: { $ne: id } })
-    .then(data => {
-      console.log(games);
-      games = data;
-    })
-    .catch(error => {
-      next(error);
-    });
-  //here i will slice the array to length of 10
+  const id = req.session.passport.user;
 
-  User.find()
-    .then(file => {
-      users = file;
-    })
-    .then(() => {
-      shuffle(games);
+  if (id) {
+    Game.find({ creator: { $ne: id } })
+      .then(data => {
+        console.log(games);
+        games = data;
+      })
+      .catch(error => {
+        next(error);
+      });
 
-      if (games.length >= 12) {
-        games.splice(1, 11);
-      }
-      console.log('here are the games', games);
-      res.render('index', { users, games });
-    })
-    .catch(error => {
-      next(error);
-    });
+    User.find()
+      .then(file => {
+        users = file;
+      })
+      .then(() => {
+        shuffle(games);
+
+        if (games.length >= 12) {
+          games.splice(1, 11);
+        }
+        console.log('here are the games', games);
+        res.render('index', { users, games });
+      })
+      .catch(error => {
+        next(error);
+      });
+  } else {
+    Game.find()
+      .then(data => {
+        console.log(games);
+        games = data;
+      })
+      .catch(error => {
+        next(error);
+      });
+
+    User.find()
+      .then(file => {
+        users = file;
+      })
+      .then(() => {
+        shuffle(games);
+
+        if (games.length >= 12) {
+          games.splice(1, 11);
+        }
+        console.log('here are the games', games);
+        res.render('index', { users, games });
+      })
+      .catch(error => {
+        next(error);
+      });
+  }
 });
 
 module.exports = router;
