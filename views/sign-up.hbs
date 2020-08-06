@@ -1,3 +1,4 @@
+<div class="sign">
 <form action="/authentication/sign-up" method="POST" enctype="multipart/form-data">
   
   <label for="input-name">Name</label>
@@ -16,15 +17,14 @@
   <textarea type="text" id="input-wishlist" name="wishlist" placeholder="Tell us the games you're looking to trade" name="wishlist"></textarea>
   
   <label for="input-latitude"> Click on the map below to choose your preferred game swapping location!</label>
-  <label for="latitude-input">Latitude</label>
-  <input id="latitude-input" type="text" placeholder="Latitude" name="latitude">
-  
-  <label for="longitude-input">Longitude</label>
-  <input id="longitude-input" type="text" placeholder="Longitude" name="longitude">
   <div id="map-container"></div>
+  <label for="latitude-input" style="display: none">Latitude</label>
+  <input id="latitude-input" type="text" placeholder="Latitude" name="latitude" style="display: none">
+  
+  <label for="longitude-input" style="display: none">Longitude</label>
+  <input id="longitude-input" type="text" placeholder="Longitude" name="longitude" style="display: none">
   <button>Sign Up</button>
 </form>
-<a href="/authentication/github">Sign Up with GitHub</a>
 
 
 
@@ -38,7 +38,7 @@
        lat: 38.77,
         lng: -9.13
       },
-      zoom: 11
+      zoom: 13
     });
     let marker;
     const latitudeInputElement = document.getElementById('latitude-input');
@@ -67,5 +67,5 @@
 
 
 <script defer src="https://maps.googleapis.com/maps/api/js?key={{environmentVariables.GOOGLE_MAPS_API_KEY}}&callback=init"></script>
-
+</div>
 

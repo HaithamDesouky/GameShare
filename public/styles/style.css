@@ -49,8 +49,9 @@ textarea {
   padding-bottom: 6rem; }
 
 #map-container {
-  width: 50vw;
-  height: 50vh; }
+  align-self: center;
+  width: 100%;
+  height: 70vh; }
 
 nav {
   font-weight: 700;
