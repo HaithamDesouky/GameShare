@@ -147,10 +147,10 @@ dealRouter.post(`/:id/accept`, routeGuard, (req, res, next) => {
 
 dealRouter.post('/:id/comment', routeGuard, (req, res, next) => {
   const dealId = req.params.id;
-  const user = req.session.passport.user._id;
+  const user = req.session.passport.user;
   Comment.create({
     content: req.body.content,
-    creatorId: user,
+    creator: user,
     dealId: dealId
   })
     .then(comment => {
@@ -168,12 +168,14 @@ dealRouter.post('/:id/comment', routeGuard, (req, res, next) => {
 
 dealRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
+
   Deal.findById(id)
-    // .populate('comments')
-    // .populate({ path: 'comments', populate: { path: 'creatorId' } })
+    .populate({
+      path: 'comments',
+      populate: { path: 'creator' }
+    })
     .then(deal => {
       console.log(deal);
-      console.log(deal.comments);
       res.render('deal-view', { deal });
     })
     .catch(error => {

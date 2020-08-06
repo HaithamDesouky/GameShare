@@ -14,7 +14,7 @@ const User = require('./../models/user');
 
 commentRouter.post('/deal/:id/comment', routeGuard, (req, res, next) => {
   const dealId = req.params.id;
-  const user = req.session.passport.user._id;
+  const user = req.session.passport.user;
   console.log(dealId, user);
 
   Comment.create({
@@ -33,7 +33,8 @@ commentRouter.post('/deal/:id/comment', routeGuard, (req, res, next) => {
     .catch(error => {
       next(error);
     });
-// });
+});
+
 // commentRouter.post('/deal/:id/comment', routeGuard, (req, res, next) => {
 //   const dealId = req.params.id;
 //   const user = req.session.currentUser._id;

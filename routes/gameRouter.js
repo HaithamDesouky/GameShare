@@ -87,17 +87,19 @@ gameRouter.get('/create', routeGuard, (req, res, next) => {
 
 gameRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
-  const loggedInUser = req.session.passport.user;
+  const loggedInUser = res.locals.user;
+
+  console.log('my games', loggedInUser.games);
 
   Game.findById(id)
     .populate('creator')
     .then(game => {
       let sameUser = false;
-      if (game.creator._id == loggedInUser) {
+      if (game.creator._id == loggedInUser._id) {
         sameUser = true;
       }
       if (game) {
-        res.render('single-game', { game: game, sameUser });
+        res.render('single-game', { game: game, sameUser, loggedInUser });
       } else {
         next();
       }
