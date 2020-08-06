@@ -5,9 +5,10 @@ $grey: hsla(0, 0, 75%, 0.5);
 
 $white: #fff;
 $light-green: #94cfc6;
-$dark-green: #2ec4b6;
+$dark-green: #008c6b;
 $light-yellow: #ffbf69;
 $dark-yellow: #ff9f1c;
+
 .profile-image {
   height: 60%;
   width: 60%;
@@ -25,12 +26,66 @@ $dark-yellow: #ff9f1c;
 }
 
 .profile-view {
-  h2 {
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    height: 4.5rem;
+    width: 4rem;
+    outline: black;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-image: none;
+    padding-bottom: 1rem;
+  }
+
+  .carousel-control-next-icon:after {
+    content: '>';
     font-size: 3rem;
+    color: red;
+  }
+
+  .carousel-control-prev-icon:after {
+    content: '<';
+    font-size: 3rem;
+    color: red;
+  }
+  h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 1.5rem;
   }
 
   p {
     font-size: 1.3rem;
+    text-align: center;
+  }
+  .offers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 50vh;
+  }
+
+  .each-offer {
+    display: flex;
+    width: 50%;
+    height: 50%;
+  }
+  .each-offer-text {
+    display: flex;
+    width: 70%;
+    height: 100%;
+    margin: 0.5rem;
+  }
+
+  .offer-image {
+    img {
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+    }
+    width: 50%;
+    height: 100%;
   }
 }
 * {
@@ -93,6 +148,11 @@ textarea {
   padding-bottom: 6rem;
 }
 
+.btn-primary {
+  background-color: $dark-green;
+  border-color: $light-green;
+}
+
 // Google maps
 #map-container {
   align-self: center;
@@ -124,6 +184,18 @@ nav {
   }
   .second-icon {
     padding-top: 12px;
+  }
+}
+
+// CAROUSEL
+#carouselExampleInterval {
+  margin: 2rem 0;
+  height: 40vh;
+  max-height: 40vh;
+  img {
+    object-position: top;
+    height: 36vh;
+    width: 100%;
   }
 }
 
@@ -159,6 +231,19 @@ $tablet-width: 768px;
     .btn-search {
       position: absolute;
       //  right: 50px;
+    }
+  }
+
+  // INDEX GAMES GRID
+  #games-grid {
+    .games-grid-image {
+      width: 100%;
+      height: 14rem;
+      display: flex;
+      align-items: center;
+      //margin-bottom: 2em;
+    }
+    .img-fluid {
     }
   }
 
