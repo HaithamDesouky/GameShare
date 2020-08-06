@@ -158,6 +158,16 @@ textarea {
   border-color: $light-green;
 }
 
+.btn-secondary {
+  background-color: $dark-yellow;
+  color: #000;
+  font-weight: 700;
+  border-color: transparent;
+}
+.btn-secondary:hover {
+  background-color: $light-yellow;
+}
+
 // Google maps
 #map-container {
   align-self: center;
@@ -239,6 +249,14 @@ $tablet-width: 768px;
     }
   }
 
+  // SEARCH BAR
+  #search-bar {
+    .game-search {
+      width: 50%;
+      margin-top: 0;
+    }
+  }
+
   // INDEX GAMES GRID
   #games-grid {
     .games-grid-image {
@@ -270,6 +288,8 @@ $tablet-width: 768px;
     border: none;
   }
 }
+
+// SIGN IN SIGN OUT FORMS
 .sign {
   label {
     color: white;
@@ -287,4 +307,9 @@ $tablet-width: 768px;
   button {
     box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
   }
+}
+
+// SEARCH BAR
+.game-search {
+  margin-top: 8px;
 }

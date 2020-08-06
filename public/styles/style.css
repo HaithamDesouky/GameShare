@@ -124,6 +124,15 @@ textarea {
   background-color: #94cfc6;
   border-color: #94cfc6; }
 
+.btn-secondary {
+  background-color: #ff9f1c;
+  color: #000;
+  font-weight: 700;
+  border-color: transparent; }
+
+.btn-secondary:hover {
+  background-color: #ffbf69; }
+
 #map-container {
   align-self: center;
   width: 100%;
@@ -173,6 +182,9 @@ nav {
       height: 60px; }
     nav .btn-search {
       position: absolute; }
+  #search-bar .game-search {
+    width: 50%;
+    margin-top: 0; }
   #games-grid .games-grid-image {
     width: 100%;
     height: 14rem;
@@ -204,5 +216,8 @@ nav {
 
 .sign button {
   box-shadow: 10px 10px 0px 0px #4f4e4f; }
+
+.game-search {
+  margin-top: 8px; }
 
 /*# sourceMappingURL=style.css.map */
