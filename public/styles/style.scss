@@ -94,16 +94,16 @@ textarea {
   padding-bottom: 6rem;
 }
 
+.btn-primary {
+  background-color: $dark-green;
+  border-color: $light-green;
+}
+
 // Google maps
 #map-container {
-<<<<<<< HEAD
   align-self: center;
   width: 100%;
   height: 70vh;
-=======
-  width: 100%;
-  height: 50vh;
->>>>>>> 4a7b189670d7325fccfce5643403e401047f5ac6
 }
 
 // NAVBAR
@@ -182,10 +182,6 @@ $tablet-width: 768px;
 
   // INDEX GAMES GRID
   #games-grid {
-    .btn {
-      background-color: $dark-green;
-      border-color: $light-green;
-    }
     .games-grid-image {
       width: 100%;
       height: 14rem;
