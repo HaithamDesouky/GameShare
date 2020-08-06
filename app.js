@@ -30,6 +30,7 @@ app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(join(__dirname, 'views/partials'));
 hbs.registerHelper('json', hbsJsonHelper);
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(
