@@ -30,6 +30,9 @@
 
 {{/each}}
 
+<form action="/deal/{{id}}/accept" method="post"><Button>Accept</Button></form>
+<form action="/deal/{{id}}/reject" method="post"><button>Reject</button></form>
+
 <form method="POST" action='/deal/{{deal.id}}/comment'>
   <textarea name="content" placeholder="Post something please"></textarea>
      
