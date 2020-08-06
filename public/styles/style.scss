@@ -1,5 +1,13 @@
-$font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+$font-sans: 'Roboto', Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
+
+$white: #fff;
+$light-green: #cbf3f0;
+$dark-green: #2ec4b6;
+$light-yellow: #ffbf69;
+$dark-yellow: #ff9f1c;
 
 * {
   &,
@@ -8,6 +16,11 @@ $grey: hsla(0, 0, 75%, 0.5);
     box-sizing: border-box;
     margin: 0;
   }
+}
+
+body {
+  background-color: $light-green;
+  font-family: $font-sans;
 }
 
 h1,
@@ -64,6 +77,7 @@ textarea {
 
 // NAVBAR
 nav {
+  font-weight: 700;
   height: 4.5rem;
   .nav-link {
     text-align: center;
@@ -98,7 +112,9 @@ $tablet-width: 768px;
 
   // NAVBAR
   nav {
+    font-weight: 700;
     height: 5rem;
+    //color: #000;
 
     .nav-item {
       height: 40px;
