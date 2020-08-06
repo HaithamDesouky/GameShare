@@ -10,15 +10,12 @@ dealRouter.get('/history', (req, res, next) => {
   const id = res.locals.user._id;
   let rejectedDeals;
   let acceptedDeals;
-  console.log('its the history page');
   //getting accepted deals
 
   Deal.find({
     $and: [{ status: 'accepted' }, { $or: [{ seller: id }, { buyer: id }] }]
   })
     .then(data => {
-      console.log('accepted deals', data);
-
       acceptedDeals = data;
     })
     .then(() => {
@@ -29,8 +26,6 @@ dealRouter.get('/history', (req, res, next) => {
       })
         .then(data => (rejectedDeals = data))
         .then(() => {
-          // console.log('offers', rejectedDeals);
-          // console.log('requests', acceptedDeals);
           Game.find({ creator: id })
             .then(game =>
               res.render('deal-history', {
@@ -53,7 +48,6 @@ dealRouter.get('/new-deal/:gameId', routeGuard, (req, res, next) => {
   Game.findById(sellersGameId)
     .populate('creator')
     .then(data => {
-      console.log(data);
       gameCreator = data.creator;
     });
 
@@ -96,10 +90,6 @@ dealRouter.post('/new-deal', routeGuard, (req, res, next) => {
   Game.findById(buyerGame)
     .populate('creator')
     .then(data => {
-      // console.log('this is data.cretor.name' + data.creator.name);
-      // console.log('this is data.cretor.name' + data.creator.photo);
-      // console.log('this is data.cretor.name' + data.name);
-      // console.log('this is data.cretor.name' + data.name);
       buyerGamePhoto = data.photo;
       buyerGameName = data.name;
       buyerName = data.creator.name;
@@ -155,15 +145,57 @@ dealRouter.post(`/:id/accept`, routeGuard, (req, res, next) => {
     });
 });
 
+dealRouter.post('/:id/comment', routeGuard, (req, res, next) => {
+  const dealId = req.params.id;
+  const user = req.session.passport.user;
+  Comment.create({
+    content: req.body.content,
+    creator: user,
+    dealId: dealId
+  })
+    .then(comment => {
+      return Deal.findByIdAndUpdate(dealId, {
+        $push: { comments: comment._id }
+      });
+    })
+    .then(() => {
+      res.redirect(`/deal/${dealId}`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 dealRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
+
   Deal.findById(id)
+    .populate({
+      path: 'comments',
+      populate: { path: 'creator' }
+    })
     .then(deal => {
+      console.log(deal);
       res.render('deal-view', { deal });
     })
     .catch(error => {
       next(error);
     });
 });
+
+// / dealRouter.get('/post/:id', routeGuard, (req, res, next) => {
+//   const id = req.params.id;
+//   Post.findById(id)
+//     .populate('creatorId')
+//     .populate({
+//       path: 'comments',
+//       populate: { path: 'creatorId' }
+//     })
+//     .then(post => {
+//       console.log('HERE IS TE POST', post);
+//       res.render('single', { post });
+//     })
+//     .catch(error => next(error));
+// });
 
 module.exports = dealRouter;

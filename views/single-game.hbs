@@ -11,9 +11,17 @@
 </div>
 
 {{#if sameUser}}
+
+{{#if loggedInUser.games}}
 <form method="POST" action="/game/{{ game._id }}/delete">
   <button>Delete Game</button>
 </form>
+
+{{else}}
+<p>Uh-oh! Seems like you don't have any games! You have to post one of yours in order to participate in our community!</p>
+<br>
+<a href="/game/create">Upload Game</a>
+{{/if}}
 
 {{else}}
 <form action="/deal/new-deal/{{game._id}}">

@@ -56,7 +56,7 @@ const dealSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
     status: {
       type: String,
       enum: ['pending_confirmation', 'accepted', 'rejected'],
