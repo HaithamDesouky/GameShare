@@ -132,7 +132,10 @@ textarea {
   border-color: transparent; }
 
 .btn-secondary:hover {
-  background-color: #ffbf69; }
+  background-color: #ffbf69;
+  color: #000;
+  font-weight: 700;
+  border-color: transparent; }
 
 #map-container {
   align-self: center;
