@@ -14,11 +14,12 @@
 <h2>My Wish List</h2>
 <p>{{user.wishlist}}</p>
 
-<div class="deal-div">
 
-<h2>Offers</h2>
-{{#if deals}}
-{{#each deals}}
+
+<h2>Incoming Offers</h2>
+{{#if pendingOffers}}
+<div class="deal-div">
+{{#each pendingOffers}}
 
 <div class="deal-in-profile">
 {{buyerGameName}} for {{sellerGameName}} <br>
@@ -27,8 +28,10 @@
 Deal Status: {{status}}
 <br>
 <a href="deal/{{id}}">View Deal</a>
+
 <form action="/deal/{{id}}/accept" method="post"><Button>Accept</Button></form>
 <form action="/deal/{{id}}/reject" method="post"><button>Reject</button></form>
+
 </div>
 {{/each}}
 </div>
@@ -36,6 +39,35 @@ Deal Status: {{status}}
 <p>You have no incoming pending offers</p>
 
 {{/if}}
+
+
+<h2>Pending Requests</h2>
+
+<div class="deal-div">
+{{#if pendingRequests}}
+{{#each pendingRequests}}
+
+<div class="deal-in-profile">
+{{buyerGameName}} for {{sellerGameName}} <br>
+{{buyerName}}   with {{sellerName}}
+<br>
+Deal Status: {{status}}
+<br>
+<a href="deal/{{id}}">View Deal</a>
+</div>
+{{/each}}
+
+{{else}}
+<p>You have made no offers, <a href="/" style="color: red;">check out</a> what some of our other users have to offer!</p>
+
+{{/if}}
+</div>
+
+
+<a href="/profile/history" style="color: red;">Click here to view your deal history</a>
+
+
+
 
 
 <h2>Your games</h2>

@@ -1,0 +1,46 @@
+<h1>Your history</h1>
+
+<h2>Accepted Deals</h2>
+{{#if acceptedDeals}}
+<div class="deal-div">
+{{#each acceptedDeals}}
+
+<div class="deal-in-profile">
+{{buyerGameName}} for {{sellerGameName}} <br>
+{{buyerName}}   with {{sellerName}}
+<br>
+Deal Status: {{status}}
+<br>
+<a href="deal/{{id}}">View Deal</a>
+
+</div>
+{{/each}}
+</div>
+{{else}}
+<p>You have made no deals so far! <a href="/"> Check out our users' offers right now!</a></p>
+
+{{/if}}
+
+
+
+<h2>Rejected deals</h2>
+
+{{#if rejectedDeals}}
+<div class="deal-div">
+{{#each rejectedDeals}}
+
+<div class="deal-in-profile">
+{{buyerGameName}} for {{sellerGameName}} <br>
+{{buyerName}}   with {{sellerName}}
+<br>
+Deal Status: {{status}}
+<br>
+<a href="deal/{{id}}">View Deal</a>
+
+</div>
+{{/each}}
+</div>
+{{else}}
+<p>You have made no deals so far! <a href="/"> Check out our users' offers right now!</a></p>
+
+{{/if}}
