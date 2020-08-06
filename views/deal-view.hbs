@@ -10,19 +10,15 @@
   <br>
   <label for="endDate">Ending Date: {{ dateFormat deal.endDate "dddd, DD/MM/YYYY "}} </label>
   <br>
-<<<<<<< HEAD
-  <label for="sellerId" style="color: red;"><strong>Seller ID to HIDE later!</strong></label>
-  <input id="sellerId" value={{game.creator._id}} name="sellerId" > 
-  <br>
-  <label for="sellerGame" style="color: red;"><strong>Seller Game ID to HIDE later!</strong></label>
-  <input id="sellerGame" value={{game._id}} name="sellerGame" >
-  
-  <button>Propose Deal</button>
-=======
->>>>>>> 97db2892f0490d465eb9bfdd808719ccb68d09c4
 
 
 
 <div class="comments-section">
-  h1
+  <h1>Have any questions for the other user? Leave a comment bellow</h1>
+
+<form method="POST" action='/deal/{{deal.id}}/comment'>
+  <textarea name="content" placeholder="Post something please"></textarea>
+     
+  <button> Leave the user a comment!</button>
+</form>
 </div>

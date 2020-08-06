@@ -6,15 +6,16 @@ const Comment = require('./../models/comment');
 const Game = require('./../models/game');
 const User = require('./../models/user');
 
-commentRouter.get('/deal/:id/comment', routeGuard, (req, res, next) => {
-  const dealId = req.params.id;
+// commentRouter.get('/deal/:id/comment', routeGuard, (req, res, next) => {
+//   const dealId = req.params.id;
 
-  res.render('comment', { dealId });
-});
+//   res.render('comment', { dealId });
+// });
 
 commentRouter.post('/deal/:id/comment', routeGuard, (req, res, next) => {
   const dealId = req.params.id;
-  const user = req.session.currentUser._id;
+  const user = req.session.passport.user._id;
+  console.log(dealId, user);
 
   Comment.create({
     content: req.body.content,
@@ -32,7 +33,28 @@ commentRouter.post('/deal/:id/comment', routeGuard, (req, res, next) => {
     .catch(error => {
       next(error);
     });
-});
+// });
+// commentRouter.post('/deal/:id/comment', routeGuard, (req, res, next) => {
+//   const dealId = req.params.id;
+//   const user = req.session.currentUser._id;
+
+//   Comment.create({
+//     content: req.body.content,
+//     creatorId: user,
+//     dealId: dealId
+//   })
+//     .then(comment => {
+//       return Deal.findByIdAndUpdate(dealId, {
+//         $push: { comments: comment._id }
+//       });
+//     })
+//     .then(() => {
+//       res.redirect(`/deal/${dealId}`);
+//     })
+//     .catch(error => {
+//       next(error);
+//     });
+// });
 
 // dealRouter.get('/post/:id', routeGuard, (req, res, next) => {
 //   const id = req.params.id;
