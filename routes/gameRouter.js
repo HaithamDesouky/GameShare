@@ -114,13 +114,20 @@ gameRouter.get('/:id/delete', routeGuard, (req, res, next) => {
   const userId = req.session.passport.user;
   console.log(id, userId);
 
-  Game.findOneAndDelete({ _id: id, creator: userId })
-    .then(game => {
-      res.redirect('/profile');
-    })
-    .catch(error => {
-      next(error);
-    });
+  User.findByIdAndUpdate(
+    { _id: userId },
+    { $pull: { games: id } },
+    { safe: true, upsert: true }
+  ).then(() => {
+    Game.findOneAndDelete({ _id: id, creator: userId })
+      .then(data => {
+        console.log(data);
+        res.redirect('/profile');
+      })
+      .catch(error => {
+        next(error);
+      });
+  });
 });
 
 gameRouter.get('/:id/edit', routeGuard, (req, res, next) => {
