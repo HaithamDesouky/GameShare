@@ -20,6 +20,7 @@ profileRouter.get('/', (req, res, next) => {
   const id = res.locals.user._id;
   let pendingOffers;
   let pendingRequests;
+  const user = res.locals.user;
 
   //getting outgoing offers that haven't been accepted
 
@@ -43,6 +44,7 @@ profileRouter.get('/', (req, res, next) => {
             .then(game =>
               res.render('profile', {
                 game,
+                user,
                 pendingOffers,
                 pendingRequests,
                 pendingActions: pendingOffers.length

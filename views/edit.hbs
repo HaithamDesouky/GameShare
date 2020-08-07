@@ -8,7 +8,50 @@
 
   <label for="photo">UPDATE PROFILE PICTURE</label>
   <input type="file" name="photo">
+
+  <label for="input-latitude">SELECT NEW TRADE POINT</label>
+  <div id="map-container"></div>
+  <label for="latitude-input" style="display: none">Latitude</label>
+  <input id="latitude-input" type="text" placeholder="Latitude" name="latitude" style="display: none">
+  
+  <label for="longitude-input" style="display: none">Longitude</label>
+  <input id="longitude-input" type="text" placeholder="Longitude" name="longitude" style="display: none">
   
   <button class="btn btn-secondary mt-5">Update</button>
 </form>
+</div>
+
+<script>
+  function init () {
+    const mapContainerElement = document.getElementById('map-container');
+    const map = new window.google.maps.Map(mapContainerElement, {
+      center: {
+       lat: 38.77,
+        lng: -9.13
+      },
+      zoom: 13
+    });
+    let marker;
+    const latitudeInputElement = document.getElementById('latitude-input');
+    const longitudeInputElement = document.getElementById('longitude-input');
+    map.addListener('click', event => {
+      const latitude = event.latLng.lat();
+      const longitude = event.latLng.lng();
+      if (marker) {
+        marker.setMap(null);
+      }
+      marker = new window.google.maps.Marker({
+        map,
+        position: {
+          lat: latitude,
+          lng: longitude
+        }
+      });
+      latitudeInputElement.value = latitude;
+      longitudeInputElement.value = longitude;
+    });
+  }
+</script>
+
+<script defer src="https://maps.googleapis.com/maps/api/js?key={{environmentVariables.GOOGLE_MAPS_API_KEY}}&callback=init"></script>
 </div>
