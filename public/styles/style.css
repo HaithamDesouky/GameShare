@@ -97,14 +97,6 @@ p {
   font-size: 1.3rem;
   text-align: center; }
 
-<<<<<<< HEAD
-=======
-.offers {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; }
-
->>>>>>> 52f39e9fc006576d85e138b009e93ce24146a957
 .each-offer-text {
   display: flex;
   width: 70%;
