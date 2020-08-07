@@ -347,7 +347,15 @@ nav {
     align-items: center; }
   .grid-image {
     max-height: 13rem;
+<<<<<<< HEAD
+    width: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+=======
     width: 100%; }
+>>>>>>> 50e9e5cbf79155d9cf53e12dc76654e2dc725cd3
   #map-container {
     width: 100%;
     height: 70vh; }
