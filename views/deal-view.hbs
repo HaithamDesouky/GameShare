@@ -1,35 +1,56 @@
-<h1>{{ deal.sellerGameName }}</h1>
+<h1 class="text-center text-capitalize">{{ deal.sellerGameName }}</h1>
 
 <img src="{{deal.sellerGamePhoto}}" alt="Game photo">
 
-<p>From: {{deal.sellerName}}</p>
+<p class="mt-2 mb-4">From: {{deal.sellerName}}</p>
 
-  <label>Exchange For: {{ deal.buyerGameName}}</label>
+  <label class="text-capitalize">Exchange For: <a class="text-dark" href="/game/{{deal.buyerGame}}"><strong>{{ deal.buyerGameName}}</strong></a></label>
   <br>
-  <label for="startDate">Starting Date: {{ dateFormat deal.startDate "dddd, DD/MM/YYYY"}} </label>
+  <label for="startDate">Starting Date: <strong>{{ dateFormat deal.startDate "dddd, DD/MM/YYYY"}}</strong></label>
   <br>
-  <label for="endDate">Ending Date: {{ dateFormat deal.endDate "dddd, DD/MM/YYYY "}} </label>
+  <label for="endDate">Ending Date: <strong>{{ dateFormat deal.endDate "dddd, DD/MM/YYYY "}}</strong></label>
   <br>
 
-<div class="sign">
+<div class="sign mt-3 mb-5">
 <form action="/deal/{{deal.id}}/accept" method="post"><Button>Accept</Button></form>
 <form action="/deal/{{deal.id}}/reject" method="post"><button>Reject</button></form>
 </div>
 <div class="sign"> 
 
 {{#each deal.comments}}
-<div class="individual-comment">
-  <img src="{{creator.photo}}" alt="image" style="width: 50px; height: 50px; border-radius:50%">{{creator.name}} <br>
-  {{ dateFormat createdAt "dddd, MMMM Do YYYY, h:mm:ss a "}}
-  <br>
-  {{content}}
+<div class="individual-comment mb-4">
+  <div class="d-flex">
+    <img src="{{creator.photo}}" alt="image" style="width: 50px; height: 50px; border-radius:50%">
+    <div class="d-flex flex-column">
+      <small class="comment-data ml-2">{{ dateFormat createdAt "dddd, MMMM Do YYYY, h:mm:ss a "}}</small>
+      <p class="comment-data ml-2">{{creator.name}}</p>
+    </div>
+  </div>
+  <div class="comment">{{content}}</div>
+  <hr>
 </div>
 {{/each}}
+
+
+{{!-- {{#each deal.comments}}
+<div class="individual-comment">
+  <div class="row">
+    <div class="col-3">
+      <img src="{{creator.photo}}" alt="image" style="width: 50px; height: 50px; border-radius:50%">
+    </div>
+    <div class="col-9 text-left">
+      <small>{{ dateFormat createdAt "dddd, MMMM Do YYYY, h:mm:ss a "}}</small>
+      <p>{{creator.name}}</p>
+    </div>
+  </div>
+  {{content}}
+</div>
+{{/each}} --}}
 <div class="sign">
 <form method="POST" action='/deal/{{deal.id}}/comment'>
 <label for="input-content"></label>
-  <textarea name="content" placeholder="Post something please"></textarea> 
-  <button class="btn btn-secondary mt-5">Leave the user a comment!</button>
+  <textarea name="content" placeholder="Your message to {{deal.sellerName}}"></textarea> 
+  <button class="btn btn-secondary mt-4 mb-4">Send Message</button>
 </form>
 </div>
 </div>
