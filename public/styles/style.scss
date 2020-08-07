@@ -68,7 +68,7 @@ aside {
   img {
     display: block;
     margin-bottom: 20px;
-     margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
     justify-content: center;
   }
@@ -113,7 +113,6 @@ p {
 
 .display-img {
   height: 50vh;
-  width: 20vw;
 }
 
 .deal-img {
@@ -402,6 +401,11 @@ $tablet-width: 768px;
   .body-margin {
     padding-top: 2rem;
     width: 50vw;
+  }
+
+  .display-img {
+    height: 50vh;
+    width: 20vw;
   }
 
   // NAVBAR

@@ -83,8 +83,7 @@ p {
     margin: 0 auto; }
 
 .display-img {
-  height: 50vh;
-  width: 20vw; }
+  height: 50vh; }
 
 .deal-img {
   height: 50vh;
@@ -314,6 +313,9 @@ nav {
   .body-margin {
     padding-top: 2rem;
     width: 50vw; }
+  .display-img {
+    height: 50vh;
+    width: 20vw; }
   nav {
     font-weight: 700;
     height: 5rem; }
