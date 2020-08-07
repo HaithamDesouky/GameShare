@@ -72,9 +72,11 @@
     {{#if pendingRequests}}
     {{#each pendingRequests}}
     <div>
-      <img src="{{sellerGamePhoto}}">
+      <a href="game/{{sellerGame}}">
+        <img src="{{sellerGamePhoto}}">
+      </a>
       <div class="title">
-        <h5>You offered {{sellerName}}, {{buyerGameName}} for {{sellerGameName}}</h5>
+        <h5>You offered <a href="/profile/{{seller}}">{{sellerName}}</a>, <a href="game/{{buyerGame}}">{{buyerGameName}}</a> for <a href="game/{{sellerGame}}">{{sellerGameName}}</a></h5>
         <h6><a href="deal/{{id}}">VIEW DEAL</a></h6>
       </div>  
     </div>
