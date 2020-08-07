@@ -453,10 +453,8 @@ $tablet-width: 768px;
   .grid-image {
     max-height: 13rem;
     width: auto;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    margin: 0 auto;
   }
 
   // Google maps
