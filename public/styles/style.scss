@@ -64,17 +64,7 @@ aside {
       margin-bottom: 0px;
     }
   }
-  .subtitle {
-    display: flex;
-    justify-content: flex-end;
-    background-color: rgba(79, 78, 79, 1);
-    color: $dark-yellow;
-    padding: 10px;
-    margin-bottom: 20px;
-    h5 {
-      margin-bottom: 0px;
-    }
-  }
+
   img {
     display: block;
     margin-bottom: 20px;
@@ -203,7 +193,7 @@ textarea {
 
 .body-margin {
   padding-bottom: 6rem;
-  margin-top: 2rem;
+  //margin-top: 2rem;
 }
 
 .btn-primary {
@@ -244,6 +234,28 @@ textarea {
   color: #000;
   font-weight: 700;
   border-color: transparent;
+}
+
+.subtitle {
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(79, 78, 79, 1);
+  color: $dark-yellow;
+  padding: 10px;
+  margin: 2em 0 1em 0;
+  h5 {
+    margin-bottom: 0px;
+  }
+}
+
+// LOGO
+.logo-gc {
+  color: $dark-green; //#f76328;
+  //font-family
+  font-weight: 700;
+  font-size: 1.5em;
+  text-shadow: 1px 1px #8d8d8d;
+  letter-spacing: 2px;
 }
 
 // Google maps

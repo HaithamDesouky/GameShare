@@ -104,13 +104,15 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <a href="game/{{game.0.id}}/edit">
+      <a href="game/{{game.0.id}}">
         <img src="{{game.0.photo}}" alt="{{game.0.name}}">
       </a>
     </div>
  {{#each game}}    
   <div class="carousel-item">
-    <img src="{{photo}}" alt="{{name}}">
+    <a href="game/{{game.0.id}}">
+      <img src="{{photo}}" alt="{{name}}">
+    </a>
   </div>
 {{/each}}
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

@@ -10,45 +10,6 @@
   <body>
 
     <nav>
-    {{!---------------- NAV DESKTOP VIEW ----------------}}
-      <div class="navbar d-none d-md-flex fixed-top navbar-expand-md navbar-light bg-light">
-        <div class="container">
-
-          <a class="navbar-brand" href="/">Home</a>
-
-          <div class="">
-            <ul class="navbar-nav ml-auto">
-              {{#if user}}
-                <li class="nav-item cta-btn">
-                  <a class="btn btn-primary mr-5" href="/game/create">Post your game!</a>
-                </li>
-                <li class="nav-item dropdown" >
-                  <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{user.photo}}" class="user-image rounded-circle" alt="user profile">
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/profile">Your account</a>
-                    <a class="dropdown-item" href="/profile/edit">Edit your profile</a> 
-                    <a class="dropdown-item" href="/deal/history">View your past trades</a>
-                    <div class="dropdown-divider"></div>
-                    <form class="dropdown-item" action="/authentication/sign-out" method="POST">
-                      <button>Sign Out</button>
-                    </form>
-                  </div>
-                </li>
-              {{else}}
-                <li class="nav-item active">
-                  <a class="nav-link" href="/authentication/sign-in">Sign In</a>
-                </li>
-                <li class="nav-item">
-                  <a class="btn btn-primary ml-3" href="/authentication/sign-up">Sign Up</a>
-                </li>
-              {{/if}}
-            </ul>
-          </div>
-        </div>
-      </div>
-
     {{!---------------- NAV MOBILE VIEW ----------------}}
       <div class="px-0 navbar d-md-none w-100 d-flex justify-content-between fixed-bottom navbar-expand-lg navbar-light bg-light">
         <ul class="navbar-nav w-100 d-flex flex-row justify-content-center justify-content-between">
@@ -112,14 +73,54 @@
           {{/if}}
         </ul>
       </div>
+
+      {{!---------------- NAV DESKTOP VIEW ----------------}}
+      <div class="navbar d-none d-md-flex fixed-top navbar-expand-md navbar-light bg-light">
+        <div class="container">
+
+          <a class="logo-gc" href="/">Game Changer</a>
+
+          <div class="">
+            <ul class="navbar-nav ml-auto">
+              {{#if user}}
+                <li class="nav-item cta-btn">
+                  <a class="btn btn-primary mr-5" href="/game/create">Post your game!</a>
+                </li>
+                <li class="nav-item dropdown" >
+                  <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{user.photo}}" class="user-image rounded-circle" alt="user profile">
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/profile">Your account</a>
+                    <a class="dropdown-item" href="/profile/edit">Edit your profile</a> 
+                    <a class="dropdown-item" href="/deal/history">View your past trades</a>
+                    <div class="dropdown-divider"></div>
+                    <form class="dropdown-item" action="/authentication/sign-out" method="POST">
+                      <button>Sign Out</button>
+                    </form>
+                  </div>
+                </li>
+              {{else}}
+                <li class="nav-item active">
+                  <a class="nav-link" href="/authentication/sign-in">Sign In</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-primary ml-3" href="/authentication/sign-up">Sign Up</a>
+                </li>
+              {{/if}}
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </nav>
 
 
 
     <div class="container body-margin">
     {{!---------------- GAME CHANGER ----------------}}
-    <h1>GAME CHANGER</h1>
-    
+      <h1 class="logo-gc d-md-none text-center mb-0">Game Changer</h1>
+
       {{{body}}}
     </div>
 
