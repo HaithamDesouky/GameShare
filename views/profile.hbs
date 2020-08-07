@@ -20,8 +20,8 @@
         {{#each pendingOffers}}  
         <img class="display-img" src="{{buyerGamePhoto}}">
           <div class="title">
-            <h5>{{buyerGameName}}</h5>
-            <h6>{{buyerName}} offered you {{buyerGameName}} to trade for {{sellerGameName}}</h6>
+            <h5><a href="/profile/{{buyerGame}}">{{buyerGameName}} </a></h5>
+            <h6>{{buyerName}} offered you <a href="/game/{{buyerGame}}"> {{buyerGameName}} </a>to trade for <a href="/game/{{sellerGame}}">{{sellerGameName}} </a> </h6>
             <h6><a href="deal/{{id}}"><span>VIEW DEAL</span></a></h6>
           </div>  
         {{/each}}
