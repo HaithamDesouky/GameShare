@@ -12,8 +12,14 @@
   <br>
 
 <div class="sign mt-3 mb-5">
+  {{#if isSeller}}
 <form action="/deal/{{deal.id}}/accept" method="post"><Button>Accept</Button></form>
 <form action="/deal/{{deal.id}}/reject" method="post"><button>Reject</button></form>
+{{else}}
+<form action="/deal/{{deal.id}}/reject" method="post"><button>Cancel</button></form>
+{{/if}}
+
+
 </div>
 <div class="sign"> 
 

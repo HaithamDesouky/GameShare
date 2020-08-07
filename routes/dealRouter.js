@@ -209,7 +209,6 @@ dealRouter.post('/:id/comment', routeGuard, (req, res, next) => {
 dealRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   const user = req.session.passport.user;
-  console.log('HERE IS THE USER THE FUCKIGN COMPUTR IS FUCKING STUPID', user);
 
   Deal.findById(id)
     .populate({
@@ -217,8 +216,12 @@ dealRouter.get('/:id', routeGuard, (req, res, next) => {
       populate: { path: 'creator' }
     })
     .then(deal => {
-      console.log(deal);
-      res.render('deal-view', { deal });
+      let isSeller = false;
+      if (deal.seller == user) {
+        isSeller = true;
+      }
+
+      res.render('deal-view', { deal, isSeller });
     })
     .catch(error => {
       next(error);

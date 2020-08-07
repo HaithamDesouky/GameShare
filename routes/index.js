@@ -30,8 +30,8 @@ router.get('/', (req, res, next) => {
       .then(() => {
         shuffle(games);
 
-        if (games.length >= 12) {
-          games.splice(1, 11);
+        if (games.length > 12) {
+          games.splice(12, games.length - 1);
         }
         console.log('here are the games', games);
         res.render('index', { users, games });
