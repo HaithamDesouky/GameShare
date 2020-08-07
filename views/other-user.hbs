@@ -1,22 +1,32 @@
-<h1>{{user.name}}'s profile</h1>
-<span><strong>Name</strong>: {{user.name}}</span>
+<section id="other-user">
+  <h1 class="subtitle">{{otherUser.name}}'s Profile</h1>
 
-{{#if user.photo}}
-  <br>
-  <img src="{{ user.photo }}" alt="user photo">
-{{/if}}
+  <div class="row">
+    <div class="d-block mx-auto">
+      <img class="" src="{{ otherUser.photo }}" alt="user photo" style="width: 100px;">
+      <span class="d-block mx-auto text-center"><strong>{{otherUser.name}}</strong></span>
+    </div>
+  </div>
+    
+  {{!--------- User Games ----------}}
+  <h2 class="subtitle">{{otherUser.name}}'s Games</h2>
+    
+  <div class="row">
+    {{#each otherUser.games}}
+      <div class="col-lg-4 col-md-6 mb-5">
+        <div class="card d-flex flex-column align-items-stretch bg-light mb-5 mb-lg-0">
+          <div class="card-body">
+            <a class="text-dark" href="game/{{id}}">
+              <div class="img-thumbnail bg-light games-grid-image mb-3">
+                <img class="grid-image" src="{{photo}}" alt="{{name}}">
+              </div>
+              <h6 class="text-center mb-4 text-capitalize">{{name}}</h6>
+              <a href="/game/{{id}}" class="btn btn-block btn-primary text-uppercase">Details</a>
+            </a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 
-<h2>{{user.name}}'s games</h2>
-
-{{#each user.games}}
-
-  <h3><a href="/game/{{id}}">{{name}}</a></h3>
-
-<img src="{{photo}}" alt="Game Photo">
-
-<a href="">View this game</a>
-
-
-
-
-{{/each}}
+</section>

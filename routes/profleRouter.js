@@ -61,33 +61,28 @@ profileRouter.get('/edit', routeGuard, (req, res, next) => {
   res.render('edit');
 });
 
-profileRouter.post(
-  '/edit',
-  upload.single('photo'),
-  routeGuard,
-  (req, res, next) => {
-    const id = res.locals.user._id;
-    const { name, wishlist } = req.body;
-    let newPhoto;
+profileRouter.post('/edit', upload.single('photo'), routeGuard, (req, res, next) => {
+  const id = res.locals.user._id;
+  const { name, wishlist } = req.body;
+  let newPhoto;
 
-    let data;
-    if (!req.file) {
-      data = {
-        name,
-        wishlist
-      };
-    } else {
-      newPhoto = req.file.path;
-      data = { name, wishlist, photo: newPhoto };
-    }
-
-    // console.log(id, name);
-
-    User.findByIdAndUpdate(id, data)
-      .then(res.redirect('/profile'))
-      .catch(error => next(error));
+  let data;
+  if (!req.file) {
+    data = {
+      name,
+      wishlist
+    };
+  } else {
+    newPhoto = req.file.path;
+    data = { name, wishlist, photo: newPhoto };
   }
-);
+
+  // console.log(id, name);
+
+  User.findByIdAndUpdate(id, data)
+    .then(res.redirect('/profile'))
+    .catch(error => next(error));
+});
 
 //view for other users to see
 profileRouter.get('/:id', routeGuard, (req, res, next) => {
@@ -95,7 +90,7 @@ profileRouter.get('/:id', routeGuard, (req, res, next) => {
   User.findById(id)
     .populate('games')
     .then(user => {
-      console.log(user), res.render('other-user', { user });
+      console.log(user), res.render('other-user', { otherUser });
     });
 });
 //---------------------------

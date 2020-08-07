@@ -461,7 +461,11 @@ $tablet-width: 768px;
   }
   .grid-image {
     max-height: 13rem;
-    width: 100%;
+    width: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   // Google maps
