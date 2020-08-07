@@ -126,7 +126,8 @@ p {
     margin-bottom: 1rem; }
 
 a {
-  text-decoration: none !important; }
+  text-decoration: none !important;
+  color: #008c6b; }
 
 img {
   width: 100%;
