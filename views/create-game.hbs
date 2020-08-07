@@ -1,23 +1,27 @@
-<h1>Create your game</h1>
+
+<div class="subtitle">
+  <h5>Add a new game</h5>
+</div>
+
 <div class="sign">
-<form action="" method="POST" enctype="multipart/form-data">
-  <label for="input-name">GAME NAME</label>
-  <input id="input-name" type="text" placeholder="Game name" name="name">
+  <form action="" method="POST" enctype="multipart/form-data">
+    <label for="input-name">GAME NAME</label>
+    <input id="input-name" type="text" placeholder="Game name" name="name">
 
-  <label for="platform-list">PLATFORM</label>
-  <select id="platform-list" name="platform">
-    <option value="" selected="selected" >Please Select One</option>
-    <option value="Playstation">Playstation</option>
-    <option value="Xbox">Xbox</option>
-    <option value="Nintendo Switch">Nintendo Switch</option>
-  </select>
-  
-  <label for="input-content">DESCRIPTION</label>
-  <textarea id="input-content" type="content" placeholder="Briefly description of the game" name="content"></textarea>
+    <label for="platform-list">PLATFORM</label>
+    <select id="platform-list" name="platform">
+      <option value="" selected="selected" >Please Select One</option>
+      <option value="Playstation">Playstation</option>
+      <option value="Xbox">Xbox</option>
+      <option value="Nintendo Switch">Nintendo Switch</option>
+    </select>
+    
+    <label for="input-content">DESCRIPTION</label>
+    <textarea id="input-content" type="content" placeholder="Briefly description of the game" name="content"></textarea>
 
-  <label for="input-photo">GAME PHOTOS</label>
-  <input id="input-photos" type="file" placeholder="Upload photos of your game" name="photo">
+    <label for="input-photo">GAME PHOTOS</label>
+    <input id="input-photos" type="file" placeholder="Upload photos of your game" name="photo">
 
-  <button class="btn btn-secondary mt-5"><a href="/profile">ADD GAME</a></button>
-</form>
+    <button class="btn btn-secondary mt-5">ADD GAME</button>
+  </form>
 </div>
