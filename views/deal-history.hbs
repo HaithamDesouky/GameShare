@@ -1,46 +1,72 @@
-<h1>Your history</h1>
+<h2 class="d-none d-md-flex justify-content-center text-black">History</h2>
 
-<h2>Accepted Deals</h2>
+<h2 class="d-none d-md-flex justify-content-center text-white subtitle">Accepted Deals</h2>
+
 {{#if acceptedDeals}}
-<div class="deal-div">
-{{#each acceptedDeals}}
+<section id="games-grid" class="pt-3 pb-5">
+  <div class="container">
 
-<div class="deal-in-profile">
-{{buyerGameName}} for {{sellerGameName}} <br>
-{{buyerName}}   with {{sellerName}}
-<br>
-Deal Status: {{status}}
-<br>
-<a href="{{id}}">View Deal</a>
+    <div class="row">
+      {{#each acceptedDeals}}
+      <div class="col-lg-4 col-md-6 mb-5">
+        <div class="card bg-light mb-5 mb-lg-0">
+          <div class="card-body">
+            <a class="text-dark" href="game/{{id}}">
+              <div class="img-thumbnail bg-light games-grid-image mb-3">
+                Trade: <br>
+                {{buyerGameName}} for {{sellerGameName}} <br> <br>
+                Participants: <br>
+                {{buyerName}} with {{sellerName}}
+              </div>
+              <h6 class="text-center mb-4">{{name}}</h6>
+              <a href="/deal/{{id}}" class="btn btn-block btn-primary text-uppercase">View deal</a>
+            </a>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{else}}
 
-</div>
-{{/each}}
-</div>
-{{else}}
-<p>You have made no deals so far! <a href="/"> Check out our users' offers right now!</a></p>
+  <p>You have made no deals so far! <a href="/"> Check out our users' offers right now!</a></p>
+  {{/if}}
 
-{{/if}}
+</section>
 
 
-
-<h2>Rejected deals</h2>
+<h2 class="d-none d-md-flex justify-content-center text-white subtitle">Rejected Deals</h2>
 
 {{#if rejectedDeals}}
-<div class="deal-div">
-{{#each rejectedDeals}}
-
-<div class="deal-in-profile">
-{{buyerGameName}} for {{sellerGameName}} <br>
-{{buyerName}}   with {{sellerName}}
-<br>
-Deal Status: {{status}}
-<br>
-<a href="{{id}}">View Deal</a>
-
-</div>
-{{/each}}
-</div>
+<section id="games-grid" class="pt-3 pb-5">
+  <div class="container">
+ 
+    <div class="row">
+         {{#each rejectedDeals}}
+      <div class="col-lg-4 col-md-6 mb-5">
+        <div class="card bg-light mb-5 mb-lg-0">
+          <div class="card-body">
+            <a class="text-dark" href="game/{{id}}">
+              <div class="img-thumbnail bg-light games-grid-image mb-3">
+              Trade: <br>
+              {{buyerGameName}} for {{sellerGameName}} <br> <br>
+              Participants: <br>
+              {{buyerName}} with {{sellerName}}
+              </div>
+              <h6 class="text-center mb-4">{{name}}</h6>
+              <a href="/deal/{{id}}" class="btn btn-block btn-primary text-uppercase">View deal</a>
+            </a>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
 {{else}}
-<p>You have made no deals so far! <a href="/"> Check out our users' offers right now!</a></p>
 
+<p>You have made no deals so far! <a href="/"> Check out our users' offers right now!</a></p>
 {{/if}}
+
+</section>
+
+
