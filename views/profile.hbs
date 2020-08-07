@@ -57,7 +57,7 @@
     {{#if pendingOffers}}
       <div>
         {{#each pendingOffers}}  
-        <img src="{{buyerGamePhoto}}">
+        <img class="display-img" src="{{buyerGamePhoto}}">
           <div class="title">
             <h5>{{buyerGameName}}</h5>
             <h6>{{buyerName}} offered you {{buyerGameName}} to trade for {{sellerGameName}}</h6>
@@ -79,7 +79,7 @@
       {{#each pendingRequests}}
         <div>
           <a href="game/{{sellerGame}}">
-            <img src="{{sellerGamePhoto}}">
+            <img class="display-img" src="{{sellerGamePhoto}}">
           </a>
           <div class="title">
             <h5>You offered <a href="/profile/{{seller}}">{{sellerName}}</a>, <a href="game/{{buyerGame}}">{{buyerGameName}}</a> for <a href="game/{{sellerGame}}">{{sellerGameName}}</a></h5>

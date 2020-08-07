@@ -79,17 +79,6 @@ aside {
 .carousel-item {
   width: 100%;
 }
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  height: 4.5rem;
-  width: 4rem;
-  outline: black;
-  background-size: 100%, 100%;
-  border-radius: 50%;
-  border: 1px solid black;
-  background-image: none;
-  padding-bottom: 1rem;
-}
 
 .carousel-control-next-icon:after {
   content: '>';
@@ -133,6 +122,18 @@ p {
   }
   width: 50%;
   height: 100%;
+}
+
+.display-img {
+  height: 50vh;
+  width: auto;
+}
+
+.deal-img {
+  height: 50vh;
+  width: auto;
+  margin: 0 auto;
+  display: block;
 }
 
 * {
@@ -413,6 +414,8 @@ $tablet-width: 768px;
 @media (min-width: #{$tablet-width}) {
   .body-margin {
     padding-top: 2rem;
+      width: 50vw;
+
   }
 
   // NAVBAR
