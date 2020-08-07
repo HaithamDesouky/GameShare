@@ -1,4 +1,4 @@
-<div class="profile-view">
+
 
 {{!-- <aside> --}}
 {{!-- <img src="{{ user.photo }}" alt="user photo" class="profile-image"> --}}
@@ -41,74 +41,59 @@
 
 
 <div class="incoming">
-
-<h1>Welcome {{user.name}} ! You have {{pendingActions}} offers right now.</h1>
-
-<h2>Incoming Offers</h2>
+  <div class="title">
+    <h3>Hey, {{user.name}}!</h3>
+    <h4>You have {{pendingActions}} offers right now.</h4>
+  </div>
+  <div class="subtitle">
+    <h5>INCOMING OFFERS</h5>
+  </div>
 {{#if pendingOffers}}
-<div class="offers">
-{{#each pendingOffers}}
-
-
-  
-  <div class="card m-2 p-2" style="width: 18rem;  box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);">
-  <img class="card-img-top" src="{{buyerGamePhoto}}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><h4>{{buyerGameName}}</h4></h5>
-    <p class="card-text">{{buyerName}} offered you {{buyerGameName}} to trade for {{sellerGameName}}</p>
+  <div>
+    {{#each pendingOffers}}  
+    <img src="{{buyerGamePhoto}}">
+      <div class="title">
+        <h5>{{buyerGameName}}</h5>
+        <h6>{{buyerName}} offered you {{buyerGameName}} to trade for {{sellerGameName}}</h6>
+        <h6><a href="deal/{{id}}">VIEW DEAL</a></h6>
+      </div>  
+    {{/each}}
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><a href="deal/{{id}}">View Deal</a></li>
-  </ul>
-  </div>
-{{/each}}
-  
-</div>
-
-
 {{else}}
 <p>You have no incoming pending offers</p>
-
 {{/if}}
-
 </div>
 
-<div class="the-rest-of-profile">
-<h2>Pending Requests</h2>
-
-<div class="offers">
-{{#if pendingRequests}}
-{{#each pendingRequests}}
-
-
-<div class="card my-5" style="width: 18rem;  box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);">
-  <img class="card-img-top" src="{{sellerGamePhoto}}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><h4>{{sellerGameName}}</h4></h5>
-    <p class="card-text">You offered {{sellerName}}, {{buyerGameName}} for {{sellerGameName}}</p>
+<div class="incoming">
+  <div class="subtitle">
+    <h5>PENDING REQUESTS</h5>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><a href="deal/{{id}}">View Deal</a></li>
-  </ul>
-  </div>
+  <div>
+    {{#if pendingRequests}}
+    {{#each pendingRequests}}
+    <div>
+      <img src="{{sellerGamePhoto}}">
+      <div class="title">
+        <h5>You offered {{sellerName}}, {{buyerGameName}} for {{sellerGameName}}</h5>
+        <h6><a href="deal/{{id}}">VIEW DEAL</a></h6>
+      </div>  
+    </div>
 {{/each}}
-
-
-
-
-
 {{else}}
 <p>You have made no offers, <a href="/" style="color: red;">check out</a> what some of our other users have to offer!</p>
+{{/if}}  
+</div>
 
-{{/if}}</div>
+<div class="subtitle">
+  <h5>MY WISH LIST</h5>
+</div>
+<div class="title">
+  <p>{{user.wishlist}}</p>
+</div>
 
-<h2>My Wish List</h2>
-<p>{{user.wishlist}}</p>
-
-
-
-
-<h2>Your games</h2>
+<div class="subtitle">
+<h5>YOUR GAMES</h5>
+</div>
 {{#if game}}
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-touch="true">
@@ -118,14 +103,15 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-   
-    <div class="carousel-item active"  >
-      <img class="d-block w-50 h-50 mx-auto" src="{{game.0.photo}}" alt="{{game.0.name}}" style="min-height: 50vh; max-height:50vh">
+    <div class="carousel-item active">
+      <a href="game/{{game.0.id}}/edit">
+        <img src="{{game.0.photo}}" alt="{{game.0.name}}">
+      </a>
     </div>
  {{#each game}}    
-  <div class="carousel-item " >
-      <img class="d-block w-50 h-50 mx-auto" src="{{photo}}" alt="{{name}}" style="min-height: 50vh; max-height:50vh;">
-    </div>
+  <div class="carousel-item">
+    <img src="{{photo}}" alt="{{name}}">
+  </div>
 {{/each}}
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -145,5 +131,5 @@
 
 {{/if}}
 </div>
-</div>
+
 

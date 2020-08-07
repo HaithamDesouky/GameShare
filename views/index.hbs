@@ -21,17 +21,22 @@
 
 
 {{!---------- CAROUSEL - MOBILE ----------}}
-<div id="carouselExampleInterval" class="carousel slide d-flex d-md-none" data-ride="carousel" data-touch="true" data-keyboard="true">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-touch="true">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
   <div class="carousel-inner">
     <div class="carousel-item active" data-interval="2000">
-      <a href="game/{{games.1.id}}">
-        <img src="{{games.1.photo}}" class="d-block mx-auto w-75" alt="{{games.1.name}}">
+      <a href="game/{{games.0.id}}">
+        <img src="{{games.0.photo}}" alt="{{games.0.name}}">
       </a>
     </div>
     {{#each games}}
     <div class="carousel-item" data-interval="4000">
       <a href="game/{{id}}">
-        <img src="{{photo}}" class="d-block mx-auto w-75" alt="{{name}}">
+        <img src="{{photo}}" alt="{{name}}">
      </a>
     </div>
     {{/each}}

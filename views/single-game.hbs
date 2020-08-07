@@ -1,19 +1,23 @@
-<h1>{{game.name}}</h1>
-
-<span>Game owned by <a href="/profile/{{ game.creator._id }}">{{ game.creator.name }}</a></span>
-
-<div class="game">
-
-  <p>{{ game.content }}</p>
-  <p>{{game.platform}}</p>
-  <p>{{ game.date }}</p>
-    <img src="{{ game.photo }}" alt="photo of game"><p></p>
-</div>
+<div class="incoming">
+  <div class="title">
+    <h3>{{game.name}}</h3>
+    <h5>{{game.platform}}</h5>
+  </div>
+  <img src="{{game.photo}}" alt="photo of game"><p></p>
+  <div class="subtitle">
+    <h5>OWNER COMMENT</h5>
+  </div>
+  <div class="title">
+    <h5>"{{game.content}}"</h5>
+      <h6>
+      Meet the owner: <a href="/profile/{{game.creator._id}}">{{game.creator.name}}</a>
+      </h6>
+  </div>
 
 {{#if sameUser}}
 
 
-<form method="POST" action="/game/{{ game._id }}/delete">
+<form method="POST" action="/game/{{game._id}}/delete">
   <button class="btn btn-secondary mt-5">Delete Game</button>
 </form>
 

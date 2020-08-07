@@ -1,11 +1,17 @@
 {{#if user.games}}
 
-<h1>{{ game.name }} - {{ game.platform }}</h1>
 
 <div class="game-img-single-deal">
+<div>
+<h3>{{ game.name }}</h3>
+<h4>{{ game.platform }}</h4>
+</div> 
 <img src="{{game.photo}}" alt="Game photo">
+<div>
+  <!-- make a link to the owner profile -->
+<p><a href="/views/profile.hbs">From: {{gameCreator.name}}</a></p>
 </div>
-<p>From: {{gameCreator.name}}</p>
+</div>
 
 <div class="sign">
 <form action="/deal/new-deal" method="POST">
