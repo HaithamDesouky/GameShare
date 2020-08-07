@@ -54,20 +54,20 @@
     <div class="subtitle">
       <h5>INCOMING OFFERS</h5>
     </div>
-  {{#if pendingOffers}}
-    <div>
-      {{#each pendingOffers}}  
-      <img src="{{buyerGamePhoto}}">
-        <div class="title">
-          <h5>{{buyerGameName}}</h5>
-          <h6>{{buyerName}} offered you {{buyerGameName}} to trade for {{sellerGameName}}</h6>
-          <h6><a href="deal/{{id}}"><span>VIEW DEAL</span></a></h6>
-        </div>  
-      {{/each}}
-    </div>
-  {{else}}
-  <p>You have no incoming pending offers</p>
-  {{/if}}
+    {{#if pendingOffers}}
+      <div>
+        {{#each pendingOffers}}  
+        <img src="{{buyerGamePhoto}}">
+          <div class="title">
+            <h5>{{buyerGameName}}</h5>
+            <h6>{{buyerName}} offered you {{buyerGameName}} to trade for {{sellerGameName}}</h6>
+            <h6><a href="deal/{{id}}"><span>VIEW DEAL</span></a></h6>
+          </div>  
+        {{/each}}
+      </div>
+    {{else}}
+      <p>You have no incoming pending offers</p>
+    {{/if}}
   </div>
 
   <div class="incoming">
@@ -77,19 +77,20 @@
     <div>
       {{#if pendingRequests}}
       {{#each pendingRequests}}
-      <div>
-        <a href="game/{{sellerGame}}">
-          <img src="{{sellerGamePhoto}}">
-        </a>
-        <div class="title">
-          <h5>You offered <a href="/profile/{{seller}}">{{sellerName}}</a>, <a href="game/{{buyerGame}}">{{buyerGameName}}</a> for <a href="game/{{sellerGame}}">{{sellerGameName}}</a></h5>
-          <h6><a href="deal/{{id}}"><span>VIEW DEAL</span></a></h6>
-        </div>  
-      </div>
-  {{/each}}
-  {{else}}
-  <p>You have made no offers, <a href="/" style="color: red;">check out</a> what some of our other users have to offer!</p>
-  {{/if}}  
+        <div>
+          <a href="game/{{sellerGame}}">
+            <img src="{{sellerGamePhoto}}">
+          </a>
+          <div class="title">
+            <h5>You offered <a href="/profile/{{seller}}">{{sellerName}}</a>, <a href="game/{{buyerGame}}">{{buyerGameName}}</a> for <a href="game/{{sellerGame}}">{{sellerGameName}}</a></h5>
+            <h6><a href="deal/{{id}}"><span>VIEW DEAL</span></a></h6>
+          </div>  
+        </div>
+      {{/each}}
+      {{else}}
+        <p>You have made no offers, <a href="/" style="color: red;">check out</a> what some of our other users have to offer!</p>
+      {{/if}}  
+    </div>
   </div>
 
   <div class="subtitle">
@@ -100,65 +101,41 @@
   </div>
 
   <div class="subtitle">
-  <h5>YOUR GAMES</h5>
-  </div>
-  {{#if game}}
-
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-touch="true">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <a href="game/{{game.0.id}}">
-          <img src="{{game.0.photo}}" alt="{{game.0.name}}">
-        </a>
+    <h5>YOUR GAMES</h5>
+ 
+    {{#if game}}
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-touch="true">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a href="game/{{game.0.id}}">
+              <img src="{{game.0.photo}}" alt="{{game.0.name}}">
+            </a>
+          </div>
+          {{#each game}}    
+            <div class="carousel-item">
+              <a href="game/{{id}}">
+                <img src="{{photo}}" alt="{{name}}">
+              </a>
+            </div>
+          {{/each}}
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
-  {{#each game}}    
-    <div class="carousel-item">
-      <a href="game/{{id}}">
-        <img src="{{photo}}" alt="{{name}}">
-      </a>
-    </div>
-  {{/each}}
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-<<<<<<< HEAD
+      <p>You haven't posted a game! Click above on Post Your Game to begin sharing! </p>
+    {{/if}}
   </div>
 
-=======
-{{/each}}
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</div>
-
-{{else}}
->>>>>>> ccc61f137ed9bfc2fb1d2997c10d78d0f8be849d
-
-  {{else}}
-
-  <p>You haven't posted a game! Click above on Post Your Game to begin sharing! </p>
-
-<<<<<<< HEAD
-  {{/if}}
-  </div>
 </section>
 
-=======
->>>>>>> ccc61f137ed9bfc2fb1d2997c10d78d0f8be849d
