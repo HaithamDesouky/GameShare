@@ -279,8 +279,6 @@ nav {
   }
 }
 
-<<<<<<< HEAD
-=======
 // CAROUSEL
 #carouselExampleInterval {
   margin: 2rem 0;
@@ -306,35 +304,6 @@ nav {
   max-height: 80vw;
 }
 
-// SIGN IN SIGN OUT FORMS
-.sign {
-  label {
-    color: white;
-    font-weight: bold;
-    padding: 20px 0px 10px;
-    margin-bottom: 0;
-  }
-  input {
-    color: gray;
-    box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
-  }
-  input:focus {
-    color: black;
-  }
-  textarea {
-    box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
-  }
-  select {
-    padding: 1em;
-    border: 0px;
-    color: gray;
-    box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
-  }
-  button {
-    box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
-  }
-}
-
 // SEARCH BAR
 .game-search {
   margin-top: 8px;
@@ -349,7 +318,6 @@ nav {
   margin-left: 3.7rem;
 }
 
->>>>>>> 2fa1cc24cf58b44c7dc2658570a46ffa72564f75
 // Desktop and Tablet VIEW
 $tablet-width: 768px;
 
@@ -422,7 +390,6 @@ $tablet-width: 768px;
     border: none;
   }
 }
-<<<<<<< HEAD
 
 // SIGN IN SIGN OUT FORMS
 .sign {
@@ -480,5 +447,3 @@ $tablet-width: 768px;
 .game-search {
   margin-top: 8px;
 }
-=======
->>>>>>> 2fa1cc24cf58b44c7dc2658570a46ffa72564f75

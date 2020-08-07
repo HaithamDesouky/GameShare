@@ -223,8 +223,6 @@ nav {
   nav .second-icon {
     padding-top: 12px; }
 
-<<<<<<< HEAD
-=======
 #carouselExampleInterval {
   margin: 2rem 0;
   height: 40vh;
@@ -243,31 +241,6 @@ nav {
 .grid-image {
   max-height: 80vw; }
 
-.sign label {
-  color: white;
-  font-weight: bold;
-  padding: 20px 0px 10px;
-  margin-bottom: 0; }
-
-.sign input {
-  color: gray;
-  box-shadow: 10px 10px 0px 0px #4f4e4f; }
-
-.sign input:focus {
-  color: black; }
-
-.sign textarea {
-  box-shadow: 10px 10px 0px 0px #4f4e4f; }
-
-.sign select {
-  padding: 1em;
-  border: 0px;
-  color: gray;
-  box-shadow: 10px 10px 0px 0px #4f4e4f; }
-
-.sign button {
-  box-shadow: 10px 10px 0px 0px #4f4e4f; }
-
 .game-search {
   margin-top: 8px; }
 
@@ -278,7 +251,6 @@ nav {
   margin-top: 0.5rem;
   margin-left: 3.7rem; }
 
->>>>>>> 2fa1cc24cf58b44c7dc2658570a46ffa72564f75
 @media (min-width: 768px) {
   .body-margin {
     padding-top: 3rem; }
@@ -316,7 +288,6 @@ nav {
     margin: 0;
     border: none; } }
 
-<<<<<<< HEAD
 .sign label {
   color: white;
   font-weight: bold;
@@ -367,6 +338,4 @@ nav {
 .game-search {
   margin-top: 8px; }
 
-=======
->>>>>>> 2fa1cc24cf58b44c7dc2658570a46ffa72564f75
 /*# sourceMappingURL=style.css.map */
