@@ -1,9 +1,42 @@
 <div class="sign">
-  <form action="/authentication/sign-in" method="POST">
-    <label for="input-email">Email</label>
-    <input type="email" id="input-email" name="email" placeholder="Your Email" />
-    <label for="input-password">Password</label>
-    <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
-    <button class="btn btn-secondary mt-5">Sign In</button>
+  <form id="loginForm" class="needs-validation" action="/authentication/sign-in" method="POST" novalidate>
+    
+    <div class="form-group">
+      <label for="input-email">Email</label>
+      <input type="email" class="form-control" id="input-email" name="email" placeholder="Your Email" required />
+      <div class="valid-feedback">Ok</div>
+      <div class="invalid-feedback">Wrong email</div>
+    </div>
+
+    <div class="form-group">
+      <label for="input-password">Password</label>
+      <input type="password" class="form-control" name="password" id="input-password" placeholder="A Strong Password" required />
+      <div class="valid-feedback">Ok</div>
+      <div class="invalid-feedback">Wrong password</div>
+    </div>
+
+    <button class="btn btn-secondary mt-5" type="submit">Sign In</button>
   </form>
 </div>
+
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    const validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

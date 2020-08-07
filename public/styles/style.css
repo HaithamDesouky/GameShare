@@ -1,6 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-<<<<<<< HEAD
-=======
 aside {
   background-color: white;
   height: 100%;
@@ -9,7 +7,6 @@ aside {
   padding: 1rem;
   box-shadow: 10px 10px 0px 0px #4f4e4f; }
 
->>>>>>> 232fdeb16d578dd8c787232ddd8de141c4522e22
 .profile-image {
   height: 100%;
   width: 100%;
@@ -27,10 +24,6 @@ aside {
     width: 25%;
     height: 30%; }
 
-<<<<<<< HEAD
-.profile-view .carousel-control-prev-icon,
-.profile-view .carousel-control-next-icon {
-=======
 .profile-view {
   display: flex;
   flex-wrap: wrap; }
@@ -49,7 +42,6 @@ aside {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
->>>>>>> 232fdeb16d578dd8c787232ddd8de141c4522e22
   height: 4.5rem;
   width: 4rem;
   outline: black;
@@ -83,11 +75,7 @@ p {
   flex-wrap: wrap;
   justify-content: space-around; }
 
-<<<<<<< HEAD
-.profile-view .each-offer-text {
-=======
 .each-offer-text {
->>>>>>> 232fdeb16d578dd8c787232ddd8de141c4522e22
   display: flex;
   width: 70%;
   height: 100%;
@@ -170,6 +158,19 @@ textarea {
 
 .btn-secondary:hover {
   background-color: #ffbf69;
+  color: #000;
+  font-weight: 700;
+  border-color: transparent; }
+
+.btn-secondary-light {
+  background-color: #ffbf69;
+  color: #000;
+  font-weight: 700;
+  border-color: transparent;
+  box-shadow: 10px 10px 0px 0px #4f4e4f; }
+
+.btn-secondary-light:hover {
+  background-color: #ff9f1c;
   color: #000;
   font-weight: 700;
   border-color: transparent; }
