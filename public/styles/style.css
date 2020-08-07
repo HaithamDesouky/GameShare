@@ -334,6 +334,19 @@ nav {
 .game-search {
   margin-top: 8px; }
 
+.mobile-actions .button-signout {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer; }
+
+.mobile-actions span {
+  color: #fff;
+  background-color: #008c6b;
+  padding: 2px 8px; }
+
 @media (min-width: 768px) {
   .body-margin {
     padding-top: 2rem; }

@@ -40,10 +40,16 @@
 {{!-- </div> --}}
 
 
-<div class="incoming">
+<div class="incoming mt-4">
   <div class="title">
     <h3>Hey, {{user.name}}!</h3>
     <h4>You have {{pendingActions}} offers right now.</h4>
+  </div>
+  <div class="d-md-none row d-flex justify-content-end mobile-actions mr-1">
+    <a href="/profile/edit"><span>Edit Profile</span></a>
+    <form action="/authentication/sign-out" method="POST">
+      <button class="button-signout mx-4"><span>Sign Out</span></button>
+    </form>
   </div>
   <div class="subtitle">
     <h5>INCOMING OFFERS</h5>
@@ -112,7 +118,7 @@
     </div>
  {{#each game}}    
   <div class="carousel-item">
-    <a href="game/{{game.0.id}}">
+    <a href="game/{{id}}">
       <img src="{{photo}}" alt="{{name}}">
     </a>
   </div>

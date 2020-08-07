@@ -418,6 +418,23 @@ nav {
   margin-top: 8px;
 }
 
+// PROFILE
+.mobile-actions {
+  .button-signout {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  span {
+    color: $white;
+    background-color: $dark-green;
+    padding: 2px 8px;
+  }
+}
+
 // Desktop and Tablet VIEW
 $tablet-width: 768px;
 
