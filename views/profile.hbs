@@ -40,10 +40,16 @@
 {{!-- </div> --}}
 
 
-<div class="incoming">
+<div class="incoming mt-4">
   <div class="title">
     <h3>Hey, {{user.name}}!</h3>
     <h4>You have {{pendingActions}} offers right now.</h4>
+  </div>
+  <div class="d-md-none row d-flex justify-content-end mobile-actions mr-1">
+    <a href="/profile/edit"><span>Edit Profile</span></a>
+    <form action="/authentication/sign-out" method="POST">
+      <button class="button-signout mx-4"><span>Sign Out</span></button>
+    </form>
   </div>
   <div class="subtitle">
     <h5>INCOMING OFFERS</h5>
@@ -72,9 +78,11 @@
     {{#if pendingRequests}}
     {{#each pendingRequests}}
     <div>
-      <img src="{{sellerGamePhoto}}">
+      <a href="game/{{sellerGame}}">
+        <img src="{{sellerGamePhoto}}">
+      </a>
       <div class="title">
-        <h5>You offered {{sellerName}}, {{buyerGameName}} for {{sellerGameName}}</h5>
+        <h5>You offered <a href="/profile/{{seller}}">{{sellerName}}</a>, <a href="game/{{buyerGame}}">{{buyerGameName}}</a> for <a href="game/{{sellerGame}}">{{sellerGameName}}</a></h5>
         <h6><a href="deal/{{id}}">VIEW DEAL</a></h6>
       </div>  
     </div>
@@ -104,13 +112,15 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <a href="game/{{game.0.id}}/edit">
+      <a href="game/{{game.0.id}}">
         <img src="{{game.0.photo}}" alt="{{game.0.name}}">
       </a>
     </div>
  {{#each game}}    
   <div class="carousel-item">
-    <img src="{{photo}}" alt="{{name}}">
+    <a href="game/{{id}}">
+      <img src="{{photo}}" alt="{{name}}">
+    </a>
   </div>
 {{/each}}
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
