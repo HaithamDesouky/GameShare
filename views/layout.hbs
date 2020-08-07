@@ -9,44 +9,45 @@
   </head>
   <body>
 
+    <nav>
     {{!---------------- NAV DESKTOP VIEW ----------------}}
-    <nav class="navbar d-none d-md-flex fixed-top navbar-expand-md navbar-light bg-light">
-      <div class="container">
+      <div class="navbar d-none d-md-flex fixed-top navbar-expand-md navbar-light bg-light">
+        <div class="container">
 
-        <a class="navbar-brand" href="/">Home</a>
+          <a class="navbar-brand" href="/">Home</a>
 
-        <div class="">
-          <ul class="navbar-nav ml-auto">
-            {{#if user}}
-              <li class="nav-item cta-btn">
-                <a class="btn btn-primary mr-5" href="/game/create">Post your game!</a>
-              </li>
-              <li class="nav-item dropdown" >
-                <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img src="{{user.photo}}" class="user-image rounded-circle" alt="user profile">
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/profile">Your account</a>
-                  <a class="dropdown-item" href="/profile/edit">Edit your profile</a> 
-                  <a class="dropdown-item" href="/deal/history">View your past trades</a>
-                  <div class="dropdown-divider"></div>
-                  <form class="dropdown-item" action="/authentication/sign-out" method="POST">
-                    <button>Sign Out</button>
-                  </form>
-                </div>
-              </li>
-            {{else}}
-              <li class="nav-item active">
-                <a class="nav-link" href="/authentication/sign-in">Sign In</a>
-              </li>
-              <li class="nav-item">
-                <a class="btn btn-primary ml-3" href="/authentication/sign-up">Sign Up</a>
-              </li>
-            {{/if}}
-          </ul>
+          <div class="">
+            <ul class="navbar-nav ml-auto">
+              {{#if user}}
+                <li class="nav-item cta-btn">
+                  <a class="btn btn-primary mr-5" href="/game/create">Post your game!</a>
+                </li>
+                <li class="nav-item dropdown" >
+                  <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{user.photo}}" class="user-image rounded-circle" alt="user profile">
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/profile">Your account</a>
+                    <a class="dropdown-item" href="/profile/edit">Edit your profile</a> 
+                    <a class="dropdown-item" href="/deal/history">View your past trades</a>
+                    <div class="dropdown-divider"></div>
+                    <form class="dropdown-item" action="/authentication/sign-out" method="POST">
+                      <button>Sign Out</button>
+                    </form>
+                  </div>
+                </li>
+              {{else}}
+                <li class="nav-item active">
+                  <a class="nav-link" href="/authentication/sign-in">Sign In</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-primary ml-3" href="/authentication/sign-up">Sign Up</a>
+                </li>
+              {{/if}}
+            </ul>
+          </div>
         </div>
       </div>
-    </nav>
 
     {{!---------------- NAV MOBILE VIEW ----------------}}
     <nav class="px-0 navbar d-md-none w-100 d-flex justify-content-between fixed-bottom navbar-expand-lg navbar-light bg-light">
@@ -111,6 +112,32 @@
         {{/if}}
       </ul>
 
+          {{else}}
+            <li class="nav-item col-3">
+              <a class="nav-link" href="/">
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"/>
+                  <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                </svg>
+              </a>
+            </li>
+            <li class="nav-item col-3">
+              <a class="nav-link" href="/">
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                </svg>
+              </a>
+            </li>
+            <li class="nav-item col-3 nav-text">
+              <a class="nav-link active btn-sign-in" href="/authentication/sign-in">Sign In</a>
+            </li>
+            <li class="nav-item col-3 nav-text">
+              <a class="btn btn-primary btn-sign-up" href="/authentication/sign-up">Sign Up</a>
+            </li>
+          {{/if}}
+        </ul>
+      </div>
     </nav>
 
 

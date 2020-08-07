@@ -97,6 +97,14 @@ p {
   font-size: 1.3rem;
   text-align: center; }
 
+<<<<<<< HEAD
+=======
+.offers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+
+>>>>>>> 52f39e9fc006576d85e138b009e93ce24146a957
 .each-offer-text {
   display: flex;
   width: 70%;
@@ -182,6 +190,19 @@ textarea {
 
 .btn-secondary:hover {
   background-color: #ffbf69;
+  color: #000;
+  font-weight: 700;
+  border-color: transparent; }
+
+.btn-secondary-light {
+  background-color: #ffbf69;
+  color: #000;
+  font-weight: 700;
+  border-color: transparent;
+  box-shadow: 10px 10px 0px 0px #4f4e4f; }
+
+.btn-secondary-light:hover {
+  background-color: #ff9f1c;
   color: #000;
   font-weight: 700;
   border-color: transparent; }

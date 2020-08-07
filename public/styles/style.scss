@@ -231,6 +231,20 @@ textarea {
   border-color: transparent;
 }
 
+.btn-secondary-light {
+  background-color: $light-yellow;
+  color: #000;
+  font-weight: 700;
+  border-color: transparent;
+  box-shadow: 10px 10px 0px 0px rgba(79, 78, 79, 1);
+}
+.btn-secondary-light:hover {
+  background-color: $dark-yellow;
+  color: #000;
+  font-weight: 700;
+  border-color: transparent;
+}
+
 // Google maps
 #map-container {
   align-self: center;
