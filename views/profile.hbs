@@ -1,44 +1,5 @@
 
 
-{{!-- <aside> --}}
-{{!-- <img src="{{ user.photo }}" alt="user photo" class="profile-image"> --}}
-  {{!-- <h1>Welcome {{user.name}} ! You have {{pendingActions}} offers right now.</h1> --}}
-{{!-- 
-
-
-<a href="/deal/history" style="color: red;">Click here to view your deal history</a>
-
-<br>
-<a href="/profile/edit"> Edit your profile!</a>
-
-</aside> --}}
-
-{{!-- <div class="intro-to-profile">
-
- --}}
-
-{{!-- <div class="user-text">
-  <h1>Welcome {{user.name}} ! You have {{pendingActions}} offers right now.</h1>
-<span><strong>Name</strong>: {{user.name}}</span>
-<br />
-<span><strong>Email</strong>: {{user.email}}</span>
-<br>
-<a href="/deal/history" style="color: red;">Click here to view your deal history</a>
-
-<br>
-<a href="/profile/edit"> Edit your profile!</a>
-
-</div> --}}
-{{!-- <div class="user-img">
-
-  <br>
-  <img src="{{ user.photo }}" alt="user photo" class="profile-image">
-
-
-</div> --}}
-
-{{!-- </div> --}}
-
 <section id="profile">
   <div class="incoming mt-4">
     <div class="title">
@@ -102,7 +63,8 @@
 
   <div class="subtitle">
     <h5>YOUR GAMES</h5>
- 
+  </div>
+  <div>
     {{#if game}}
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-touch="true">
         <ol class="carousel-indicators">
@@ -133,6 +95,7 @@
           </a>
         </div>
       </div>
+    {{else}}
       <p>You haven't posted a game! Click above on Post Your Game to begin sharing! </p>
     {{/if}}
   </div>
