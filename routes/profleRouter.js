@@ -89,8 +89,8 @@ profileRouter.get('/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   User.findById(id)
     .populate('games')
-    .then(user => {
-      console.log(user), res.render('other-user', { otherUser });
+    .then(otherUser => {
+      res.render('other-user', { otherUser });
     });
 });
 //---------------------------
