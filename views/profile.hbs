@@ -75,13 +75,13 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <a href="game/{{game.0.id}}">
-              <img src="{{game.0.photo}}" alt="{{game.0.name}}">
+              <img class="d-block mx-auto w-75" src="{{game.0.photo}}" alt="{{game.0.name}}">
             </a>
           </div>
           {{#each game}}    
             <div class="carousel-item">
               <a href="game/{{id}}">
-                <img src="{{photo}}" alt="{{name}}">
+                <img class="d-block mx-auto w-75" src="{{photo}}" alt="{{name}}">
               </a>
             </div>
           {{/each}}
