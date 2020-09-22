@@ -14,11 +14,7 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 
 const upload = multer({ storage });
 
-// const GitHubStrategy = require('passport-github').Strategy;
-
 const User = require('./models/user');
-
-//const routeGuard = require('./../middleware/route-guard');
 
 const transport = nodemailer.createTransport({
   service: 'Gmail',
@@ -32,7 +28,8 @@ const transport = nodemailer.createTransport({
 });
 
 const generateRandomToken = length => {
-  const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const characters =
+    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let token = '';
   for (let i = 0; i < length; i++) {
     token += characters[Math.floor(Math.random() * characters.length)];
@@ -65,50 +62,54 @@ passport.use(
       const { name, status, wishlist, latitude, longitude } = req.body;
       const token = generateRandomToken(40);
       let userPhoto;
-      !req.file ? (userPhoto = 'https://res.cloudinary.com/asxisto/image/upload/c_scale,w_200/v1596535475/gamechanger/default_user.png') : (userPhoto = req.file.path);
+      !req.file
+        ? (userPhoto =
+            'https://res.cloudinary.com/asxisto/image/upload/c_scale,w_200/v1596535475/gamechanger/default_user.png')
+        : (userPhoto = req.file.path);
 
-      bcryptjs
-        .hash(password, 10)
-        .then(hash => {
-          return User.create({
-            name,
-            email,
-            passwordHash: hash,
-            status,
-            wishlist,
-            photo: userPhoto,
-            location: {
-              coordinates: [latitude, longitude]
-            },
-            confirmationToken: token
-          });
-        })
-        .then(user => {
-          req.session.user = user._id;
-          transport
-            .sendMail({
-              from: process.env.NODEMAILER_EMAIL,
-              to: process.env.NODEMAILER_EMAIL,
-              subject: 'Gamechanger: Sign-up Confirmation',
-              html: `
-                <html>
-                  <body>
-                    <p>Please confirm your account:</p>
-                    <a href="http://localhost:3000/authentication/email-confirmation?token=${token}">Confirmation Link</a>
-                  </body>
-                </html>
-              `
-            })
-            .then(result => {
-              console.log('Email was sent successfuly.');
-              console.log(result);
-              callback(null, user);
+      let existingUser;
+      User.findOne({
+        email
+      }).then(data => {
+        existingUser = data;
+        console.log(existingUser, 'already exists');
+      });
+
+      if (existingUser) {
+        callback(
+          new Error(
+            'Your password does not match the email in our records, please try again.'
+          )
+        );
+      } else {
+        bcryptjs
+          .hash(password, 10)
+          .then(hash => {
+            return User.create({
+              name,
+              email,
+              passwordHash: hash,
+              status,
+              wishlist,
+              photo: userPhoto,
+              location: {
+                coordinates: [latitude, longitude]
+              },
+              confirmationToken: token
             });
-        })
-        .catch(error => {
-          console.log('There was an error sending the email.');
-          callback(error);
-        });
+          })
+          .then(user => {
+            req.session.user = user._id;
+            callback(null, user);
+          })
+          .catch(error => {
+            callback(
+              new Error(
+                'Sorry, it seems like this email is already taken! Please try again!'
+              )
+            );
+          });
+      }
     }
   )
 );
@@ -128,7 +129,11 @@ passport.use(
         if (passwordMatchesHash) {
           callback(null, user);
         } else {
-          callback(new Error('WRONG_PASSWORD'));
+          callback(
+            new Error(
+              'Your password does not match the email in our records, please try again.'
+            )
+          );
         }
       })
       .catch(error => {
@@ -136,42 +141,3 @@ passport.use(
       });
   })
 );
-
-// passport.use(
-//   'github',
-//   new GitHubStrategy(
-//     {
-//       clientID: process.env.GITHUB_CLIENT_ID,
-//       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-//       callbackURL: 'http://localhost:3000/authentication/github-callback',
-//       scope: 'user:email'
-//     },
-//     (accessToken, refreshToken, profile, callback) => {
-//       const {
-//         displayName: name,
-//         emails,
-//         photos: [{ value: photo } = {}] = []
-//       } = profile;
-//       const primaryEmail = emails.find(email => email.primary).value;
-//       User.findOne({ email: primaryEmail })
-//         .then(user => {
-//           if (user) {
-//             return Promise.resolve(user);
-//           } else {
-//             return User.create({
-//               email: primaryEmail,
-//               photo,
-//               name,
-//               githubToken: accessToken
-//             });
-//           }
-//         })
-//         .then(user => {
-//           callback(null, user);
-//         })
-//         .catch(error => {
-//           callback(error);
-//         });
-//     }
-//   )
-// );

@@ -29,27 +29,6 @@ router.post(
   })
 );
 
-router.post(
-  '/sign-up',
-  upload.single('photo'),
-  passport.authenticate('github', {
-    successRedirect: '/profile',
-    failureRedirect: '/sign-up'
-  })
-);
-
-router.get('/email-confirmation', (req, res, next) => {
-  const mailToken = req.query.token;
-
-  User.findOneAndUpdate({ confirmationToken: mailToken }, { status: 'active' }, { new: true })
-    .then(user => {
-      res.render('email-confirmation', { user });
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-
 router.get('/sign-in', (req, res, next) => {
   res.render('sign-in');
 });
@@ -59,14 +38,6 @@ router.post(
   passport.authenticate('local-sign-in', {
     successRedirect: '/profile',
     failureRedirect: '/sign-in'
-  })
-);
-
-router.get(
-  '/github',
-  passport.authenticate('github', {
-    successRedirect: '/profile',
-    failureRedirect: '/authentication/sign-in'
   })
 );
 

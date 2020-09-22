@@ -4,9 +4,6 @@ const { Router } = require('express');
 const router = new Router();
 const Game = require('../models/game');
 const User = require('../models/user');
-function shuffle(arr) {
-  arr.sort(() => Math.random() - 0.5);
-}
 
 router.get('/', (req, res, next) => {
   let games;
@@ -16,7 +13,6 @@ router.get('/', (req, res, next) => {
     const id = req.session.passport.user;
     Game.find({ creator: { $ne: id } })
       .then(data => {
-        // console.log(games);
         games = data;
       })
       .catch(error => {
@@ -28,8 +24,6 @@ router.get('/', (req, res, next) => {
         users = file;
       })
       .then(() => {
-        shuffle(games);
-
         if (games.length > 12) {
           games.splice(12, games.length - 1);
         }
@@ -54,10 +48,6 @@ router.get('/', (req, res, next) => {
         users = file;
       })
       .then(() => {
-        shuffle(games);
-
-        shuffle(games);
-
         if (games.length > 12) {
           games.splice(12, games.length - 1);
         }
